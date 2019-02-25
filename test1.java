@@ -1,4 +1,6 @@
 public Class test1(){
-	public void Sytst
+	public static void main(String [] args){
+
+	}
 
 }
