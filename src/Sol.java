@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -12,6 +13,11 @@ public class Sol extends Bloc {
 	public Sol(int x, int y) {
 		super(x,y);
 	}
+	
+	public Sol(int x, int y, Color c) {
+		super(x,y,c);
+	}
+	
 
 	@Override
 	public void dessine(Graphics g) {

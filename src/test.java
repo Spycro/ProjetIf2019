@@ -28,13 +28,7 @@ public class test {
 		};
 		
 		
-		for(int i = 0; i< test.length;i++) {
-			for (int j =0; j< test.length;j++) {
-				for (int k=0; k< test.length;k++) System.out.print(test[i][j][k]);
-				System.out.println();
-			}
-			System.out.println();
-		}
+		
 			
 	}
 

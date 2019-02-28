@@ -14,7 +14,7 @@ import java.awt.*;
 public abstract class Bloc {
 	
 	
-	protected final int COTES = 50;
+	protected final int COTES = 64;
 	protected Color couleur;
 	protected int coordX;
 	protected int coordY;
@@ -28,8 +28,18 @@ public abstract class Bloc {
 	public Bloc(int x, int y) {
 		coordY = y;
 		coordX = x;
+		couleur = Color.darkGray;
 	}
 	
+	public Bloc(int x, int y, Color c) {
+		coordY = y;
+		coordX = x;
+		couleur = c;
+	}
+	
+	public Color getColor() {
+		return couleur;
+	}
 	
 	public abstract void dessine(Graphics g);
 	
