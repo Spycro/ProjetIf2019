@@ -17,20 +17,20 @@ import javax.swing.JFrame;
 public class PanneauDeJeu extends JPanel {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
+
 	private Bloc[][] grille;
 	private Personnage joueur;
-	
-	
+
+
 	public PanneauDeJeu() {
-		
+
 		grille = new Bloc[10][10];
 		joueur = new Personnage();
-		
+
 		for(int i = 0;i<grille.length;i++) {
 			for(int j = 0; j< grille[0].length;j++) {
 				if(j>4)
@@ -41,31 +41,33 @@ public class PanneauDeJeu extends JPanel {
 		}
 
 	}
-	
-	
+
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//Dessin  du background (ca marche !!!)
 		//Dessine avec l'image "earthBG"
 		try {
-			
+
 			Image bg = ImageIO.read(new File("bin/earthBG.jpg"));
 			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), this);
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+
 		for(int i = 0;i<grille.length;i++) {
 			for(int j = 0; j<grille.length;j++) {
 				//grille[i][j].dessine(g);
 			}
 		}
-		
+
 		joueur.dessineJoueur(g, this);
-		
-		
+
+
 	}
+	
+	public Personnage getJoueur() { return joueur;}
 }

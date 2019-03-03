@@ -18,6 +18,7 @@ public abstract class Bloc {
 	protected Color couleur;
 	protected int coordX;
 	protected int coordY;
+	Rectangle hitBox;
 	
 	
 	
@@ -29,12 +30,14 @@ public abstract class Bloc {
 		coordY = y;
 		coordX = x;
 		couleur = Color.darkGray;
+		hitBox = new Rectangle(x,y,COTES, COTES);
 	}
 	
 	public Bloc(int x, int y, Color c) {
 		coordY = y;
 		coordX = x;
 		couleur = c;
+		hitBox = new Rectangle(x,y,COTES, COTES);
 	}
 	
 	public Color getColor() {

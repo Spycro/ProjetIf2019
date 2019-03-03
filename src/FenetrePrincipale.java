@@ -2,11 +2,13 @@ import java.awt.Color;
 import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
 
-public class FenetrePrincipale extends JFrame implements ActionListener{
+public class FenetrePrincipale extends JFrame implements ActionListener, KeyListener{
 	
 	/**
 	 * 
@@ -14,7 +16,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panneauMenuPrincipal;
-	private JPanel panneauZoneJeu; //sera peut être un tableau de zone de jeu
+	private PanneauDeJeu panneauZoneJeu; //sera peut être un tableau de zone de jeu
 	
 	private JButton bStart;
 	private JButton bQuit;
@@ -30,8 +32,11 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
+		
+		
 		panneauMenuPrincipal = new PanneauPrincipal();
 		panneauZoneJeu = new PanneauDeJeu();
+		panneauZoneJeu.addKeyListener(this);
 		
 		panneauMenuPrincipal.setLayout(null);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
@@ -53,8 +58,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-	
-	
+		System.out.println(panneauZoneJeu.isFocusable());
+		
 	}
 
 
@@ -66,12 +71,40 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		
 		if(e.getSource() == bStart){
 			System.out.println("Button Pressed");
+			
+			
 			panneauMenuPrincipal.add(panneauZoneJeu);
+			panneauZoneJeu.requestFocusInWindow();
+			System.out.println(panneauZoneJeu.hasFocus());
 			this.getContentPane().remove(bStart);
 			this.add(bQuit);
 		}
 		
 		this.getContentPane().repaint();
+		
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == panneauZoneJeu) {
+			panneauZoneJeu.getJoueur().move(e);
+		}
+		this.getContentPane().repaint();
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
