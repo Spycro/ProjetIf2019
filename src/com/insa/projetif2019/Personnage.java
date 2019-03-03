@@ -1,3 +1,4 @@
+package com.insa.projetif2019;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

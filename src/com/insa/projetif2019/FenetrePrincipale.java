@@ -1,3 +1,4 @@
+package com.insa.projetif2019;
 import java.awt.Color;
 import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;

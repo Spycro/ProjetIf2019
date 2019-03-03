@@ -1,3 +1,4 @@
+package com.insa.projetif2019;
 /**
  * classe heritant de JPanel qui gerera probablement le menu principal.
  * implementera surement ActionListener pour les jButton qui seront present. 
