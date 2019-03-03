@@ -15,7 +15,12 @@ public abstract class Astre {
 	 * 
 	 */
 
-	private int[][][] grilleDeNiveaux;
+	private int[][][] grilleDeNiveau;
+	
+	public Astre(String pNom, int [][][] grille) {
+		nom = pNom; 
+		grilleDeNiveau = grille;
+	}
 	
 	
 }

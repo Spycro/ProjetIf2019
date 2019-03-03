@@ -7,16 +7,19 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
+	/**
+	 * Fenetre principale de notre Jeu 
+	 * Cette fenetre gere tout nos JPanel et nos buton etc
+	 * @author Lucas
+	 *
+	 */
 
 public class FenetrePrincipale extends JFrame implements ActionListener, KeyListener{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panneauMenuPrincipal;
-	private PanneauDeJeu panneauZoneJeu; //sera peut être un tableau de zone de jeu
+	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
 	
 	private JButton bStart;
 	private JButton bQuit;
@@ -24,6 +27,9 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	private final int LARGEUR = 960; //15 blocs de 64 pixels de large
 	private final int HAUTEUR = 640; //10 blocs de 64 pixels de large
 	//TOTAL : 15 * 10 = 150 blocs pour la grille 
+	
+	private int niveauActuel;
+	private final int NBNIVEAUX = 5;
 	
 	
 	public FenetrePrincipale(){
@@ -55,10 +61,10 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 		
 		setContentPane(panneauMenuPrincipal);
 		
+		niveauActuel =1; 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		System.out.println(panneauZoneJeu.isFocusable());
 		
 	}
 

@@ -17,7 +17,6 @@ import java.awt.event.KeyEvent;
 
 public class Personnage {
 	
-	
 	Image sprite;
 	Rectangle hitBox;
 	private int x;
@@ -64,18 +63,41 @@ public class Personnage {
 	
 	public void setY(int pY) {y = pY;}
 	
+	/**
+	 * Gere le deplacement du joueur 
+	 * @param e evement de clavier, venant du JPanel ecouté par le KeyListener
+	 */
+	
 	public void move(KeyEvent e) {
 		int key = e.getKeyCode();
 		
 		switch (key) {
-		case 39: x += dX; break ;
-		case 37: x-= dX; break;
+		case 39: 
+			x += dX;
+			break ;
+		case 37:
+			x-= dX;
+			break;
 		}
+		
+		refreshHB();
 	}
 	
-	
+	/**
+	 * permet le dessin du sprite du joureur 
+	 * @param g objet graphique
+	 * @param obs endroit ou sera afficher l'image
+	 */
 	
 	public void dessineJoueur(Graphics g, ImageObserver obs) {
 		g.drawImage(sprite, x, y, LARGEUR, HAUTEUR, obs);
+	}
+	
+	
+	/**
+	 * Met A jour l'emplacement de la hitbox
+	 */
+	public void refreshHB() {
+		hitBox.setLocation(x,y);
 	}
 }

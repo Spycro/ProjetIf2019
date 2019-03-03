@@ -68,6 +68,26 @@ public class PanneauDeJeu extends JPanel {
 
 
 	}
+
 	
 	public Personnage getJoueur() { return joueur;}
+	
+	/**
+	 * Check si le personnage est en collison avec un bloc
+	 * @return true si coliision false si non
+	 */
+	public boolean collision() {
+		
+		for (int i = 0; i < grille.length; i++) {
+			for (int j = 0; j < grille[0].length; j++) {
+				if (joueur.hitBox.intersects(grille[i][j].hitBox))
+					return true;
+			}
+		}
+		
+		
+		return false;
+	}
+	
+	
 }
