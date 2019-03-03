@@ -15,7 +15,7 @@ import java.awt.*;
 public abstract class Bloc {
 	
 	
-	protected final int COTES = 64;
+	protected static final int COTES = 64;
 	protected Color couleur;
 	protected int coordX;
 	protected int coordY;
