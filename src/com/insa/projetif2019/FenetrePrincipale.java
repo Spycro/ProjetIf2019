@@ -5,8 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
 
 	/**
 	 * Fenetre principale de notre Jeu 
@@ -31,8 +32,11 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	
 	private int niveauActuel;
 	private final int NBNIVEAUX = 5;
+	private final int FRAMERATE = 30;
 	
 	private Timer t;
+	
+	private Set<Integer> toucheEnfonce; //gerer touche multiple 
 	
 	
 	public FenetrePrincipale(){
@@ -41,7 +45,9 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
-		
+		t = new Timer((int)(1000/FRAMERATE), this);
+		t.start();
+		toucheEnfonce = new HashSet<Integer>();
 		
 		panneauMenuPrincipal = new PanneauPrincipal();
 		panneauZoneJeu = new PanneauDeJeu();
@@ -97,8 +103,12 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+		
 		if(e.getSource() == panneauZoneJeu) {
-			panneauZoneJeu.getJoueur().move(e);
+			toucheEnfonce.add(e.getKeyCode()); 
+			System.out.println(toucheEnfonce.size());
+			panneauZoneJeu.getJoueur().move(e); //a modifier totalement sur le principe
 		}
 		this.getContentPane().repaint();
 	}
@@ -107,6 +117,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		toucheEnfonce.remove(e.getKeyCode());
 		
 	}
 
