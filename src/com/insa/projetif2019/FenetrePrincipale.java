@@ -32,6 +32,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	private int niveauActuel;
 	private final int NBNIVEAUX = 5;
 	
+	private Timer t;
+	
 	
 	public FenetrePrincipale(){
 		super("SusperStar");
