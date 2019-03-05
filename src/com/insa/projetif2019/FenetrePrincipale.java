@@ -21,7 +21,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panneauMenuPrincipal;
-	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
+	
 	
 	private JButton bStart;
 	private JButton bQuit;
@@ -36,7 +36,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	
 	private Timer t;
 	
-	private Set<Integer> toucheEnfonce; //gerer touche multiple 
+	 
 	
 	
 	public FenetrePrincipale(){
@@ -47,23 +47,16 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 		
 		t = new Timer((int)(1000/FRAMERATE), this);
 		t.start();
-		toucheEnfonce = new HashSet<Integer>();
+
 		
-		panneauMenuPrincipal = new PanneauPrincipal();
-		panneauZoneJeu = new PanneauDeJeu();
-		panneauZoneJeu.addKeyListener(this);
+		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR);
 		
-		panneauMenuPrincipal.setLayout(null);
-		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
+
 		
-		bStart = new JButton("Start");
-		bStart.setBounds(300,500,100,50);
-		bStart.addActionListener(this);
-		panneauMenuPrincipal.add(bStart);
+
 		
-		bQuit = new JButton("Quit");
-		bQuit.setBounds(300,500,100,50);
-		//bQuit.addActionListener(this);
+
+	
 		
 		//panneauMenuPrincipal.add(panneauZoneJeu);
 		
@@ -80,45 +73,18 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*
-		 * Principe de Start (add dans actionPerformed avec remove() du JButton)
-		 */
 		
-		if(e.getSource() == bStart){
-			System.out.println("Button Pressed");
-			
-			
-			panneauMenuPrincipal.add(panneauZoneJeu);
-			panneauZoneJeu.requestFocusInWindow();
-			System.out.println(panneauZoneJeu.hasFocus());
-			this.getContentPane().remove(bStart);
-			this.add(bQuit);
-		}
-		
-		this.getContentPane().repaint();
 		
 	}
 
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-		
-		if(e.getSource() == panneauZoneJeu) {
-			toucheEnfonce.add(e.getKeyCode()); 
-			System.out.println(toucheEnfonce.size());
-			panneauZoneJeu.getJoueur().move(e); //a modifier totalement sur le principe
-		}
-		this.getContentPane().repaint();
 	}
 
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		toucheEnfonce.remove(e.getKeyCode());
-		
+	public void keyReleased(KeyEvent e){
 	}
 
 
