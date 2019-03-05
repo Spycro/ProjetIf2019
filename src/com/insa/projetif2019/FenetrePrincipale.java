@@ -52,12 +52,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR);
 		
 
-		
-
-		
-
-	
-		
 		//panneauMenuPrincipal.add(panneauZoneJeu);
 		
 		
