@@ -1,0 +1,3 @@
+A faire dans la classe bloc :
+- Dans le constructeur pour les astres, gérer le type de bloc demandé
+- Ajouter un constructeur pour les objets qui ne sont pas du sol
