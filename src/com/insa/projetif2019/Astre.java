@@ -1,8 +1,10 @@
 package com.insa.projetif2019;
 
-public abstract class Astre {
+public abstract  class Astre {
 
-	private String nom;
+	private String genre;
+	
+	
 	
 	/*
 	 * première implementation des niveaux 
@@ -18,9 +20,7 @@ public abstract class Astre {
 
 	private int[][][] grilleDeNiveau;
 	
-	public Astre(String pNom, int [][][] grille) {
-		nom = pNom; 
-		grilleDeNiveau = grille;
+	public Astre() {
 	}
 	
 	

@@ -42,7 +42,7 @@ public class Personnage {
 	}
 	
 	public Personnage(int pX, int pY) {
-		//création du personnage
+		//creation du personnage
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 		} catch (IOException e) {
@@ -66,7 +66,7 @@ public class Personnage {
 	
 	/**
 	 * Gere le deplacement du joueur 
-	 * @param e evement de clavier, venant du JPanel ecouté par le KeyListener
+	 * @param e evement de clavier, venant du JPanel ecoutï¿½ par le KeyListener
 	 */
 	
 	public void move(KeyEvent e) {
