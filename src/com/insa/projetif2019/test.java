@@ -30,6 +30,7 @@ public class test {
 		
 		
 		System.out.println((int)(1000/30));			
+		//
 	}
 
 }
