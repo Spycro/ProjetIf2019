@@ -16,7 +16,13 @@ import javax.swing.*;
 
 public class PanneauPrincipal extends JPanel implements ActionListener, KeyListener{
 
+	//ATTRIBUTS
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	private static final long serialVersionUID = 1L;
+	
+	private static JFrame fenMere;
+	
 	private JButton bStart;
 	private JButton bQuit;
 	private JButton bComtJouer;
@@ -26,7 +32,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int LARGEUR;
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
+	Timer enMvt;
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	public PanneauPrincipal(int largeur, int hauteur) {
 		setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
@@ -35,21 +44,22 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		setLayout(null);
 		
 		toucheEnfonce = new HashSet<Integer>();
+		enMvt = new Timer(33,this);
 
 		
-		//Définition du bouton de lancement
+		//Definition du bouton de lancement
 		bStart = new JButton("Start");
 		bStart.setBounds(300,500,100,50);
 		bStart.addActionListener(this);
 		this.add(bStart);
 		
-		//Définition du bouton pour quitter
+		//Definition du bouton pour quitter
 		bQuit = new JButton("Exit");
 		bQuit.setBounds(560,500,100,50);
 		bQuit.addActionListener(this);
 		this.add(bQuit);
 		
-		//Définition du bouton pour apprendre à jouer 
+		//Definition du bouton pour apprendre a jouer 
 		bComtJouer=new JButton("Comment jouer");
 		bComtJouer.setBounds(450,560,100,50);
 		bComtJouer.addActionListener(this);
@@ -65,7 +75,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		super.paintComponent(g);	
 		
 	}
-
+	
+	public void setFenMere(JFrame mere) {
+		fenMere = mere;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -80,16 +93,20 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(bStart);
 			this.remove(bQuit);;
 			this.remove(bComtJouer);
+		
+		
+		}
 			
 	    if(e.getSource() == bQuit){
 	   
-	    //	frameToClose.dispose();
+	    	fenMere.dispose();
 	    	
 	    }
+	    
+	    if(e.getSource() == enMvt) {
+	    	panneauZoneJeu.getJoueur().move(toucheEnfonce);
+	    }
 			
-		
-		}
-		
 		repaint();
 		
 	}
@@ -100,8 +117,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		if(e.getSource() == panneauZoneJeu) {
 			toucheEnfonce.add(e.getKeyCode()); 
+			enMvt.start();
 			System.out.println(toucheEnfonce.size());
-			panneauZoneJeu.getJoueur().move(e); //a modifier totalement sur le principe
+			System.out.println(panneauZoneJeu.collision());
 		}
 		this.repaint();
 		
@@ -112,7 +130,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	public void keyReleased(KeyEvent e) {
 		
 		toucheEnfonce.remove(e.getKeyCode());
-		
+		if(toucheEnfonce.isEmpty()) {
+			enMvt.stop();
+		}
 	}
 
 

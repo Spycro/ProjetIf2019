@@ -20,7 +20,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	
 	private static final long serialVersionUID = 1L;
 
-	private JPanel panneauMenuPrincipal;
+	private PanneauPrincipal panneauMenuPrincipal;
 	
 	
 	private JButton bStart;
@@ -50,9 +50,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 
 		
 		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR);
-		
-
-		//panneauMenuPrincipal.add(panneauZoneJeu);
+		panneauMenuPrincipal.setFenMere(this);
 		
 		
 		setContentPane(panneauMenuPrincipal);

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * Classe Abstraite Bloc utilise pour faire les sols et les objets 
  * avec lesquels on pourra interragir comme les pics ou les points 
  * d'interrogations.
- * @author Lucas, Loïc
+ * @author Lucas, Loï¿½c
  * 
  */
 
@@ -33,19 +33,20 @@ public abstract class Bloc {
 	
 	public Bloc() {
 		couleur = Color.darkGray;
+		hitBox = new Rectangle();
 	}
 	
 	public Bloc(JFrame parent, int x, int y, int type, String astre) {
 		/**
 		 * astre : Astre pour lequel on demande un bloc
-		 * type : type de bloc demandé
+		 * type : type de bloc demandï¿½
 		 * Description type :
-		 * 1 - coin supérieur gauche
-		 * 2 - sol supérieur plat
-		 * 3 - coin supérieur droit
-		 * 4 - bloc coté gauche
-		 * 5 - bloc intérieur
-		 * 6 - bloc coté droit
+		 * 1 - coin supï¿½rieur gauche
+		 * 2 - sol supï¿½rieur plat
+		 * 3 - coin supï¿½rieur droit
+		 * 4 - bloc cotï¿½ gauche
+		 * 5 - bloc intï¿½rieur
+		 * 6 - bloc cotï¿½ droit
 		 */
 		coordY = y;
 		coordX = x;
@@ -58,10 +59,6 @@ public abstract class Bloc {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
-			switch(type){
-			
 			}
 			
 			break;

@@ -34,10 +34,9 @@ public class PanneauDeJeu extends JPanel {
 
 		for(int i = 0;i<grille.length;i++) {
 			for(int j = 0; j< grille[0].length;j++) {
-				if(j>4)
+				
 					grille[i][j] = new Sol(i*64,j*64);
-				else
-					grille[i][j] = new Sol();
+			
 			}
 		}
 
@@ -78,7 +77,7 @@ public class PanneauDeJeu extends JPanel {
 	 * @return true si coliision false si non
 	 */
 	public boolean collision() {
-		
+		//marche pas :(
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[0].length; j++) {
 				if (joueur.hitBox.intersects(grille[i][j].hitBox))
