@@ -37,7 +37,7 @@ public class PanneauDeJeu extends JPanel {
 				if(j>4)
 					grille[i][j] = new Sol(i*64,j*64);
 				else
-					grille[i][j] = new Sol(i*64,j*64, Color.cyan);
+					grille[i][j] = new Sol();
 			}
 		}
 
@@ -61,7 +61,7 @@ public class PanneauDeJeu extends JPanel {
 
 		for(int i = 0;i<grille.length;i++) {
 			for(int j = 0; j<grille.length;j++) {
-				//grille[i][j].dessine(g);
+				grille[i][j].dessine(g);
 			}
 		}
 
@@ -89,6 +89,8 @@ public class PanneauDeJeu extends JPanel {
 		
 		return false;
 	}
+	
+	
 	
 	
 }
