@@ -78,6 +78,14 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			panneauZoneJeu.requestFocusInWindow();
 			
 			this.remove(bStart);
+			this.remove(bQuit);;
+			this.remove(bComtJouer);
+			
+	    if(e.getSource() == bQuit){
+	   
+	    //	frameToClose.dispose();
+	    	
+	    }
 			
 		
 		}
