@@ -1,6 +1,6 @@
 package com.insa.projetif2019;
 
-public class Astre {
+public abstract class Astre {
 
 	private String nom;
 	
