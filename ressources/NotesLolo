@@ -1,3 +1,11 @@
 A faire dans la classe bloc :
 - Dans le constructeur pour les astres, gérer le type de bloc demandé
 - Ajouter un constructeur pour les objets qui ne sont pas du sol
+- Ajouter attribut taille dans la classe bloc
+- Faire de la variable "type" un char au lieu d'un int.
+
+Ajouter une classe infobox qui hérite de la classe bloc.
+- Attribut supplémentaires : numeroBoite et contenuBoite
+- méthode : afficherContenu
+
+Bosser sur la génération de la carte.
