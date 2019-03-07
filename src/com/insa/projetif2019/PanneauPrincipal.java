@@ -32,6 +32,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int LARGEUR;
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
+	Timer tempsDeJeu;
 	Timer enMvt;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +46,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		toucheEnfonce = new HashSet<Integer>();
 		enMvt = new Timer(33,this);
+		tempsDeJeu = new Timer(33,this);
+	
 
 		
 		//Definition du bouton de lancement
@@ -93,7 +96,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(bStart);
 			this.remove(bQuit);;
 			this.remove(bComtJouer);
-		
+			
+			tempsDeJeu.start();
 		
 		}
 			
@@ -104,8 +108,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    }
 	    
 	    if(e.getSource() == enMvt) {
-	    	panneauZoneJeu.getJoueur().move(toucheEnfonce);
+	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce, panneauZoneJeu.getGrille());
 	    }
+	    
+	    panneauZoneJeu.getJoueur().falling(panneauZoneJeu.getGrille());
 			
 		repaint();
 		

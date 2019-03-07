@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,16 +32,16 @@ public class PanneauDeJeu extends JPanel {
 	public PanneauDeJeu() {
 
 		grille = new Bloc[10][10];
-		joueur = new Personnage();
-
-		for(int i = 0;i<grille.length;i++) {
-			for(int j = 0; j< grille[0].length;j++) {
+		joueur = new Personnage(50,250);
+		
+		for(int i=0;i<grille.length;i++) {
+			for(int j=0;j<grille[i].length;j++) {
+				if(j>7) {
+					grille[i][j] = new Sol(i*64,j*64,Color.blue);
+				}
 				
-					grille[i][j] = new Sol(i*64,j*64);
-			
 			}
 		}
-
 	}
 
 
@@ -60,7 +62,9 @@ public class PanneauDeJeu extends JPanel {
 
 		for(int i = 0;i<grille.length;i++) {
 			for(int j = 0; j<grille.length;j++) {
-				grille[i][j].dessine(g);
+				if(grille[i][j] != null) {
+					grille[i][j].dessine(g);
+				}
 			}
 		}
 
@@ -72,6 +76,8 @@ public class PanneauDeJeu extends JPanel {
 	
 	public Personnage getJoueur() { return joueur;}
 	
+	public Bloc[][] getGrille(){ return grille; }
+	
 	/**
 	 * Check si le personnage est en collison avec un bloc
 	 * @return true si coliision false si non
@@ -80,7 +86,7 @@ public class PanneauDeJeu extends JPanel {
 		//marche pas :(
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[0].length; j++) {
-				if (joueur.hitBox.intersects(grille[i][j].hitBox))
+				if (grille[i][j] != null && joueur.hitBox.intersects(grille[i][j].hitBox))
 					return true;
 			}
 		}
@@ -89,7 +95,9 @@ public class PanneauDeJeu extends JPanel {
 		return false;
 	}
 	
-	
+	public void checkMvt(Set<Integer> moveSet) {
+		
+	}
 	
 	
 }
