@@ -1,4 +1,5 @@
 package com.insa.projetif2019;
+
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -11,30 +12,36 @@ import javax.imageio.ImageIO;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+
 /**
  * Personnage joueur
+ * 
  * @author Lucas
  *
  */
 
-
 public class Personnage {
-	
-	//ATTRIBUTS
+
+	// ATTRIBUTS
 	////////////////////////////////////////////////////////////////////////////////////////
 	Image sprite;
 	Rectangle hitBox;
-	private int x;
-	private int y;
-	
-	private final int dX = 2;
-	private final int dY = 2;
-	
+	private int posX;
+	private int posY;
+	private double speedX;
+	private double speedY;
+
+	private double gravity;
+
+	private boolean onGround;
+
+	private Bloc[][] monde;
+
 	private final int LARGEUR = 40;
 	private final int HAUTEUR = 75;
 	/////////////////////////////////////////////////////////////////////////////////////////
-	
-	///METHODES
+
+	/// METHODES
 	public Personnage() {
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
@@ -42,151 +49,162 @@ public class Personnage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		x = 0;
-		y = 0;
-		hitBox = new Rectangle(x,y,LARGEUR, HAUTEUR -20);
+
+		posX = 0;
+		posY = 0;
+		speedX = 0;
+		speedY = 0;
+		gravity = 5.0;
+		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
 	}
-	
-	public Personnage(int pX, int pY) {
-		//creation du personnage
+
+	public Personnage(int pX, int pY, Bloc[][] pMonde) {
+		// creation du personnage
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		x= pX;
-		y = pY;
-		hitBox = new Rectangle(x,y, LARGEUR, HAUTEUR);
+
+		posX = pX;
+		posY = pY;
+		speedX = 0;
+		speedY = 0;
+		gravity = 1.0;
+		monde = pMonde;
+		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR);
 	}
-	
-	public int getX() {return x;}
-	
-	public int getY() {return y;}
-	
-	public void setX(int pX) {x = pX;}
-	
-	public void setY(int pY) {y = pY;}
-	
+
+	public int getX() {
+		return posX;
+	}
+
+	public int getY() {
+		return posY;
+	}
+
+	public void setX(int pX) {
+		posX = pX;
+	}
+
+	public void setY(int pY) {
+		posY = pY;
+	}
+
 	/**
-	 * Gere le deplacement du joueur 
+	 * Gere le deplacement du joueur
+	 * 
 	 * @param moveSet Set d'int contenant les touches actuellements pressees
 	 */
-	
-	public void move(Set<Integer> moveSet) {
-		
-		
-		if(moveSet.contains(39)) {
-			x += dX;
-		}
-		
-		if(moveSet.contains(37)) {
-			x-=dX;
-		}
-		
-		if(moveSet.contains(40)) {
-			y+=dY;
-		}
-		
-		if(moveSet.contains(38)) {
-			y-=dY;
-		}
-		 // 39 droite
-		 // 37 gauche 
-		 // 38 bas
-		 // 40 haut
+
+	public void move(double dX, double dY) {
+
+		posX += dX;
+		posY += dY;
 		refreshHB();
+
 	}
-	
+
 	/**
-	 * permet le dessin du sprite du joureur 
-	 * @param g objet graphique
+	 * permet le dessin du sprite du joureur
+	 * 
+	 * @param g   objet graphique
 	 * @param obs endroit ou sera afficher l'image
 	 */
-	
+
 	public void dessineJoueur(Graphics g, ImageObserver obs) {
-		g.drawImage(sprite, x, y, LARGEUR, HAUTEUR, obs);
-		
+		g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
+
 		//////////////////////////////// HITBOX (PRODUCTION)
-		g.drawRect(x, y, hitBox.width, hitBox.height);
+		g.drawRect(posX, posY, hitBox.width, hitBox.height);
 		///////////////////////////////
 	}
-	
 
-	
 	/**
 	 * Met A jour l'emplacement de la hitbox
 	 */
 	public void refreshHB() {
-		hitBox.setLocation(x,y);
+		hitBox.setLocation(posX, posY);
 	}
-	
+
 	public void preMouvement(Set<Integer> moveSet, Bloc[][] grille) {
-		//futur emplacement
-		//collision contre cet emplacement
-		
-		Rectangle placeHolder = hitBox.getBounds();
-		
-		if(moveSet.contains(39)) {
-			placeHolder.x += dX;
+		// futur emplacement
+		// collision contre cet emplacement
+
+		if (moveSet.contains(39)) {
+
+			deplacementDroite();
 		}
-		
-		if(moveSet.contains(37)) {
-			placeHolder.x-=dX;
+
+		if (moveSet.contains(37)) {
+
+			deplacementGauche();
 		}
-		
-		if(moveSet.contains(40)) {
-			placeHolder.y+=dY;
+
+		if (moveSet.contains(40)) {
+
 		}
-		
-		if(moveSet.contains(38)) {
-			placeHolder.y-=dY;
+
+		if (moveSet.contains(38)) {
+
+			jump();
 		}
-		if(!collision(grille, placeHolder)) {
-			move(moveSet);
-		}
+
 		else {
 			System.out.println("Collision !");
 		}
-		}
-	
-	public boolean collision(Bloc[][] grille, Rectangle pH) {
-		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille[0].length; j++) {
-				if (grille[i][j] != null && pH.intersects(grille[i][j].hitBox))
+		// 39 droites
+		// 37 gauche
+		// 38 haut
+		// 40 bas
+
+		System.out.println(speedX + " " + speedY);
+		System.out.println(gravity);
+
+	}
+
+	public boolean collision() {
+		for (int i = 0; i < monde.length; i++) {
+			for (int j = 0; j < monde[0].length; j++) {
+				if (monde[i][j] != null && hitBox.intersects(monde[i][j].hitBox)) {
 					return true;
+				}
 			}
 		}
-		
-		
 		return false;
 	}
-	
-	public void falling(Bloc[][] grille) {
-		int gravite = 20;
-		if(!collision((grille), new Rectangle(x,y+gravite, hitBox.width,hitBox.height))) {
-			y+=gravite;
-		}
-		else {
-			y = plusProcheSol(grille);
+
+	public void acceleration(double aX, double aY) {
+		speedX += aX;
+		speedY += aY;
+
+	}
+
+	public void deplacementDroite() {
+		if (speedX < 2) {
+			acceleration(1, 0);
 		}
 	}
-	
-	public int plusProcheSol(Bloc [][] grille) {
-		Rectangle temp = new Rectangle(hitBox);
-		while(collision(grille, temp)){
-			temp.y-=1;
+
+	public void deplacementGauche() {
+		if (speedX > -2) {
+			acceleration(-1, 0);
 		}
-		
-		return temp.y+1;
 	}
-	
+
 	public void jump() {
-		
+
+		acceleration(0, -5);
+
 	}
-	
-	
+
+	public void maj() {
+		move(speedX, speedY);
+		acceleration(0, gravity);
+		if (collision()) {
+			speedX = 0;
+			speedY = 0;
+		}
+	}
 }

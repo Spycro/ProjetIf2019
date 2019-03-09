@@ -111,7 +111,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce, panneauZoneJeu.getGrille());
 	    }
 	    
-	    panneauZoneJeu.getJoueur().falling(panneauZoneJeu.getGrille());
+	    panneauZoneJeu.getJoueur().maj();
 			
 		repaint();
 		
