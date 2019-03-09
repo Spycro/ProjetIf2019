@@ -35,10 +35,14 @@ public class PanneauDeJeu extends JPanel {
 				if (j > 7) {
 					grille[i][j] = new Sol(i * 64, j * 64, Color.blue);
 				}
-				
+				if(j==6 && i == 5) {
+					grille[i][j] = new Sol(i * 64, j * 64, Color.blue);
+
+				}
 
 			}
 		}
+		
 		joueur = new Personnage(50, 250, grille);
 	}
 

@@ -36,6 +36,7 @@ public class Personnage {
 	private boolean onGround;
 
 	private Bloc[][] monde;
+	private Bloc solCourant;
 
 	private final int LARGEUR = 40;
 	private final int HAUTEUR = 75;
@@ -128,7 +129,7 @@ public class Personnage {
 		hitBox.setLocation(posX, posY);
 	}
 
-	public void preMouvement(Set<Integer> moveSet, Bloc[][] grille) {
+	public void preMouvement(Set<Integer> moveSet) {
 		// futur emplacement
 		// collision contre cet emplacement
 
@@ -168,6 +169,7 @@ public class Personnage {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j] != null && hitBox.intersects(monde[i][j].hitBox)) {
+					solCourant = monde[i][j];
 					return true;
 				}
 			}
@@ -194,8 +196,8 @@ public class Personnage {
 	}
 
 	public void jump() {
-
-		acceleration(0, -5);
+		if(onGround)
+			acceleration(0, -30);
 
 	}
 
@@ -203,8 +205,27 @@ public class Personnage {
 		move(speedX, speedY);
 		acceleration(0, gravity);
 		if (collision()) {
-			speedX = 0;
-			speedY = 0;
+			if(speedX < 0) {
+				speedX = 0;
+			}
+			if(speedX > 0) {
+				speedX = 0;
+			}
+			if(speedY>0) {
+				setY(solCourant.coordY - Bloc.COTES - 10);
+				speedY = 0;
+				onGround = true;
+			}
+			if(speedY<0) {
+				speedY = 0;
+			}
+			
+			
+			
 		}
+		else {
+			onGround = false;
+		}
+		refreshHB();
 	}
 }
