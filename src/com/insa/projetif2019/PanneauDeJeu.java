@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 
@@ -25,12 +27,22 @@ public class PanneauDeJeu extends JPanel {
 
 	private Bloc[][] grille;
 	private Personnage joueur;
+	private File map;
+	private JPanel pCarte;
 
 	public PanneauDeJeu() {
 
-		grille = new Bloc[10][10];
-
-		for (int i = 0; i < grille.length; i++) {
+		grille = new Bloc[10][90];
+		//Modifications par Lolo
+		map = new File("bin/level.txt");
+		pCarte = new JPanel();
+		pCarte.setBounds(0, 0, 5760, 640);
+		pCarte.setOpaque(false);
+		
+		this.genererCarte();
+		this.add(pCarte);
+		
+		/*for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[i].length; j++) {
 				if (j > 7) {
 					grille[i][j] = new Sol(i * 64, j * 64, Color.blue);
@@ -41,9 +53,59 @@ public class PanneauDeJeu extends JPanel {
 				}
 
 			}
-		}
+		}*/
+		
 		
 		joueur = new Personnage(50, 250, grille);
+	}
+	
+	public void genererCarte() {
+		
+		//lecture du fichier de niveau
+		
+		FileInputStream flux = null;
+		
+		try {
+			flux = new FileInputStream(map);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
+		char[] elements = new char[900];
+		
+		try {
+			int n = 0;
+			
+			for(int i = 0; i < elements.length; i++) {
+				if((n=flux.read()) >=0 ) {
+					elements[i] = (char)n;
+					System.out.print(elements[i]);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(flux != null)
+					flux.close();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//Génération de la carte
+		int k = 0;
+		 for(int i = 0; i < grille.length; i++) {
+			 for(int j = 0; j < grille[i].length; j++) {
+				 if(elements[k] != '0')
+					 this.grille[i][j]= new Bloc(this, i*64, j*64, elements[k]);
+				 else
+					 this.grille[i][j]= null;
+				 k++;
+			 }
+		 }
 	}
 
 	public void paintComponent(Graphics g) {
@@ -63,7 +125,7 @@ public class PanneauDeJeu extends JPanel {
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille.length; j++) {
 				if (grille[i][j] != null) {
-					grille[i][j].dessine(g);
+					g.drawImage(grille[i][j].sprite, j*64, i*64, pCarte);
 				}
 			}
 		}

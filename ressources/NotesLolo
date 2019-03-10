@@ -9,3 +9,5 @@ Ajouter une classe infobox qui hérite de la classe bloc.
 - méthode : afficherContenu
 
 Bosser sur la génération de la carte.
+
+Nouvelle classe : carte. Hérite de JPanel.
