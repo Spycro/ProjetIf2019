@@ -110,8 +110,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    if(e.getSource() == enMvt) {
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce);
 	    }
-	    
-	    panneauZoneJeu.getJoueur().maj();
+	    if(e.getSource() == tempsDeJeu)
+	    	panneauZoneJeu.getJoueur().maj();
 			
 		repaint();
 		
@@ -124,8 +124,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(e.getSource() == panneauZoneJeu) {
 			toucheEnfonce.add(e.getKeyCode()); 
 			enMvt.start();
-			System.out.println(toucheEnfonce.size());
-			System.out.println(panneauZoneJeu.collision());
 		}
 		this.repaint();
 		

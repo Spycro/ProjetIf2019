@@ -1,6 +1,7 @@
 package com.insa.projetif2019;
 
 import java.awt.Image;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -32,6 +33,7 @@ public class Personnage {
 	private double speedY;
 
 	private double gravity;
+	private final double FRICTION = 0.92;
 
 	private boolean onGround;
 
@@ -119,6 +121,11 @@ public class Personnage {
 
 		//////////////////////////////// HITBOX (PRODUCTION)
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
+		
+		if(solCourant != null) {
+			g.setColor(Color.magenta);
+			g.fillRect(solCourant.coordX, solCourant.coordY, Bloc.COTES, Bloc.COTES);
+		}
 		///////////////////////////////
 	}
 
@@ -151,17 +158,12 @@ public class Personnage {
 
 			jump();
 		}
-
-		else {
-			System.out.println("Collision !");
-		}
 		// 39 droites
 		// 37 gauche
 		// 38 haut
 		// 40 bas
 
 		System.out.println(speedX + " " + speedY);
-		System.out.println(gravity);
 
 	}
 
@@ -196,15 +198,21 @@ public class Personnage {
 	}
 
 	public void jump() {
-		if(onGround)
-			acceleration(0, -30);
+		if(onGround) {
+			acceleration(0, -15);
+			onGround = false;
+		}
 
 	}
 
 	public void maj() {
-		move(speedX, speedY);
-		acceleration(0, gravity);
+		if(!onGround) 
+			acceleration(0, gravity);
+
+		onGround = checkGround();
 		if (collision()) {
+			System.out.println("il y a collision");
+			move(-speedX,0);
 			if(speedX < 0) {
 				speedX = 0;
 			}
@@ -212,20 +220,33 @@ public class Personnage {
 				speedX = 0;
 			}
 			if(speedY>0) {
-				setY(solCourant.coordY - Bloc.COTES - 10);
+				setY(solCourant.coordY - Bloc.COTES - 11);
+				System.out.println("vitesse y = 0");
 				speedY = 0;
-				onGround = true;
+				
 			}
 			if(speedY<0) {
 				speedY = 0;
 			}
-			
-			
-			
 		}
+		
 		else {
-			onGround = false;
+			
 		}
+		
+		System.out.println("sur le Sol? : "+onGround);
+		
+		move(speedX, speedY);
+		speedX *= FRICTION;
+		speedY *= FRICTION;
 		refreshHB();
+	}
+	
+	private boolean checkGround() {
+		Rectangle pH = new Rectangle(hitBox);
+		pH.y += 1;
+		if(solCourant != null)
+			return pH.intersection(solCourant.hitBox).height >0;
+		return false;
 	}
 }
