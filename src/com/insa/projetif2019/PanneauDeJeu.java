@@ -100,7 +100,7 @@ public class PanneauDeJeu extends JPanel {
 		 for(int i = 0; i < grille.length; i++) {
 			 for(int j = 0; j < grille[i].length; j++) {
 				 if(elements[k] != '0')
-					 this.grille[i][j]= new Bloc(this, i*64, j*64, elements[k]);
+					 this.grille[i][j]= new Sol(this, i*64, j*64, elements[k]);
 				 else
 					 this.grille[i][j]= null;
 				 k++;
@@ -157,10 +157,6 @@ public class PanneauDeJeu extends JPanel {
 		}
 
 		return false;
-	}
-
-	public void checkMvt(Set<Integer> moveSet) {
-
 	}
 
 }

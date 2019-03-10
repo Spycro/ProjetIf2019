@@ -2,6 +2,8 @@ package com.insa.projetif2019;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 /**
  * Classe héritant de bloc et de ses attributs et notamment
  * la calsse dessine.
@@ -17,6 +19,10 @@ public class Sol extends Bloc {
 	
 	public Sol(int x, int y, Color c) {
 		super(x,y,c);
+	}
+	
+	public Sol(JPanel parent,int x, int y, char type) {
+		super(parent,x,y,type);
 	}
 	
 
