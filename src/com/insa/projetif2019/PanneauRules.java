@@ -12,19 +12,30 @@ import java.awt.Font;
 
 public class PanneauRules extends JPanel {
 	
-	private JLabel text;
+	private JTextArea text1;
+	private JLabel text2;
 	private Image imgf;
 	
 	public PanneauRules() {
 		
-		text=new JLabel();
-		text.setBounds(12,56,200,200);
-		text.setForeground(Color.white);
-		Font police=new Font("Arial",Font.BOLD,20);
-		text.setFont(police);
-		text.setText("jo le sang");
+		text1= new JTextArea();
+		text1.setBounds(5,5,960,300);
+		text1.setForeground(Color.white);
+		Font police1=new Font("Arial",Font.BOLD,30);
+		text1.setFont(police1);
+		text1.setText("Bonjour jeune explorateur! Nous sommes ravis de constater que\ntu t'intéresses à notre merveilleuse galaxie!");
+		text1.setEditable(false);
+		text1.setOpaque(false);
+		this.add(text1);
 		
-		this.add(text);
+		text2=new JLabel();
+		text2.setBounds(5,300,750,200);
+		text2.setForeground(Color.white);
+		Font police2=new Font("Arial",Font.BOLD,30);
+		text2.setFont(police2);
+		text2.setText("");
+		
+		this.add(text2);
 		
 		// definition image fond  
 		try {
