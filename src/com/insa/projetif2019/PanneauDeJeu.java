@@ -71,19 +71,14 @@ public class PanneauDeJeu extends JPanel {
 			e1.printStackTrace();
 		}
 		
+		String level = "";
 		char[] elements = new char[900];
 		
 		try {
 			int n = 0;
 			
-			for(int i = 0; i < elements.length; i++) {
-				if((n=flux.read()) >=0 ) {
-					elements[i] = (char)n;
-					System.out.print(elements[i]);
-					if(i%90 ==0 ){
-						System.out.println();
-					}
-				}
+			while((n=flux.read()) >=0){
+				level+= (char) n;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -98,12 +93,23 @@ public class PanneauDeJeu extends JPanel {
 			}
 		}
 		
+<<<<<<< HEAD
 		//Gï¿½nï¿½ration de la carte
+=======
+>>>>>>> branch 'master' of https://github.com/Spycro/ProjetIf2019
 		int k = 0;
+		
+		for(int i = 0; i < level.length() ; i++) {
+				elements[i]=level.charAt(i);
+				System.out.print(elements[i]);
+		}
+		
+		//Génération de la carte
+		k = 0;
 		 for(int i = 0; i < grille.length; i++) {
 			 for(int j = 0; j < grille[i].length; j++) {
 				 if(elements[k] != '0')
-					 this.grille[i][j]= new Sol(this, i*64, j*64, elements[k]);
+					 this.grille[i][j]= new Bloc(this, i*64, j*64, elements[k]);
 				 else
 					 this.grille[i][j]= null;
 				 k++;
