@@ -9,9 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PanneauPrincipal extends JPanel implements ActionListener, KeyListener{
@@ -27,6 +30,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private JButton bQuit;
 	private JButton bComtJouer;
 	
+	private Image imgf;
 	
 	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
 	private final int LARGEUR;
@@ -38,7 +42,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public PanneauPrincipal(int largeur, int hauteur) {
-		setBackground(Color.LIGHT_GRAY);
+		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
 		this.HAUTEUR=hauteur;
 		
@@ -64,18 +68,30 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		//Definition du bouton pour apprendre a jouer 
 		bComtJouer=new JButton("Comment jouer");
-		bComtJouer.setBounds(450,560,100,50);
+		bComtJouer.setBounds(427,550,110,50);
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
 		
 		panneauZoneJeu = new PanneauDeJeu();
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
+		
+		// définition JLabel pour image fond  
+		try {
+			imgf = ImageIO.read(new File("bin/Galaxie.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);	
+		
+		super.paintComponent(g);
+		
+		g.drawImage(this.imgf, 0, 0, this.getWidth(), this.getHeight(), this);
+
 		
 	}
 	
