@@ -108,7 +108,7 @@ public class PanneauDeJeu extends JPanel {
 		 for(int i = 0; i < grille.length; i++) {
 			 for(int j = 0; j < grille[i].length; j++) {
 				 if(elements[k] != '0')
-					 this.grille[i][j]= new Bloc(this, i*64, j*64, elements[k]);
+					 this.grille[i][j]= new Bloc(this, j*64, i*64, elements[k]);
 				 else
 					 this.grille[i][j]= null;
 				 k++;
@@ -133,8 +133,12 @@ public class PanneauDeJeu extends JPanel {
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille.length; j++) {
 				if (grille[i][j] != null) {
-					g.drawImage(grille[i][j].sprite, i*64, j*64, pCarte);
+					g.drawImage(grille[i][j].sprite, grille[i][j].coordX, grille[i][j].coordY, pCarte);
 					g.drawRect(grille[i][j].coordX, grille[i][j].coordY, Bloc.COTES, Bloc.COTES);
+				}
+				else {
+					g.setColor(Color.red);
+					g.drawRect(j*64,i*64,Bloc.COTES,Bloc.COTES);
 				}
 			}
 		}
