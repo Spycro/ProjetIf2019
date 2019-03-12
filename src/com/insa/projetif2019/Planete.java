@@ -34,14 +34,14 @@ public class Planete {
 	
 	public String info1() {
 		String info1;
-		info1="Bonjour à toi je suis "+nom+", ravie de te rencontrer. \n On dit de moi que je suis une planète de type"+type;
+		info1="Bonjour ï¿½ toi je suis "+nom+", ravie de te rencontrer. \n On dit de moi que je suis une planï¿½te de type"+type;
 		if (type=="Tellurique"){
-			info1=info1+", c'est a dire que je suis composee essentiellement de roches et de métal qui possede trois enveloppes "
-					+ "concentriques (noyau, manteau et croûte). \n Ma surface est solide et composee principalement de matériaux"
+			info1=info1+", c'est a dire que je suis composee essentiellement de roches et de mï¿½tal qui possede trois enveloppes "
+					+ "concentriques (noyau, manteau et croï¿½te). \n Ma surface est solide et composee principalement de matï¿½riaux"
 					+ " non volatils tels que des roches silicatees et du fer metallique\n ";
 		}
 		if (type=="gazeuse"){
-			info1=info1+",c'est a dire que que je suis composee essentiellement de gaz legers, c’est-a-dire d’hydrogene et d’helium.\n ";
+			info1=info1+",c'est a dire que que je suis composee essentiellement de gaz legers, cï¿½est-a-dire dï¿½hydrogene et dï¿½helium.\n ";
 		}
 					
 		if (type==" de glace"){
@@ -66,11 +66,11 @@ public class Planete {
 	public String info3() {
 		String info3;
 		if (type=="Tellurique"){
-			info3= "Le mystère est mon maître mot, soit il fait froide soit il fait chaud, je varie de "+temperaturemin+"°C à " +temperaturemax+"°C.\n ";
+			info3= "Le mystï¿½re est mon maï¿½tre mot, soit il fait froide soit il fait chaud, je varie de "+temperaturemin+"ï¿½C ï¿½ " +temperaturemax+"ï¿½C.\n ";
 		}
 		else {
-			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+\"°C à" +temperaturemax+"°C; mais ne t'en fait pas j'ai "
-					+ "plein d'amour pour te réchauffer.\n ";
+			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+"ï¿½C ï¿½" +temperaturemax+"ï¿½C; mais ne t'en fait pas j'ai "
+					+ "plein d'amour pour te rï¿½chauffer.\n ";
 		}
 		return info3;	
 	}
@@ -79,9 +79,9 @@ public class Planete {
 		String info4;
 		info4="je fais un tour autour du soleil en "+perioderevolution+" jours .Tu penses pouvoir me battre.\n ";
 		if (pesanteur<10){
-			info4="Youpi!!! Tu es tout leger chez moi, tu veux connaître ton poids, clic sur le bouton\n ";
+			info4="Youpi!!! Tu es tout leger chez moi, tu veux connaï¿½tre ton poids, clic sur le bouton\n ";
 		} else {
-			info4="Oulalallala tu as trop mangé aujourd'hui, tu veux connaître ton poids, clic sur le bouton\n ";
+			info4="Oulalallala tu as trop mangï¿½ aujourd'hui, tu veux connaï¿½tre ton poids, clic sur le bouton\n ";
 		}
 		
 		return info4;	

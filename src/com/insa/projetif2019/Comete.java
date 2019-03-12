@@ -24,8 +24,8 @@ public class Comete  {
 	}*/
 	
 	public String info1 (){
-		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete. C'est à dire que je suis composée de trois parties : un noyau, une chevelure (je suis certaine qu'elle est plus belle que la tienne) et les queues."
-				+ " Mon noyau et ma chevelure constituent ce que les scientifiques appellent ma tête";
+		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete. C'est ï¿½ dire que je suis composï¿½e de trois parties : un noyau, une chevelure (je suis certaine qu'elle est plus belle que la tienne) et les queues."
+				+ " Mon noyau et ma chevelure constituent ce que les scientifiques appellent ma tï¿½te";
 		return info1;	
 	}
 	public String info2() {
@@ -42,7 +42,7 @@ public class Comete  {
 	}
 	
 	public String info4() {
-		String info4="Je ne suis pas si différente de toi tu sais, moi aussi j'ai une famille."
+		String info4="Je ne suis pas si diffï¿½rente de toi tu sais, moi aussi j'ai une famille."
 				+ "Je fais partie de la famille"+famille+"."; 
 		return info4;
 	}
@@ -50,20 +50,20 @@ public class Comete  {
 	public String calculprochaineap () {
 		Scanner sc= new Scanner (System.in);
 		String appa="";
-		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle année somme nous ?");
+		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle annï¿½e somme nous ?");
 		int date=sc.nextInt ();
 		System.out.println ("Quel age as-tu? (je sais je sais mais faut assumer");
 		int age=sc.nextInt();
 		int anneepro=0;
 		while (anneepro<date) {
-			anneepro=anneepro+periode;
+			anneepro=(int) (anneepro+periode);
 		}
 		if ((age+(anneepro-date))<100){
 			appa= "Tu auras le grand honneur de m'observer le" +jourap+"/"+moisap+"/"+anneepro+"Pour avoir cette chance /n;"
-				+ "tu dois rester en bonne santé: mange 5 fruits et légumes par jour.";
+				+ "tu dois rester en bonne santï¿½: mange 5 fruits et lï¿½gumes par jour.";
 		}else {
-			appa= "Sauf si la science a fait de grand progrès depuis ma création, tu n'auras pas le grand honneur de m'observer le" +jourap+"/"+moisap+"/"+anneeap+"Je suis vraiment desolee mais j'aime me faire attendre,"
-					+ "tes enfants auront peut être plus de chance (ahhhhh ces jeunes n'est ce pas ?)";
+			appa= "Sauf si la science a fait de grand progrï¿½s depuis ma crï¿½ation, tu n'auras pas le grand honneur de m'observer le" +jourap+"/"+moisap+"/"+anneeap+"Je suis vraiment desolee mais j'aime me faire attendre,"
+					+ "tes enfants auront peut ï¿½tre plus de chance (ahhhhh ces jeunes n'est ce pas ?)";
 		}
 		return appa;
 	}
