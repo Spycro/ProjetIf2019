@@ -48,8 +48,13 @@ public class Bloc{
 		coordY = y;
 		coordX = x;
 		couleur = Color.darkGray;
-		hitBox = new Rectangle(y,x,COTES, COTES);
+		hitBox = new Rectangle(x,y,COTES, COTES);
 		switch(type){
+		case '0':
+			sprite = null;
+			typeBloc = "0";
+			hitBox = new Rectangle();
+			break;
 		
 		case '1':
 			try {
