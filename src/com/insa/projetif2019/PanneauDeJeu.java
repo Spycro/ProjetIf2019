@@ -93,6 +93,9 @@ public class PanneauDeJeu extends JPanel {
 			}
 		}
 		
+
+		//Gï¿½nï¿½ration de la carte
+
 		int k = 0;
 		
 		for(int i = 0; i < level.length() ; i++) {
@@ -100,7 +103,7 @@ public class PanneauDeJeu extends JPanel {
 				System.out.print(elements[i]);
 		}
 		
-		//Génération de la carte
+		//Gï¿½nï¿½ration de la carte
 		k = 0;
 		 for(int i = 0; i < grille.length; i++) {
 			 for(int j = 0; j < grille[i].length; j++) {
@@ -154,7 +157,6 @@ public class PanneauDeJeu extends JPanel {
 	 * @return true si coliision false si non
 	 */
 	public boolean collision() {
-		// marche pas :(
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[0].length; j++) {
 				if (grille[i][j] != null && joueur.hitBox.intersects(grille[i][j].hitBox))

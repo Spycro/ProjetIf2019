@@ -90,7 +90,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		super.paintComponent(g);
 		
-		g.drawImage(this.imgf, 0, 0, this.getWidth(), this.getHeight(), this);
+		g.drawImage(imgf, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		
 	}
@@ -126,7 +126,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    if(e.getSource() == enMvt) {
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce);
 	    }
-	    if(e.getSource() == tempsDeJeu)
+	    if(e.getSource() == tempsDeJeu) 
 	    	panneauZoneJeu.getJoueur().maj();
 			
 		repaint();
