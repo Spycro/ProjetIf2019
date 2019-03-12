@@ -33,6 +33,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private Image imgf;
 	
 	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
+	private PanneauRules panneaurules;
 	private final int LARGEUR;
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
@@ -67,7 +68,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		this.add(bQuit);
 		
 		//Definition du bouton pour apprendre a jouer 
-		bComtJouer=new JButton("Comment jouer");
+		bComtJouer=new JButton("How to play");
 		bComtJouer.setBounds(427,550,110,50);
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
@@ -76,7 +77,12 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
-		// définition JLabel pour image fond  
+		panneaurules = new PanneauRules();
+		panneaurules.setBounds(0, 0, LARGEUR, HAUTEUR);
+		
+	
+		
+		// definition image fond  
 		try {
 			imgf = ImageIO.read(new File("bin/Galaxie.jpg"));
 		} catch (IOException e) {
@@ -128,7 +134,18 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    }
 	    if(e.getSource() == tempsDeJeu) 
 	    	panneauZoneJeu.getJoueur().maj();
+	    
+        if(e.getSource() == bComtJouer){
 			
+			System.out.println("Button Pressed");
+			this.add(panneaurules);
+			panneaurules.requestFocusInWindow();
+			
+			this.remove(bStart);
+			this.remove(bQuit);;
+			this.remove(bComtJouer);
+			
+        }	
 		repaint();
 		
 	}
