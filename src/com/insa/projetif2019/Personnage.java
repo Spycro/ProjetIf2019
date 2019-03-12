@@ -229,8 +229,8 @@ public class Personnage {
 			acceleration(0, gravity);
 
 		onGround = checkGround();
-		if (collision2()) {
-			//move(-speedX,0);
+		if (collision()) {
+			move(-speedX,0);
 			if(speedX < 0) {
 				speedX = 0;
 			}
@@ -263,7 +263,7 @@ public class Personnage {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
 		if(solCourant != null) {
-			System.out.println(pH.intersection(solCourant.hitBox));
+			//System.out.println(pH.intersection(solCourant.hitBox));
 			return pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64;
 		}
 		return false;

@@ -58,10 +58,10 @@ public class PanneauDeJeu extends JPanel {
 	        br = new BufferedReader(new FileReader("bin/level.txt"));  //file name with path
 	        while ((sCurrentLine = br.readLine()) != null) {
 
-	            String[] strArr = sCurrentLine.split("\n");
-	            for(String str:strArr){
-	                    strStore[f++] = str;
-	            }
+	            String strArr = sCurrentLine;
+	            
+	            strStore[f++] = strArr;
+	            
 	        }
 	    } 
 	    catch (IOException e) {
@@ -107,7 +107,7 @@ public class PanneauDeJeu extends JPanel {
 		}
 
 		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille.length; j++) {
+			for (int j = 0; j < grille[i].length; j++) {
 				if (grille[i][j].typeBloc != '0') {
 					g.drawImage(grille[i][j].sprite, grille[i][j].coordX, grille[i][j].coordY, pCarte);
 					g.setColor(Color.black);
