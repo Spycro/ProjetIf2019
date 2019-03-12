@@ -170,7 +170,7 @@ public class Personnage {
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				if (monde[i][j] != null && hitBox.intersects(monde[i][j].hitBox)) {
+				if (monde[i][j].typeBloc != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					return true;
 				}

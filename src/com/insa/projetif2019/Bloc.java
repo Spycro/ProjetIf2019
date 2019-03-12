@@ -20,7 +20,7 @@ public class Bloc{
 	protected Color couleur;
 	protected int coordX;
 	protected int coordY;
-	protected String typeBloc;
+	protected char typeBloc;
 	public Image sprite;
 	Rectangle hitBox;
 	
@@ -29,7 +29,7 @@ public class Bloc{
 		coordY = 0;
 		sprite = null;
 		hitBox = new Rectangle();
-		typeBloc = "";
+		typeBloc = '0';
 		
 	}
 	
@@ -48,11 +48,11 @@ public class Bloc{
 		coordY = y;
 		coordX = x;
 		couleur = Color.darkGray;
+		typeBloc = type;
 		hitBox = new Rectangle(x,y,COTES, COTES);
-		switch(type){
+		switch(typeBloc){
 		case '0':
 			sprite = null;
-			typeBloc = "0";
 			hitBox = new Rectangle();
 			break;
 		

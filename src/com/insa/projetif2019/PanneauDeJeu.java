@@ -40,7 +40,7 @@ public class PanneauDeJeu extends JPanel {
 		map = new File("bin/level.txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
-		pCarte.setOpaque(false);
+		pCarte.setOpaque(false); // Fond transparent
 		
 		this.genererCarte();
 		this.add(pCarte);
@@ -108,13 +108,14 @@ public class PanneauDeJeu extends JPanel {
 
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille.length; j++) {
-				if (grille[i][j] != null) {
+				if (grille[i][j].typeBloc != '0') {
 					g.drawImage(grille[i][j].sprite, grille[i][j].coordX, grille[i][j].coordY, pCarte);
+					g.setColor(Color.black);
 					g.drawRect(grille[i][j].coordX, grille[i][j].coordY, Bloc.COTES, Bloc.COTES);
 				}
 				else {
 					g.setColor(Color.red);
-					g.drawRect(j*64,i*64,Bloc.COTES,Bloc.COTES);
+					g.drawRect(grille[i][j].coordX, grille[i][j].coordY,Bloc.COTES,Bloc.COTES);
 				}
 			}
 		}
@@ -129,22 +130,6 @@ public class PanneauDeJeu extends JPanel {
 
 	public Bloc[][] getGrille() {
 		return grille;
-	}
-
-	/**
-	 * Check si le personnage est en collison avec un bloc
-	 * 
-	 * @return true si coliision false si non
-	 */
-	public boolean collision() {
-		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille[0].length; j++) {
-				if (grille[i][j].typeBloc != "0" && joueur.hitBox.intersects(grille[i][j].hitBox))
-					return true;
-			}
-		}
-
-		return false;
 	}
 
 }
