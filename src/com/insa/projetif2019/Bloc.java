@@ -24,6 +24,15 @@ public class Bloc{
 	public Image sprite;
 	Rectangle hitBox;
 	
+	public Bloc() {
+		coordX = 0;
+		coordY = 0;
+		sprite = null;
+		hitBox = new Rectangle();
+		typeBloc = "";
+		
+	}
+	
 	public Bloc(JPanel parent, int x, int y, char type) {
 		/**
 		 * astre : Astre pour lequel on demande un bloc

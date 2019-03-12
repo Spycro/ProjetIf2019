@@ -17,9 +17,7 @@ public class Sol extends Bloc {
 		
 	}
 	
-	public Sol(int x, int y, Color c) {
-		super(x,y,c);
-	}
+	
 	
 	public Sol(JPanel parent,int x, int y, char type) {
 		super(parent,x,y,type);

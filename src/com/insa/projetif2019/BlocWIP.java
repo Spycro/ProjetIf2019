@@ -31,12 +31,12 @@ public abstract class BlocWIP {
 	
 	
 	
-	public Bloc() {
+	public BlocWIP() {
 		couleur = Color.darkGray;
 		hitBox = new Rectangle();
 	}
 	
-	public Bloc(JFrame parent, int x, int y, int type, String astre) {
+	public BlocWIP(JFrame parent, int x, int y, int type, String astre) {
 		/**
 		 * astre : Astre pour lequel on demande un bloc
 		 * type : type de bloc demand�
@@ -160,12 +160,7 @@ public abstract class BlocWIP {
 		}
 	}
 	
-	public Bloc(int x, int y, Color c) {
-		coordY = y;
-		coordX = x;
-		couleur = c;
-		hitBox = new Rectangle(x,y,COTES, COTES);
-	}
+	
 	
 	public Color getColor() {
 		return couleur;
