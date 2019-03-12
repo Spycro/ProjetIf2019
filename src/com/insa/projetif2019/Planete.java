@@ -1,6 +1,6 @@
 package com.insa.projetif2019;
 
-public class Planete extends Astre {
+public class Planete {
 	private String nom;
 	private double rayon;
 	private double pesanteur;
@@ -8,9 +8,9 @@ public class Planete extends Astre {
 	private double temperature;
 	double masse;
 	String type;
-	private int[][][] grilleDeNiveau;
+	//private Bloc[][] grilleDeNiveau;
 
-	public Planete (double r, double p, double t, double m, String n, String ty,int [][][] grille) {
+	public Planete (double r, double p, double t, double m, String n, String ty) {
 		rayon =r;
 		perioderevolution=p;
 		temperature=t;
@@ -18,9 +18,13 @@ public class Planete extends Astre {
 		pesanteur=calculpesanteur();	
 	 	nom=n;
 	 	type=ty;
-	 	grilleDeNiveau = grille;
+	 	//grilleDeNiveau = generergrille();
 	}
-	
+	/*public Bloc [][] generergrille(){
+		Bloc [][ grille=new Bloc[][];
+		return grille;
+	}*/
+		
 	public double calculpesanteur(){
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
