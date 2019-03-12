@@ -1,24 +1,27 @@
 package com.insa.projetif2019;
 import java.util.Scanner;
-public class Comete extends Astre {
+public class Comete  {
 	private int anneeap;
 	private int moisap;
 	private int jourap;
 	private int periode;
 	private double famille;
-	private String apparition;
-	private int[][][] grilleDeNiveau;
+	//private int[][] grilleDeNiveau;
 	private String nom;
 	
-	public Comete (String n, int a, int m, int j, int p, double f,int [][][] grille){
+	public Comete (String n, int a, int m, int j, int p, double f){
 		anneeap=a;
 		nom=n;
 		moisap=m;
 		jourap= j;
 		periode=p;
 		famille=f;
-		grilleDeNiveau = grille;
+		//grilleDeNiveau = generergrille();
 	}
+	/*public Bloc [][] generergrille(){
+		Bloc [][ grille=new Bloc[][];
+		return grille;
+	}*/
 	
 	public String info1 (){
 		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete. C'est à dire que je suis composée de trois parties : un noyau, une chevelure (je suis certaine qu'elle est plus belle que la tienne) et les queues."
@@ -26,24 +29,27 @@ public class Comete extends Astre {
 		return info1;	
 	}
 	public String info2() {
-		String info2="Tes ancetres m'ont decouvert le "+jourap+"/"+moisap+"/"+anneeap+". Je suis bien plus vieille que toi tu sais, penses-tu que tu pourras me voir un jour ? Verifions/n ";
+		String info2="Tes ancetres m'ont decouvert le "+jourap+"/"+moisap+"/"+anneeap+". "
+				+ "Ma periode orbitale est de\"+periode+\"ans  ";
 		info2=info2+calculprochaineap();
 		return info2;
 	}
 	
 	public String info3(){
-		String info3="Ma periode orbitale est de"+periode+"ans. Je ne suis pas si différente de toi tu sais, moi aussi j'ai une famille, moi je fais partie de la famille"+famille+".";
+		String info3=". Je suis bien plus vieille que toi tu sais, "
+				+ "penses-tu que tu pourras me voir un jour ? Verifions/n";
 	    return info3;
 	}
 	
 	public String info4() {
-		String info4="";
+		String info4="Je ne suis pas si différente de toi tu sais, moi aussi j'ai une famille."
+				+ "Je fais partie de la famille"+famille+"."; 
 		return info4;
 	}
 	
 	public String calculprochaineap () {
-		String appa="";
 		Scanner sc= new Scanner (System.in);
+		String appa="";
 		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle année somme nous ?");
 		int date=sc.nextInt ();
 		System.out.println ("Quel age as-tu? (je sais je sais mais faut assumer");
