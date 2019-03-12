@@ -5,15 +5,17 @@ public class Planete {
 	private double rayon;
 	private double pesanteur;
 	private double perioderevolution;
-	private double temperature;
+	private double temperaturemin;
+	private double temperaturemax;
 	double masse;
 	String type;
 	//private Bloc[][] grilleDeNiveau;
 
-	public Planete (double r, double p, double t, double m, String n, String ty) {
+	public Planete (double r, double p, double tm, double tmx,double m, String n, String ty) {
 		rayon =r;
 		perioderevolution=p;
-		temperature=t;
+		temperaturemin=tm;
+		temperaturemax=tmx;
 		masse=m;
 		pesanteur=calculpesanteur();	
 	 	nom=n;
@@ -32,7 +34,7 @@ public class Planete {
 	
 	public String info1() {
 		String info1;
-		info1="Bienvenue sur "+nom+", je suis ravie de te rencontrer. \n On dit de moi que je suis une planète de type"+type;
+		info1="Bonjour à toi je suis "+nom+", ravie de te rencontrer. \n On dit de moi que je suis une planète de type"+type;
 		if (type=="Tellurique"){
 			info1=info1+", c'est a dire que je suis composee essentiellement de roches et de métal qui possede trois enveloppes "
 					+ "concentriques (noyau, manteau et croûte). \n Ma surface est solide et composee principalement de matériaux"
@@ -53,7 +55,7 @@ public class Planete {
 		String info2;
 		if (type=="Tellurique"){
 			info2="Je suis malheureusement plus petite que mes voisines,"
-					+ "mon rayon n'est que de "+rayon+ "mais je ne suis pas triste, tout ce qui est petit est mignon.\n ";
+					+ "mon rayon n'est que de "+rayon+ "km mais je ne suis pas triste, tout ce qui est petit est mignon.\n ";
 		}else{
 			info2=" Je porte aussi le jolie attribut de geante, et oui mon rayon est de"+ rayon+ "km \n ";
 		}
@@ -64,10 +66,10 @@ public class Planete {
 	public String info3() {
 		String info3;
 		if (type=="Tellurique"){
-			info3= "Le mystère est mon maître mot, soit il fait froide soit il fait chaud, je suis à"+temperature+".\n ";
+			info3= "Le mystère est mon maître mot, soit il fait froide soit il fait chaud, je varie de "+temperaturemin+"°C à " +temperaturemax+"°C.\n ";
 		}
 		else {
-			info3="Je suis vraiment desolee mais chez moi il fait assez froid:"+temperature+"°C; mais ne t'en fait pas j'ai "
+			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+\"°C à" +temperaturemax+"°C; mais ne t'en fait pas j'ai "
 					+ "plein d'amour pour te réchauffer.\n ";
 		}
 		return info3;	
@@ -75,7 +77,7 @@ public class Planete {
 	
 	public String info4() {
 		String info4;
-		info4="je fais un tour autour du soleil en "+perioderevolution+".Tu penses pouvoir me battre.\n ";
+		info4="je fais un tour autour du soleil en "+perioderevolution+" jours .Tu penses pouvoir me battre.\n ";
 		if (pesanteur<10){
 			info4="Youpi!!! Tu es tout leger chez moi, tu veux connaître ton poids, clic sur le bouton\n ";
 		} else {
