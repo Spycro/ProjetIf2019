@@ -142,8 +142,8 @@ public class Bloc{
 			break;
 			
 		default:
-			String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
-			JOptionPane.showMessageDialog(parent, err);
+			/*String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
+			JOptionPane.showMessageDialog(parent, err);*/
 			break;
 		}
 	}
