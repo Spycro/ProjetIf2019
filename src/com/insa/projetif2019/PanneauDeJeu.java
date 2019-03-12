@@ -80,6 +80,9 @@ public class PanneauDeJeu extends JPanel {
 				if((n=flux.read()) >=0 ) {
 					elements[i] = (char)n;
 					System.out.print(elements[i]);
+					if(i%90 ==0 ){
+						System.out.println();
+					}
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -107,7 +110,7 @@ public class PanneauDeJeu extends JPanel {
 			 }
 		 }
 	}
-
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// Dessin du background (ca marche !!!)
@@ -125,7 +128,8 @@ public class PanneauDeJeu extends JPanel {
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille.length; j++) {
 				if (grille[i][j] != null) {
-					g.drawImage(grille[i][j].sprite, j*64, i*64, pCarte);
+					g.drawImage(grille[i][j].sprite, i*64, j*64, pCarte);
+					g.drawRect(grille[i][j].coordX, grille[i][j].coordY, Bloc.COTES, Bloc.COTES);
 				}
 			}
 		}
