@@ -4,12 +4,12 @@ public class Comete  {
 	private int anneeap;
 	private int moisap;
 	private int jourap;
-	private int periode;
-	private double famille;
+	private double periode;
+	private String famille;
 	//private int[][] grilleDeNiveau;
 	private String nom;
 	
-	public Comete (String n, int a, int m, int j, int p, double f){
+	public Comete (String n, int a, int m, int j, double p, String f){
 		anneeap=a;
 		nom=n;
 		moisap=m;
