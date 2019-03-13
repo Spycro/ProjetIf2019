@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 /**
  * Personnage joueur
  * 
- * @author Lucas
+ * @author Lucas, Janna, Loic
  *
  */
 
@@ -131,7 +131,7 @@ public class Personnage {
 		
 		if(solCourant != null) {
 			g.setColor(Color.white);
-			g.fillRect(solCourant.coordX, solCourant.coordY, Bloc.COTES, Bloc.COTES);
+			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getcote(), Bloc.getcote());
 		}
 		///////////////////////////////
 	}
@@ -175,7 +175,7 @@ public class Personnage {
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				if (monde[i][j].typeBloc != '0' && hitBox.intersects(monde[i][j].hitBox)) {
+				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					return true;
 				}
@@ -189,7 +189,7 @@ public class Personnage {
 		pH.y += 20;
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				if (monde[i][j].typeBloc != '0' && hitBox.intersects(monde[i][j].hitBox)) {
+				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					return true;
 				}
@@ -238,7 +238,7 @@ public class Personnage {
 				speedX = 0;
 			}
 			if(speedY>0) {
-				setY(solCourant.coordY - Bloc.COTES - (HAUTEUR - Bloc.COTES));
+				setY(solCourant.getX() - Bloc.getcote() - (HAUTEUR - Bloc.getcote()));
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				

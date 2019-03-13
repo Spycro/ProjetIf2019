@@ -82,7 +82,7 @@ public class PanneauDeJeu extends JPanel {
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc(this, j*64,i*64, strStore[i].charAt(k));
+	    		grille[i][j] = new Bloc(this, j*64,i*64, strStore[i].charAt(k), "Terre");
 	    		System.out.print(strStore[i].charAt(k));
 	    		k++;
 	    	}
@@ -108,14 +108,14 @@ public class PanneauDeJeu extends JPanel {
 
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[i].length; j++) {
-				if (grille[i][j].typeBloc != '0') {
-					g.drawImage(grille[i][j].sprite, grille[i][j].coordX, grille[i][j].coordY, pCarte);
+				if (grille[i][j].getType() != '0') {
+					g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), pCarte);
 					g.setColor(Color.black);
-					g.drawRect(grille[i][j].coordX, grille[i][j].coordY, Bloc.COTES, Bloc.COTES);
+					g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getcote(), Bloc.getcote());
 				}
 				else {
 					g.setColor(Color.red);
-					g.drawRect(grille[i][j].coordX, grille[i][j].coordY,Bloc.COTES,Bloc.COTES);
+					g.drawRect(grille[i][j].getX(), grille[i][j].getY(),Bloc.getcote(),Bloc.getcote());
 				}
 			}
 		}

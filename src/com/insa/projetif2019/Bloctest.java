@@ -6,37 +6,34 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 /**
- * 
- * 
- * Classe Abstraite Bloc utilise pour faire les sols et les objets 
- * avec lesquels on pourra interragir comme les pics ou les points 
- * d'interrogations.
- * @author Lucas, Lo�c, Janna
- * 
+ * Classe bloc provisoire pour charger la carte de test.
  */
 
-public abstract class BlocWIP {
+public class Bloctest{
 	
 	
 	protected static final int COTES = 64; //taille d'un bloc
 	protected Color couleur;
 	protected int coordX;
 	protected int coordY;
-	protected String typeBloc;
-	Image sprite;
+	protected char typeBloc;
+	public Image sprite;
 	Rectangle hitBox;
 	
-	
-	
-	public BlocWIP() {
-		couleur = Color.darkGray;
+	public Bloctest() {
+		coordX = 0;
+		coordY = 0;
+		sprite = null;
 		hitBox = new Rectangle();
+		typeBloc = '0';
+		
 	}
 	
-	public BlocWIP(JFrame parent, int x, int y, int type, String astre) {
+	public Bloctest(JPanel parent, int x, int y, char type) {
 		/**
 		 * astre : Astre pour lequel on demande un bloc
 		 * type : type de bloc demand�
@@ -51,11 +48,17 @@ public abstract class BlocWIP {
 		coordY = y;
 		coordX = x;
 		couleur = Color.darkGray;
+		typeBloc = type;
 		hitBox = new Rectangle(x,y,COTES, COTES);
-		switch(astre){
-		case "terre":
+		switch(typeBloc){
+		case '0':
+			sprite = null;
+			hitBox = new Rectangle();
+			break;
+		
+		case '1':
 			try {
-				sprite = ImageIO.read(new File("bin/terre/blocTerre.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreSupG.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -63,110 +66,101 @@ public abstract class BlocWIP {
 			
 			break;
 			
-		case "mars":
+		case '2':
 			try {
-				sprite = ImageIO.read(new File("bin/mars/blocMars.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreSup.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "venus":
+		case '3':
 			try {
-				sprite = ImageIO.read(new File("bin/venus/blocVenus.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreSupD.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "mercure":
+		case '4':
 			try {
-				sprite = ImageIO.read(new File("bin/mercure/blocMercure.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreCoteG.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "jupiter":
+		case '5':
 			try {
-				sprite = ImageIO.read(new File("bin/jupiter/blocJupiter.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreInt.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "saturne":
+		case '6':
 			try {
-				sprite = ImageIO.read(new File("bin/saturne/blocSaturne.png"));
+				sprite = ImageIO.read(new File("bin/BlocTerreCoteD.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "uranus":
+		case '7':
 			try {
-				sprite = ImageIO.read(new File("bin/uranus/blocUranus.png"));
+				sprite = ImageIO.read(new File("bin/heart.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "neptune":
+		case '8':
 			try {
-				sprite = ImageIO.read(new File("bin/neptune/blocNeptune.png"));
+				sprite = ImageIO.read(new File("bin/infobox.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			break;
 			
-		case "soleil":
+		case '9':
 			try {
-				sprite = ImageIO.read(new File("bin/soleil/blocSoleil.png"));
+				sprite = ImageIO.read(new File("bin/heart.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			break;
 			
-		case "lune":
-			try {
-				sprite = ImageIO.read(new File("bin/lune/blocLune.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-			
-		case "comete":
-			try {
-				sprite = ImageIO.read(new File("bin/comete/blocComete.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			break;
 			
 		default:
-			String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
-			JOptionPane.showMessageDialog(parent, err);
+			/*String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
+			JOptionPane.showMessageDialog(parent, err);*/
 			break;
 		}
 	}
-	
 	
 	
 	public Color getColor() {
 		return couleur;
 	}
 	
-	public abstract void dessine(Graphics g);
+	public void dessine(Graphics g) {
+		
+	}
 	
 	
 }

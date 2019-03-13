@@ -10,157 +10,143 @@ import javax.swing.JPanel;
 
 
 /**
- * Classe bloc provisoire pour charger la carte de test.
+ * 
+ * 
+ *Faire les sols et les objets 
+ * avec lesquels on pourra interragir comme les pics ou les points 
+ * d'interrogations.
+ * @author Lucas, Loic, Janna
+ * 
  */
-
-public class Bloc{
+/**
+ * astre : Astre pour lequel on demande un bloc
+ * type : type de bloc demand�
+ * Description type :
+ * 1 - coin sup�rieur gauche
+ * 2 - sol sup�rieur plat
+ * 3 - coin sup�rieur droit
+ * 4 - bloc cot� gauche
+ * 5 - bloc int�rieur
+ * 6 - bloc cot� droit
+ * 7: bloc coeur
+ * 8:bloc info
+ * 9: bloc fin
+ * 0: vide
+ */
+public class Bloc  {
 	
-	
-	protected static final int COTES = 64; //taille d'un bloc
-	protected Color couleur;
-	protected int coordX;
-	protected int coordY;
-	protected char typeBloc;
-	public Image sprite;
+	private static final int COTES = 64; //taille d'un bloc
+	private int coordX;
+	private int coordY;
+	private char typeBloc; 
+	Image sprite;
 	Rectangle hitBox;
 	
-	public Bloc() {
-		coordX = 0;
-		coordY = 0;
-		sprite = null;
-		hitBox = new Rectangle();
-		typeBloc = '0';
-		
-	}
-	
-	public Bloc(JPanel parent, int x, int y, char type) {
-		/**
-		 * astre : Astre pour lequel on demande un bloc
-		 * type : type de bloc demand�
-		 * Description type :
-		 * 1 - coin sup�rieur gauche
-		 * 2 - sol sup�rieur plat
-		 * 3 - coin sup�rieur droit
-		 * 4 - bloc cot� gauche
-		 * 5 - bloc int�rieur
-		 * 6 - bloc cot� droit
-		 */
+	public Bloc(JPanel parent, int x, int y, char type, String astre) {
+
 		coordY = y;
 		coordX = x;
-		couleur = Color.darkGray;
-		typeBloc = type;
 		hitBox = new Rectangle(x,y,COTES, COTES);
-		switch(typeBloc){
-		case '0':
-			sprite = null;
-			hitBox = new Rectangle();
-			break;
+		typeBloc=type; 
+		generationBloc(astre, parent);
+	}	
+
+	public char getType() {
+		return typeBloc;
+	}
+	public int getX () {
+		return coordX;
+	}
+	public int getY() {
+		return coordY;
+	}
+	public static int getcote() {
+		return COTES;
+	}
+	public void generationBloc (String nom, JPanel parent) {
 		
-		case '1':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreSupG.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			switch (typeBloc) {
+			case '0':
+				sprite = null;
+				hitBox = new Rectangle();
 			break;
-			
-		case '2':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreSup.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '1':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"SupG.png"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break; 
+			case '2':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"Sup.png"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;	
+			case '3':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"SupD.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '3':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreSupD.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '4':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"CoteG.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '4':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreCoteG.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '5':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"Int.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '5':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreInt.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '6':
+				try {
+					sprite = ImageIO.read(new File("bin/bloc"+nom+"CoteD.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '6':
-			try {
-				sprite = ImageIO.read(new File("bin/BlocTerreCoteD.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '7': 
+				try {
+					sprite = ImageIO.read(new File("bin/heart.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '7':
-			try {
-				sprite = ImageIO.read(new File("bin/heart.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			case '8': 
+				try {
+					sprite = ImageIO.read(new File("bin/infobox.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			break;
-			
-		case '8':
-			try {
-				sprite = ImageIO.read(new File("bin/infobox.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			break;
-			
-		case '9':
-			try {
-				sprite = ImageIO.read(new File("bin/heart.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			break;
-			
+			case '9': // image a changer +nom
+				try {
+					sprite = ImageIO.read(new File("bin/heart.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;		
 		default:
-			/*String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
-			JOptionPane.showMessageDialog(parent, err);*/
+			String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
+			JOptionPane.showMessageDialog(parent, err);
 			break;
 		}
 	}
-	
-	
-	public Color getColor() {
-		return couleur;
-	}
-	
-	public void dessine(Graphics g) {
-		
-	}
-	
 	
 }
