@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * Classe Abstraite Bloc utilise pour faire les sols et les objets 
  * avec lesquels on pourra interragir comme les pics ou les points 
  * d'interrogations.
- * @author Lucas, Lo�c
+ * @author Lucas, Lo�c, Janna
  * 
  */
 

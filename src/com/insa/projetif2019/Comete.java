@@ -5,17 +5,16 @@ public class Comete  {
 	private int moisap;
 	private int jourap;
 	private double periode;
-	private String famille;
 	//private int[][] grilleDeNiveau;
 	private String nom;
-	
-	public Comete (String n, int a, int m, int j, double p, String f){
+	private String decouvreur;
+	public Comete (String n, int a, int m, int j, double p, String d){
 		anneeap=a;
 		nom=n;
+		decouvreur=d;
 		moisap=m;
 		jourap= j;
 		periode=p;
-		famille=f;
 		//grilleDeNiveau = generergrille();
 	}
 	/*public Bloc [][] generergrille(){
@@ -29,32 +28,32 @@ public class Comete  {
 		return info1;	
 	}
 	public String info2() {
-		String info2="Tes ancetres m'ont decouvert le "+jourap+"/"+moisap+"/"+anneeap+". "
-				+ "Ma periode orbitale est de\"+periode+\"ans  ";
-		info2=info2+calculprochaineap();
+		String info2=decouvreur+"m'a decouvert le "+jourap+"/"+moisap+"/"+anneeap+". Original n'est ce pas";
 		return info2;
 	}
-	
-	public String info3(){
-		String info3=". Je suis bien plus vieille que toi tu sais, "
+	public String info3() {
+		String info3="Ma periode orbitale est de"+periode+"ans,"
+				+ "cela correspond à la durée que je met pour revenir au même point. Bon j'avoue, je suis lente mais le principal"
+				+ "c'est d'arrivée"; 
+		return info3;
+	}
+	public String info4(){
+		String info4=". Je suis bien plus vieille que toi tu sais, "
 				+ "penses-tu que tu pourras me voir un jour ? Verifions/n";
-	    return info3;
+		info4=info4+calculprochaineap();
+	    return info4;
 	}
 	
-	public String info4() {
-		String info4="Je ne suis pas si différente de toi tu sais, moi aussi j'ai une famille."
-				+ "Je fais partie de la famille"+famille+"."; 
-		return info4;
-	}
+	
 	
 	public String calculprochaineap () {
 		Scanner sc= new Scanner (System.in);
 		String appa="";
 		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle année somme nous ?");
-		int date=sc.nextInt ();
+		double date=sc.nextDouble ();
 		System.out.println ("Quel age as-tu? (je sais je sais mais faut assumer");
 		int age=sc.nextInt();
-		int anneepro=0;
+		double anneepro=0.0;
 		while (anneepro<date) {
 			anneepro=anneepro+periode;
 		}

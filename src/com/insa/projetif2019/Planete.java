@@ -69,7 +69,7 @@ public class Planete {
 			info3= "Le mystère est mon maître mot, soit il fait froide soit il fait chaud, je varie de "+temperaturemin+"°C à " +temperaturemax+"°C.\n ";
 		}
 		else {
-			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+\"°C à" +temperaturemax+"°C; mais ne t'en fait pas j'ai "
+			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+"°C à" +temperaturemax+"°C; mais ne t'en fait pas j'ai "
 					+ "plein d'amour pour te réchauffer.\n ";
 		}
 		return info3;	
