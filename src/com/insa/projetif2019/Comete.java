@@ -1,20 +1,20 @@
 package com.insa.projetif2019;
 import java.util.Scanner;
 public class Comete  {
-	private int anneeap;
-	private int moisap;
-	private int jourap;
+	private int anneeAp;
+	private int moisAp;
+	private int jourAp;
 	private double periode;
 	//private int[][] grilleDeNiveau;
 	private String nom;
 
 	private String decouvreur;
 	public Comete (String n, int a, int m, int j, double p, String d){
-		anneeap=a;
+		anneeAp=a;
 		nom=n;
 		decouvreur=d;
-		moisap=m;
-		jourap= j;
+		moisAp=m;
+		jourAp= j;
 		periode=p;
 		//grilleDeNiveau = generergrille();
 	}
@@ -31,7 +31,7 @@ public class Comete  {
 	}
 	public String info2() {
 
-		String info2=decouvreur+"m'a decouvert le "+jourap+"/"+moisap+"/"+anneeap+". Original n'est ce pas";
+		String info2=decouvreur+"m'a decouvert le "+jourAp+"/"+moisAp+"/"+anneeAp+". Original n'est ce pas";
 		return info2;
 	}
 	public String info3() {
@@ -43,13 +43,16 @@ public class Comete  {
 	public String info4(){
 		String info4=". Je suis bien plus vieille que toi tu sais, "
 				+ "penses-tu que tu pourras me voir un jour ? Verifions/n";
-		info4=info4+calculProchaineap();
+		info4=info4+calculProchaineAp();
 	    return info4;
 	}
 	
-
+	public String getNom() {
+		String n=nom;
+		return n;
+	}
 	
-	public String calculProchaineap () {
+	public String calculProchaineAp () {
 		Scanner sc= new Scanner (System.in);
 		String appa="";
 		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle année somme nous ?");
@@ -61,10 +64,10 @@ public class Comete  {
 			anneepro=(int) (anneepro+periode);
 		}
 		if ((age+(anneepro-date))<100){
-			appa= "Tu auras le grand honneur de m'observer le" +jourap+"/"+moisap+"/"+anneepro+"Pour avoir cette chance /n;"
+			appa= "Tu auras le grand honneur de m'observer le" +jourAp+"/"+moisAp+"/"+anneepro+"Pour avoir cette chance /n;"
 				+ "tu dois rester en bonne sante: mange 5 fruits et legumes par jour.";
 		}else {
-			appa= "Sauf si la science a fait de grand progres depuis ma creation, tu n'auras pas le grand honneur de m'observer le" +jourap+"/"+moisap+"/"+anneeap+"Je suis vraiment desolee mais j'aime me faire attendre,"
+			appa= "Sauf si la science a fait de grand progres depuis ma creation, tu n'auras pas le grand honneur de m'observer le" +jourAp+"/"+moisAp+"/"+anneeAp+"Je suis vraiment desolee mais j'aime me faire attendre,"
 					+ "tes enfants auront peut ï¿½tre plus de chance (ahhhhh ces jeunes n'est ce pas ?)";
 		}
 		return appa;

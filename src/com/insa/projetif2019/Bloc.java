@@ -60,7 +60,7 @@ public class Bloc  {
 	public int getY() {
 		return coordY;
 	}
-	public static int getcote() {
+	public static int getCote() {
 		return COTES;
 	}
 	public void generationBloc (String nom, JPanel parent) {

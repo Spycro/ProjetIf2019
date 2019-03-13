@@ -80,7 +80,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		panneauRules = new PanneauRules();
 		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
-	
+
 		
 		// definition image fond  
 		try {
@@ -126,7 +126,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    if(e.getSource() == bQuit){
 	   
 	    	fenMere.dispose();
-	    	
+		
 	    }
 	    
 	    if(e.getSource() == enMvt) {

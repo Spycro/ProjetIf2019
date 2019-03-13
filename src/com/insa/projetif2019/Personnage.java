@@ -131,7 +131,7 @@ public class Personnage {
 		
 		if(solCourant != null) {
 			g.setColor(Color.white);
-			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getcote(), Bloc.getcote());
+			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getCote(), Bloc.getCote());
 		}
 		///////////////////////////////
 	}
@@ -238,7 +238,7 @@ public class Personnage {
 				speedX = 0;
 			}
 			if(speedY>0) {
-				setY(solCourant.getX() - Bloc.getcote() - (HAUTEUR - Bloc.getcote()));
+				setY(solCourant.getX() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				

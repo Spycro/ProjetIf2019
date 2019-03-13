@@ -111,11 +111,11 @@ public class PanneauDeJeu extends JPanel {
 				if (grille[i][j].getType() != '0') {
 					g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), pCarte);
 					g.setColor(Color.black);
-					g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getcote(), Bloc.getcote());
+					g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getCote(), Bloc.getCote());
 				}
 				else {
 					g.setColor(Color.red);
-					g.drawRect(grille[i][j].getX(), grille[i][j].getY(),Bloc.getcote(),Bloc.getcote());
+					g.drawRect(grille[i][j].getX(), grille[i][j].getY(),Bloc.getCote(),Bloc.getCote());
 				}
 			}
 		}

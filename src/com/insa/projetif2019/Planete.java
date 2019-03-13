@@ -27,18 +27,25 @@ public class Planete {
 		return grille;
 	}*/
 		
+	public String getNom() {
+		String n=nom;
+		return n;
+	}
 	public double calculpesanteur(){
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
 	}
-	
+	public double calculPoids(int pTerre){
+		double poid=(double)((pTerre/9.8)*pesanteur);
+		return poid;
+	}
 	public String info1() {
 		String info1;
 		info1="Bonjour a toi je suis "+nom+", ravie de te rencontrer. \n On dit de moi que je suis une planete de type"+type;
 		if (type=="Tellurique"){
 			info1=info1+", c est a dire que je suis composee essentiellement de roches et de metal qui possede trois enveloppes "
 					+ "concentriques (noyau, manteau et croute). \n Ma surface est solide et composee principalement de materiaux"
-					+ " non volatils tels que des roches silicatees et du fer metallique\n ";
+					+ " non volatils tels que des roches silicatees et du fer metallique \n ";
 		}
 		if (type=="gazeuse"){
 			info1=info1+",c est a dire que que je suis composee essentiellement de gaz legers comme l hydrogene et l helium.\n ";
