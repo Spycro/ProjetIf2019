@@ -120,10 +120,17 @@ public class Personnage {
 		g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
 
 		//////////////////////////////// HITBOX (PRODUCTION)
+		g.setColor(Color.white);
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
+		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
+		g.drawString("vitesse X : "+speedX+" vitesse Y : "+speedY, 0, 60);
+		g.drawString("on Ground :"+onGround, 0, 90);
+		g.drawString("collision : "+collision(), 200, 30);
+
+		///////////////////////////////////////////////////////
 		
 		if(solCourant != null) {
-			g.setColor(Color.magenta);
+			g.setColor(Color.white);
 			g.fillRect(solCourant.coordX, solCourant.coordY, Bloc.COTES, Bloc.COTES);
 		}
 		///////////////////////////////
@@ -163,14 +170,26 @@ public class Personnage {
 		// 38 haut
 		// 40 bas
 
-		System.out.println(speedX + " " + speedY);
-
 	}
 
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				if (monde[i][j] != null && hitBox.intersects(monde[i][j].hitBox)) {
+				if (monde[i][j].typeBloc != '0' && hitBox.intersects(monde[i][j].hitBox)) {
+					solCourant = monde[i][j];
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean collision2() {
+		Rectangle pH = new Rectangle(hitBox);
+		pH.y += 20;
+		for (int i = 0; i < monde.length; i++) {
+			for (int j = 0; j < monde[0].length; j++) {
+				if (monde[i][j].typeBloc != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					return true;
 				}
@@ -211,7 +230,6 @@ public class Personnage {
 
 		onGround = checkGround();
 		if (collision()) {
-			System.out.println("il y a collision");
 			move(-speedX,0);
 			if(speedX < 0) {
 				speedX = 0;
@@ -220,7 +238,7 @@ public class Personnage {
 				speedX = 0;
 			}
 			if(speedY>0) {
-				setY(solCourant.coordY - Bloc.COTES - 11);
+				setY(solCourant.coordY - Bloc.COTES - (HAUTEUR - Bloc.COTES));
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				
@@ -234,7 +252,6 @@ public class Personnage {
 			
 		}
 		
-		System.out.println("sur le Sol? : "+onGround);
 		
 		move(speedX, speedY);
 		speedX *= FRICTION;
@@ -245,8 +262,10 @@ public class Personnage {
 	private boolean checkGround() {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
-		if(solCourant != null)
-			return pH.intersection(solCourant.hitBox).height >0;
+		if(solCourant != null) {
+			//System.out.println(pH.intersection(solCourant.hitBox));
+			return pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64;
+		}
 		return false;
 	}
 }

@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Set;
 
@@ -29,6 +31,7 @@ public class PanneauDeJeu extends JPanel {
 	private Personnage joueur;
 	private File map;
 	private JPanel pCarte;
+	
 
 	public PanneauDeJeu() {
 
@@ -37,83 +40,56 @@ public class PanneauDeJeu extends JPanel {
 		map = new File("bin/level.txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
-		pCarte.setOpaque(false);
+		pCarte.setOpaque(false); // Fond transparent
 		
 		this.genererCarte();
 		this.add(pCarte);
-		
-		/*for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille[i].length; j++) {
-				if (j > 7) {
-					grille[i][j] = new Sol(i * 64, j * 64, Color.blue);
-				}
-				if(j==6 && i == 5) {
-					grille[i][j] = new Sol(i * 64, j * 64, Color.blue);
-
-				}
-
-			}
-		}*/
-		
 		
 		joueur = new Personnage(50, 250, grille);
 	}
 	
 	public void genererCarte() {
+		int f=0;
 		
-		//lecture du fichier de niveau
-		
-		FileInputStream flux = null;
-		
-		try {
-			flux = new FileInputStream(map);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		
-		String level = "";
-		char[] elements = new char[900];
-		
-		try {
-			int n = 0;
+		String [] strStore = new String[10];
+		BufferedReader br = null;
+	    try {
+	        String sCurrentLine;
+	        br = new BufferedReader(new FileReader("bin/level.txt"));  //file name with path
+	        while ((sCurrentLine = br.readLine()) != null) {
+
+	            String strArr = sCurrentLine;
+	            
+	            strStore[f++] = strArr;
+	            
+	        }
+	    } 
+	    catch (IOException e) {
+	            e.printStackTrace();
+	        } 
+	    finally {
+	            try {
+	                if (br != null)br.close();
+	            } catch (IOException ex) {
+	                ex.printStackTrace();
+	            }
+	        }
 			
-			while((n=flux.read()) >=0){
-				level+= (char) n;
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(flux != null)
-					flux.close();
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-
-		//G�n�ration de la carte
-
-		int k = 0;
-		
-		for(int i = 0; i < level.length() ; i++) {
-				elements[i]=level.charAt(i);
-				System.out.print(elements[i]);
-		}
-		
-		//G�n�ration de la carte
-		k = 0;
-		 for(int i = 0; i < grille.length; i++) {
-			 for(int j = 0; j < grille[i].length; j++) {
-				 if(elements[k] != '0')
-					 this.grille[i][j]= new Bloc(this, j*64, i*64, elements[k]);
-				 else
-					 this.grille[i][j]= null;
-				 k++;
-			 }
-		 }
+	    for(String str:strStore) {
+	    	//System.out.println(str);
+	    }
+	    
+	    int k = 0;
+	    for(int i = 0; i<strStore.length;i++) {
+	    	for (int j = 0; j<grille[i].length;j++) {
+	    		grille[i][j] = new Bloc(this, j*64,i*64, strStore[i].charAt(k));
+	    		System.out.print(strStore[i].charAt(k));
+	    		k++;
+	    	}
+	    	k=0;
+	    	System.out.println();
+	    }
+	    
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -131,14 +107,15 @@ public class PanneauDeJeu extends JPanel {
 		}
 
 		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille.length; j++) {
-				if (grille[i][j] != null) {
+			for (int j = 0; j < grille[i].length; j++) {
+				if (grille[i][j].typeBloc != '0') {
 					g.drawImage(grille[i][j].sprite, grille[i][j].coordX, grille[i][j].coordY, pCarte);
+					g.setColor(Color.black);
 					g.drawRect(grille[i][j].coordX, grille[i][j].coordY, Bloc.COTES, Bloc.COTES);
 				}
 				else {
 					g.setColor(Color.red);
-					g.drawRect(j*64,i*64,Bloc.COTES,Bloc.COTES);
+					g.drawRect(grille[i][j].coordX, grille[i][j].coordY,Bloc.COTES,Bloc.COTES);
 				}
 			}
 		}
@@ -153,22 +130,6 @@ public class PanneauDeJeu extends JPanel {
 
 	public Bloc[][] getGrille() {
 		return grille;
-	}
-
-	/**
-	 * Check si le personnage est en collison avec un bloc
-	 * 
-	 * @return true si coliision false si non
-	 */
-	public boolean collision() {
-		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille[0].length; j++) {
-				if (grille[i][j] != null && joueur.hitBox.intersects(grille[i][j].hitBox))
-					return true;
-			}
-		}
-
-		return false;
 	}
 
 }

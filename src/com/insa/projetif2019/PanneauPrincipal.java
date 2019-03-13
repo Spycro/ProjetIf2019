@@ -33,7 +33,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private Image imgf;
 	
 	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
-	private PanneauRules panneaurules;
+	private PanneauRules panneauRules;
 	private final int LARGEUR;
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
@@ -77,8 +77,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
-		panneaurules = new PanneauRules();
-		panneaurules.setBounds(0, 0, LARGEUR, HAUTEUR);
+		panneauRules = new PanneauRules();
+		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
 	
 		
@@ -138,8 +138,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
         if(e.getSource() == bComtJouer){
 			
 			System.out.println("Button Pressed");
-			this.add(panneaurules);
-			panneaurules.requestFocusInWindow();
+			this.add(panneauRules);
+			panneauRules.requestFocusInWindow();
 			
 			this.remove(bStart);
 			this.remove(bQuit);;
