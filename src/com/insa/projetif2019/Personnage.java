@@ -3,16 +3,13 @@ package com.insa.projetif2019;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
-
 import javax.imageio.ImageIO;
-
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
+
 
 /**
  * Personnage joueur
@@ -238,7 +235,7 @@ public class Personnage {
 				speedX = 0;
 			}
 			if(speedY>0) {
-				setY(solCourant.getX() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
+				setY(solCourant.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				
@@ -267,5 +264,13 @@ public class Personnage {
 			return pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64;
 		}
 		return false;
+	}
+
+	public double getGravity() {
+		return gravity;
+	}
+
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
 	}
 }

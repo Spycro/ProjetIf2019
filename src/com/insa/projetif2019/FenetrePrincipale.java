@@ -33,9 +33,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	private int niveauActuel;
 	private final int NBNIVEAUX = 5;
 	private final int FRAMERATE = 30;
-	
-	private Timer t;
-	
+
 	 
 	
 	
@@ -44,10 +42,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 		setSize(LARGEUR,HAUTEUR);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
-		t = new Timer((int)(1000/FRAMERATE), this);
-		t.start();
-
+	
 		
 		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR);
 		panneauMenuPrincipal.setFenMere(this);

@@ -29,7 +29,6 @@ public class test {
 		};
 		
 		
-		System.out.println((int)(1000/30));	
 		// Declaration de tous les astres ;) 
 		Planete Terre= new Planete (6371.0,365.25,-88,58,5.97*Math.pow(10,24),"Terre","Tellurique");
 		Planete Mercure= new Planete (2439.7,87.96,-173,427,3.3*Math.pow(10,23),"Mercure","Tellurique");
@@ -41,7 +40,7 @@ public class test {
 		Planete Neptune=new Planete(24622.0,60224.9,-218,-201,1.0247*Math.pow(10,26),"Neptune","de glace");
 		Comete Halley=new Comete("Halley",1994,2,16,76.09,"Edmond Halley");
 		Comete Tempel=new Comete ("Tempel  ",1867,4,3,5.56, "Ernst Wilhelm Tempel");
-		Comete Tuttle= new Comete (" Méchain-Tuttle",1790,1,9,13.58 ,"Pierre Méchain");
+		Comete Tuttle= new Comete (" Mï¿½chain-Tuttle",1790,1,9,13.58 ,"Pierre Mï¿½chain");
 		//
 	}
 

@@ -3,24 +3,29 @@ package com.insa.projetif2019;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-
-import javax.swing.JPanel;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.Set;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
-public class PanneauDeJeu extends JPanel {
+
+public class PanneauDeJeu extends JPanel{
 
 	/**
 	 *
@@ -32,7 +37,8 @@ public class PanneauDeJeu extends JPanel {
 	private File map;
 	private JPanel pCarte;
 	
-
+	
+	
 	public PanneauDeJeu() {
 
 		grille = new Bloc[10][90];
@@ -41,6 +47,8 @@ public class PanneauDeJeu extends JPanel {
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
 		pCarte.setOpaque(false); // Fond transparent
+		
+
 		
 		this.genererCarte();
 		this.add(pCarte);
@@ -75,14 +83,12 @@ public class PanneauDeJeu extends JPanel {
 	            }
 	        }
 			
-	    for(String str:strStore) {
-	    	//System.out.println(str);
-	    }
+	    
 	    
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc(this, j*64,i*64, strStore[i].charAt(k), "Terre");
+	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), "Terre");
 	    		System.out.print(strStore[i].charAt(k));
 	    		k++;
 	    	}
@@ -94,6 +100,7 @@ public class PanneauDeJeu extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+	
 		// Dessin du background (ca marche !!!)
 		// Dessine avec l'image "earthBG"
 		try {
@@ -106,10 +113,12 @@ public class PanneauDeJeu extends JPanel {
 			e.printStackTrace();
 		}
 
+		currentOffset(g);
+		
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[i].length; j++) {
 				if (grille[i][j].getType() != '0') {
-					g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), pCarte);
+					g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), this);
 					g.setColor(Color.black);
 					g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getCote(), Bloc.getCote());
 				}
@@ -120,7 +129,8 @@ public class PanneauDeJeu extends JPanel {
 			}
 		}
 
-		joueur.dessineJoueur(g, this);
+		joueur.dessineJoueur(g, pCarte);
+		
 
 	}
 
@@ -130,6 +140,12 @@ public class PanneauDeJeu extends JPanel {
 
 	public Bloc[][] getGrille() {
 		return grille;
+	}
+	
+	private void currentOffset(Graphics g) {
+		if(joueur.getX() > 350) {
+			g.translate(-(joueur.getX() - 350), 0);
+		}
 	}
 
 }

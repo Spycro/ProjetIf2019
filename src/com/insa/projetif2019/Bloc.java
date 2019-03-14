@@ -72,7 +72,7 @@ public class Bloc  {
 			break;
 			case '1':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"SupG.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"SupG.png"));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -80,7 +80,7 @@ public class Bloc  {
 			break; 
 			case '2':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"Sup.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"Sup.png"));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -88,7 +88,7 @@ public class Bloc  {
 			break;	
 			case '3':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"SupD.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"SupD.png"));
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -96,7 +96,7 @@ public class Bloc  {
 			break;
 			case '4':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"CoteG.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"CoteG.png"));
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -104,7 +104,7 @@ public class Bloc  {
 			break;
 			case '5':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"Int.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"Int.png"));
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -112,7 +112,7 @@ public class Bloc  {
 			break;
 			case '6':
 				try {
-					sprite = ImageIO.read(new File("bin/bloc"+nom+"CoteD.png"));
+					sprite = ImageIO.read(new File("bin/Bloc"+nom+"CoteD.png"));
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
 					e.printStackTrace();

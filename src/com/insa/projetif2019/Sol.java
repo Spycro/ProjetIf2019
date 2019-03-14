@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  * @author lucas
  *
  */
-
+/*
 public class Sol extends Bloc {
 
 	public Sol(int x, int y) {
@@ -31,4 +31,4 @@ public class Sol extends Bloc {
 		
 	}
 
-}
+}*/
