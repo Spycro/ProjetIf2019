@@ -4,18 +4,18 @@ public class Planete {
 	private String nom;
 	private double rayon;
 	private double pesanteur;
-	private double perioderevolution;
-	private double temperaturemin;
-	private double temperaturemax;
+	private double periodeRevolution;
+	private double temperatureMin;
+	private double temperatureMax;
 	double masse;
 	String type;
 	//private Bloc[][] grilleDeNiveau;
 
 	public Planete (double r, double p, double tm, double tmx,double m, String n, String ty) {
 		rayon =r;
-		perioderevolution=p;
-		temperaturemin=tm;
-		temperaturemax=tmx;
+		periodeRevolution=p;
+		temperatureMin=tm;
+		temperatureMax=tmx;
 		masse=m;
 		pesanteur=calculpesanteur();	
 	 	nom=n;
@@ -62,7 +62,7 @@ public class Planete {
 		String info2;
 		if (type=="Tellurique"){
 			info2="Je suis malheureusement plus petite que mes voisines,"
-					+ "mon rayon n'est que de "+rayon+ "km mais je ne suis pas triste, tout ce qui est petit est mignon.\n ";
+					+ " mon rayon n'est que de "+rayon+ "km mais je ne suis pas triste, tout ce qui est petit est mignon.\n ";
 		}else{
 			info2=" Je porte aussi le jolie attribut de geante, et oui mon rayon est de"+ rayon+ "km \n ";
 		}
@@ -73,18 +73,18 @@ public class Planete {
 	public String info3() {
 		String info3;
 		if (type=="Tellurique"){
-			info3= "Le mystere est mon maitre mot, soit il fait froide soit il fait chaud, je varie de "+temperaturemin+" C a " +temperaturemax+"C.\n ";
+			info3= "Le mystere est mon maitre mot, soit il fait froide soit il fait chaud, je varie de "+temperatureMin+" C a " +temperatureMax+"C.\n ";
 		}
 		else {
-			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperaturemin+" C a " +temperaturemax+"C; mais ne t'en fait pas j'ai "
-					+ "plein d'amour pour te réchauffer.\n ";
+			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperatureMin+" C a " +temperatureMax+"C; mais ne t'en fait pas j'ai "
+					+ "plein d'amour pour te rï¿½chauffer.\n ";
 		}
 		return info3;	
 	}
 	
 	public String info4() {
 		String info4;
-		info4="je fais un tour autour du soleil en "+perioderevolution+" jours .Tu penses pouvoir me battre.\n ";
+		info4="je fais un tour autour du soleil en "+periodeRevolution+" jours .Tu penses pouvoir me battre.\n ";
 		if (pesanteur<10){
 			info4="Youpi!!! Tu es tout leger chez moi, tu veux connaitre ton poids, clic sur le bouton\n ";
 		} else {

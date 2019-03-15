@@ -1,5 +1,7 @@
 package com.insa.projetif2019;
 import java.util.Scanner;
+
+
 public class Comete  {
 	private int anneeAp;
 	private int moisAp;
@@ -36,8 +38,8 @@ public class Comete  {
 	}
 	public String info3() {
 		String info3="Ma periode orbitale est de"+periode+"ans,"
-				+ "cela correspond à la durée que je met pour revenir au même point. Bon j'avoue, je suis lente mais le principal"
-				+ "c'est d'arrivée"; 
+				+ "cela correspond ï¿½ la durï¿½e que je met pour revenir au mï¿½me point. Bon j'avoue, je suis lente mais le principal"
+				+ "c'est d'arrivï¿½e"; 
 		return info3;
 	}
 	public String info4(){
@@ -55,7 +57,7 @@ public class Comete  {
 	public String calculProchaineAp () {
 		Scanner sc= new Scanner (System.in);
 		String appa="";
-		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle année somme nous ?");
+		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle annï¿½e somme nous ?");
 		int date=sc.nextInt ();
 		System.out.println ("Quel age as-tu? (je sais je sais mais faut assumer");
 		int age=sc.nextInt();
