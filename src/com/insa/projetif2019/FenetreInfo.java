@@ -12,6 +12,13 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Font;
 
+/**
+ * 
+ * 
+ *
+ */
+
+w
 public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	
 	private JTextArea info;
@@ -20,7 +27,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	private JTextArea balance; 
 	private Planete planete;
 	public FenetreInfo(Planete p,int numero) {
-		// paramètrage de la fenetre
+		// paramï¿½trage de la fenetre
 		this.setTitle("A la decouverte de "+p.getNom());
 		this.setLayout(null);
 		this.setSize(960,640);
