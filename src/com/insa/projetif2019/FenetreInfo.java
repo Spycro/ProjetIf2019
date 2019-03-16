@@ -18,7 +18,6 @@ import java.awt.Font;
  *
  */
 
-w
 public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	
 	private JTextArea info;
@@ -27,7 +26,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	private JTextArea balance; 
 	private Planete planete;
 	public FenetreInfo(Planete p,int numero) {
-		// param�trage de la fenetre
+		// paramétrage de la fenetre
 		this.setTitle("A la decouverte de "+p.getNom());
 		this.setLayout(null);
 		this.setSize(960,640);
