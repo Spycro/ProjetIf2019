@@ -18,7 +18,7 @@ import java.awt.Font;
  *
  */
 
-w
+
 public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	
 	private JTextArea info;
