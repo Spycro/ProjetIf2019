@@ -28,14 +28,11 @@ public class Personnage {
 	private int posY;
 	private double speedX;
 	private double speedY;
-	private final double speedMax = 5;
 
 	private double gravity;
 	private final double FRICTION = 0.92;
 
 	private boolean onGround;
-	private int groundLevel;
-	private int[] posMonde;
 
 	private Bloc[][] monde;
 	private Bloc solCourant;
@@ -77,7 +74,6 @@ public class Personnage {
 		gravity = 1.0;
 		monde = pMonde;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR);
-		posMonde = positionCourante();
 	}
 
 	public int getX() {
@@ -123,9 +119,6 @@ public class Personnage {
 		//////////////////////////////// HITBOX (PRODUCTION)
 		g.setColor(Color.white);
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
-		g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
-		
-		
 		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
 		g.drawString("vitesse X : "+speedX+" vitesse Y : "+speedY, 0, 60);
 		g.drawString("on Ground :"+onGround, 0, 90);
@@ -148,7 +141,9 @@ public class Personnage {
 	}
 
 	public void preMouvement(Set<Integer> moveSet) {
-		
+		// futur emplacement
+		// collision contre cet emplacement
+
 		if (moveSet.contains(39)) {
 
 			deplacementDroite();
@@ -167,25 +162,32 @@ public class Personnage {
 
 			jump();
 		}
-		
-		if(moveSet.contains(27)) {
-			
-		}
-		// 39 droite
+		// 39 droites
 		// 37 gauche
 		// 38 haut
 		// 40 bas
-		// 27 echap 
 
 	}
 
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
-					groundLevel = solCourant.getY();
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean collision2() {
+		Rectangle pH = new Rectangle(hitBox);
+		pH.y += 20;
+		for (int i = 0; i < monde.length; i++) {
+			for (int j = 0; j < monde[0].length; j++) {
+				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
+					solCourant = monde[i][j];
 					return true;
 				}
 			}
@@ -200,13 +202,13 @@ public class Personnage {
 	}
 
 	public void deplacementDroite() {
-		if (speedX < speedMax) {
+		if (speedX < 2) {
 			acceleration(1, 0);
 		}
 	}
 
 	public void deplacementGauche() {
-		if (speedX > -speedMax) {
+		if (speedX > -2) {
 			acceleration(-1, 0);
 		}
 	}
@@ -220,12 +222,10 @@ public class Personnage {
 	}
 
 	public void maj() {
-		
 		if(!onGround) 
 			acceleration(0, gravity);
-		
+
 		onGround = checkGround();
-		
 		if (collision()) {
 			move(-speedX,0);
 			if(speedX < 0) {
@@ -239,19 +239,21 @@ public class Personnage {
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				
-			}	
+			}
 			if(speedY<0) {
 				speedY = 0;
 			}
 		}
 		
+		else {
+			
+		}
 		
 		
 		move(speedX, speedY);
 		speedX *= FRICTION;
 		speedY *= FRICTION;
 		refreshHB();
-		posMonde = positionCourante();
 	}
 	
 	private boolean checkGround() {
@@ -259,29 +261,9 @@ public class Personnage {
 		pH.y += 1;
 		if(solCourant != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
-			if(pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64) {
-				return true;
-			}
-			else {
-				
-				if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
-					return true;
-				}
-				
-				
-			}
+			return pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64;
 		}
 		return false;
-	}
-	
-	private int[] positionCourante() {
-		//calcul x
-		int x = posX / 64;
-		//calcul y
-		int y = posY/64 + 1;
-		int[] a = {x,y};
-		return a;
-		
 	}
 
 	public double getGravity() {

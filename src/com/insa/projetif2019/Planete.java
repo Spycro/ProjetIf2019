@@ -35,8 +35,8 @@ public class Planete {
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
 	}
-	public int calculPoids(int pTerre){
-		int poid=(int)((pTerre/9.8)*pesanteur);
+	public double calculPoids(int pTerre){
+		double poid=(double)((pTerre/9.8)*pesanteur);
 		return poid;
 	}
 	public String info1() {
@@ -77,7 +77,7 @@ public class Planete {
 		}
 		else {
 			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperatureMin+" C a " +temperatureMax+"C; mais ne t'en fait pas j'ai "
-					+ "plein d'amour pour te rechauffer.\n ";
+					+ "plein d'amour pour te r�chauffer.\n ";
 		}
 		return info3;	
 	}
@@ -86,11 +86,9 @@ public class Planete {
 		String info4;
 		info4="je fais un tour autour du soleil en "+periodeRevolution+" jours .Tu penses pouvoir me battre.\n ";
 		if (pesanteur<10){
-			info4="Youpi!!! Tu es tout leger chez moi. Je sais personne n'aime le dire mais assume toi. Renseigne ce qu'indique ta balance "
-					+ " dans la zone et clic sur le bouton\n ";
+			info4="Youpi!!! Tu es tout leger chez moi, tu veux connaitre ton poids, clic sur le bouton\n ";
 		} else {
-			info4="Oulalallala tu as trop mange aujourd'hui, Je sais personne n'aime le dire mais assume toi. Renseigne ce qu'indique ta balance"
-					+ " dans la zone et clic sur le bouton\n ";
+			info4="Oulalallala tu as trop mange aujourd'hui, tu veux connaitre ton poids, clic sur le bouton\n ";
 		}
 		
 		return info4;	

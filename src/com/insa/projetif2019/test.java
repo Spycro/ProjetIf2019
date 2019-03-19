@@ -1,53 +1,33 @@
 package com.insa.projetif2019;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class test {
 
 	public static void main(String[] args) {
-		//Fichier de sauvegarde
+		// TODO Auto-generated method stub
+		FenetrePrincipale fen = new FenetrePrincipale();
 		
-		File savefile;
 		
-		savefile = new File("file0.sav");
 		
-		if(!savefile.isFile()) { 
-			BufferedWriter bw;
-			try {
-				bw = new BufferedWriter(new FileWriter("file0.sav"));
-				bw.write("level");
-	        	bw.close();
-	        	savefile = new File("file0.sav");
-			} catch (IOException e) {
-				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
-				e.printStackTrace();
-			}
-        	
-		}
+		//Ci-dessous un exemple de declaration propre de tableau a 3 entrèes (de petite taille)
+		int [][][] test = 
+		{
+				{
+					{1,1,1},
+					{2,2,2},
+					{3,3,3}
+				},
+				{
+					{1,1,1},
+					{2,2,2},
+					{3,3,3}
+				},
+				{
+					{1,1,1},
+					{2,2,2},
+					{3,3,3}
+				},
+		};
 		
-		String niveauActuel = "";
-		BufferedReader br = null;
-	    try {
-	        br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
-	        niveauActuel = br.readLine();
-	    } 
-	    catch (IOException e) {
-	            e.printStackTrace();
-	            System.out.println("Erreur lors du chargement du fichier de sauvegarde !");
-	        } 
-	    finally {
-	            try {
-	                if (br != null)br.close();
-	            } catch (IOException ex) {
-	                ex.printStackTrace();
-	            }
-	        }
-		FenetrePrincipale fen = new FenetrePrincipale(niveauActuel);
 		
 		// Declaration de tous les astres ;) 
 		Planete Terre= new Planete (6371.0,365.25,-88,58,5.97*Math.pow(10,24),"Terre","Tellurique");
@@ -59,7 +39,7 @@ public class test {
 		Planete Uranus=new Planete(25362.0,30687.15,-220,-197,8.68*Math.pow(10,25),"Uranus","de glace");
 		Planete Neptune=new Planete(24622.0,60224.9,-218,-201,1.0247*Math.pow(10,26),"Neptune","de glace");
 		Comete Halley=new Comete("Halley",1994,2,16,76.09,"Edmond Halley");
-		Comete Tempel=new Comete ("Tempel",1867,4,3,5.56, "Ernst Wilhelm Tempel");
+		Comete Tempel=new Comete ("Tempel  ",1867,4,3,5.56, "Ernst Wilhelm Tempel");
 		Comete Tuttle= new Comete (" M�chain-Tuttle",1790,1,9,13.58 ,"Pierre M�chain");
 		//
 	}

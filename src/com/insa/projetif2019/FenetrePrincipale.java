@@ -37,16 +37,15 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	 
 	
 	
-	public FenetrePrincipale(String niveau){
+	public FenetrePrincipale(){
 		super("SusperStar");
 		setSize(LARGEUR,HAUTEUR);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	
 		
-		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR, niveau);
+		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR);
 		panneauMenuPrincipal.setFenMere(this);
-		panneauMenuPrincipal.afficherNiveau();
 		
 		
 		setContentPane(panneauMenuPrincipal);
