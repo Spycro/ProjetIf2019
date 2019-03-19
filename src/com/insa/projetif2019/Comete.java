@@ -44,9 +44,9 @@ public class Comete  {
 	}
 	public String info4(){
 		String info4=". Je suis bien plus vieille que toi tu sais, "
-				+ "penses-tu que tu pourras me voir un jour ? Verifions/n";
-		info4=info4+calculProchaineAp();
-	    return info4;
+				+ "penses-tu que tu pourras me voir un jour ? Verifions, Pour commencer, ton interface preferee a besoin de toi."
+				+ "Indique dans le premier cadre, en quelle annee somme nous ? Maintenant LA question qui fache, renseigne dans la seconde case ton age et clic sur le bouton ";
+		return info4;
 	}
 	
 	public String getNom() {
@@ -54,22 +54,17 @@ public class Comete  {
 		return n;
 	}
 	
-	public String calculProchaineAp () {
-		Scanner sc= new Scanner (System.in);
-		String appa="";
-		System.out.println (" Pour commencer, ton interface preferee a besoin de toi. En quelle ann�e somme nous ?");
-		int date=sc.nextInt ();
-		System.out.println ("Quel age as-tu? (je sais je sais mais faut assumer");
-		int age=sc.nextInt();
+	public String calculProchaineAp (int date, int age) {
+		String appa;
 		int anneepro=0;
 		while (anneepro<date) {
 			anneepro=(int) (anneepro+periode);
 		}
 		if ((age+(anneepro-date))<100){
-			appa= "Tu auras le grand honneur de m'observer le" +jourAp+"/"+moisAp+"/"+anneepro+"Pour avoir cette chance /n;"
+			appa= "Tu auras le grand honneur de m'observer le " +jourAp+"/"+moisAp+"/"+anneepro+" Pour avoir cette chance ;"
 				+ "tu dois rester en bonne sante: mange 5 fruits et legumes par jour.";
 		}else {
-			appa= "Sauf si la science a fait de grand progres depuis ma creation, tu n'auras pas le grand honneur de m'observer le" +jourAp+"/"+moisAp+"/"+anneeAp+"Je suis vraiment desolee mais j'aime me faire attendre,"
+			appa= "Sauf si la science a fait de grand progres depuis ma creation, tu n'auras pas le grand honneur de m'observer le " +jourAp+"/"+moisAp+"/"+anneeAp+" Je suis vraiment desolee mais j'aime me faire attendre,"
 					+ "tes enfants auront peut �tre plus de chance (ahhhhh ces jeunes n'est ce pas ?)";
 		}
 		return appa;
