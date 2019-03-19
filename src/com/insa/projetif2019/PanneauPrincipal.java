@@ -73,7 +73,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
 		
-		panneauZoneJeu = new PanneauDeJeu();
+		panneauZoneJeu = new PanneauDeJeu("level");
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
