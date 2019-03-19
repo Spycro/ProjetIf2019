@@ -123,7 +123,7 @@ public class Personnage {
 		//////////////////////////////// HITBOX (PRODUCTION)
 		g.setColor(Color.white);
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
-		//g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
+		g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
 		
 		
 		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
@@ -179,6 +179,7 @@ public class Personnage {
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
+				
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					groundLevel = solCourant.getY();
