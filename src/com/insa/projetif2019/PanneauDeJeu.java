@@ -42,7 +42,6 @@ public class PanneauDeJeu extends JPanel{
 	public PanneauDeJeu(String nomNiveau) {
 
 		grille = new Bloc[10][90];
-		//Modifications par Lolo
 		map = new File("bin/"+nomNiveau+".txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
