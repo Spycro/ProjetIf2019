@@ -148,9 +148,7 @@ public class Personnage {
 	}
 
 	public void preMouvement(Set<Integer> moveSet) {
-		// futur emplacement
-		// collision contre cet emplacement
-
+		
 		if (moveSet.contains(39)) {
 
 			deplacementDroite();
@@ -169,10 +167,15 @@ public class Personnage {
 
 			jump();
 		}
-		// 39 droites
+		
+		if(moveSet.contains(27)) {
+			
+		}
+		// 39 droite
 		// 37 gauche
 		// 38 haut
 		// 40 bas
+		// 27 echap 
 
 	}
 
