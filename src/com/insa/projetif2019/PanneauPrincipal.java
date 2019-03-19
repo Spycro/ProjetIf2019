@@ -37,12 +37,15 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int LARGEUR;
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
+	
+	private String niveau;
+	
 	Timer tempsDeJeu;
 	Timer enMvt;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public PanneauPrincipal(int largeur, int hauteur, String niveau) {
+	public PanneauPrincipal(int largeur, int hauteur, String niveauACharger) {
 		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
 		this.HAUTEUR=hauteur;
@@ -73,12 +76,14 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
 		
-		panneauZoneJeu = new PanneauDeJeu(niveau);
+		niveau = niveauACharger;
+		
+		/*panneauZoneJeu = new PanneauDeJeu(niveau);
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
 		panneauRules = new PanneauRules();
-		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
+		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);*/
 		
 
 		
@@ -103,6 +108,12 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	public void setFenMere(JFrame mere) {
 		fenMere = mere;
+	}
+	
+	public void afficherNiveau() {
+		panneauZoneJeu = new PanneauDeJeu(niveau);
+		panneauZoneJeu.addKeyListener(this);
+		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 	}
 
 	@Override
