@@ -1,33 +1,53 @@
 package com.insa.projetif2019;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		FenetrePrincipale fen = new FenetrePrincipale();
+		//Fichier de sauvegarde
 		
+		File savefile;
 		
+		savefile = new File("file0.sav");
 		
-		//Ci-dessous un exemple de declaration propre de tableau a 3 entrèes (de petite taille)
-		int [][][] test = 
-		{
-				{
-					{1,1,1},
-					{2,2,2},
-					{3,3,3}
-				},
-				{
-					{1,1,1},
-					{2,2,2},
-					{3,3,3}
-				},
-				{
-					{1,1,1},
-					{2,2,2},
-					{3,3,3}
-				},
-		};
+		if(!savefile.isFile()) { 
+			BufferedWriter bw;
+			try {
+				bw = new BufferedWriter(new FileWriter("file0.sav"));
+				bw.write("level");
+	        	bw.close();
+	        	savefile = new File("file0.sav");
+			} catch (IOException e) {
+				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+				e.printStackTrace();
+			}
+        	
+		}
 		
+		String niveauActuel = "";
+		BufferedReader br = null;
+	    try {
+	        br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
+	        niveauActuel = br.readLine();
+	    } 
+	    catch (IOException e) {
+	            e.printStackTrace();
+	            System.out.println("Erreur lors du chargement du fichier de sauvegarde !");
+	        } 
+	    finally {
+	            try {
+	                if (br != null)br.close();
+	            } catch (IOException ex) {
+	                ex.printStackTrace();
+	            }
+	        }
+		FenetrePrincipale fen = new FenetrePrincipale(niveauActuel);
 		
 		// Declaration de tous les astres ;) 
 		Planete Terre= new Planete (6371.0,365.25,-88,58,5.97*Math.pow(10,24),"Terre","Tellurique");
