@@ -39,17 +39,16 @@ public class PanneauDeJeu extends JPanel{
 	
 	
 	
-	public PanneauDeJeu() {
+	public PanneauDeJeu(String nomNiveau) {
 
 		grille = new Bloc[10][90];
 		//Modifications par Lolo
-		map = new File("bin/level.txt");
+		map = new File("bin/"+nomNiveau+".txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
 		pCarte.setOpaque(false); // Fond transparent
 		
-
-		
+	
 		this.genererCarte();
 		this.add(pCarte);
 		
@@ -63,7 +62,7 @@ public class PanneauDeJeu extends JPanel{
 		BufferedReader br = null;
 	    try {
 	        String sCurrentLine;
-	        br = new BufferedReader(new FileReader("bin/level.txt"));  //file name with path
+	        br = new BufferedReader(new FileReader(map.getCanonicalPath()));  //file name with path
 	        while ((sCurrentLine = br.readLine()) != null) {
 
 	            String strArr = sCurrentLine;
@@ -109,7 +108,6 @@ public class PanneauDeJeu extends JPanel{
 			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

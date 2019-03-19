@@ -42,7 +42,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public PanneauPrincipal(int largeur, int hauteur) {
+	public PanneauPrincipal(int largeur, int hauteur, String niveau) {
 		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
 		this.HAUTEUR=hauteur;
@@ -73,7 +73,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
 		
-		panneauZoneJeu = new PanneauDeJeu();
+		panneauZoneJeu = new PanneauDeJeu(niveau);
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
