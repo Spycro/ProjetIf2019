@@ -13,37 +13,77 @@ import java.awt.Font;
 public class PanneauRules extends JPanel {
 	
 	private JTextArea text1;
-	private JLabel text2;
-	private Image imgf;
+	private JTextArea text2;
+	private JTextArea text3;
+	private JTextArea text4;
+	private JTextArea text5;
+	private Image imgf1;
+	private Image imgf2;
 	
 	public PanneauRules() {
 		
 		text1= new JTextArea();
-		text1.setBounds(5,5,960,300);
+		text1.setBounds(5,5,960,100);
 		text1.setForeground(Color.white);
-		Font police1=new Font("Arial",Font.BOLD,30);
+		Font police1=new Font("Bookman Old Style",Font.BOLD,18);
 		text1.setFont(police1);
-		text1.setText("Bonjour jeune explorateur! Nous sommes ravis de constater que\ntu t'intÃ©resses Ã  notre merveilleuse galaxie!");
+		text1.setText("Pour devenir un astronaute confirmé, lis attentivement les règles du jeu!\nTu vas pouvoir te balader de planète en planète muni de ton équipement d'astronaute!\nC'est très simple :");
 		text1.setEditable(false);
 		text1.setOpaque(false);
 		this.add(text1);
 		
-		text2=new JLabel();
-		text2.setBounds(5,300,750,200);
+		text2=new JTextArea();
+		text2.setBounds(410,80,100,50);
 		text2.setForeground(Color.white);
-		Font police2=new Font("Arial",Font.BOLD,30);
-		text2.setFont(police2);
-		text2.setText("");
+		text2.setFont(police1);
+		text2.setText("SAUTER");
+		text2.setEditable(false);
+		text2.setOpaque(false);
+		this.add(text2);  
 		
-		this.add(text2);
+		text3=new JTextArea();
+		text3.setBounds(260,180,100,50);
+		text3.setForeground(Color.white);
+		text3.setFont(police1);
+		text3.setText("RECULER");
+		text3.setEditable(false);
+		text3.setOpaque(false);
+		this.add(text3);  
+		
+		text4=new JTextArea();
+		text4.setBounds(570,180,100,50);
+		text4.setForeground(Color.white);
+		text4.setFont(police1);
+		text4.setText("AVANCER");
+		text4.setEditable(false);
+		text4.setOpaque(false);
+		this.add(text4);  
+		
+		text5=new JTextArea();
+		text5.setBounds(5,325,960,300);
+		text5.setForeground(Color.white);
+		text5.setFont(police1);
+		text5.setText("A chaque rencontre de planète, tu pourras partir l'explorer avec passion...\nTu pars en exploration avec 3 vies, mais quel chanceux!\nChaque rencontre avec un coeur te procure une vie, mais prends garde à ceux qui te veulent du mal\nils n'hésiteront pas à te les reprendre! Enfin tu pourras apprendre des choses... magnifique non?\nTu sais tout sur cette planète? Repars ene xpédition et passes à la suivante! ");
+		text5.setEditable(false);
+		text5.setOpaque(false);
+		this.add(text5);  
+		
 		
 		// definition image fond  
 		try {
-		    imgf = ImageIO.read(new File("bin/Galaxie.jpg"));
+		    imgf1 = ImageIO.read(new File("bin/Galaxie.jpg"));
 		} catch (IOException e) {
 		   // TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
+		
+		//définition image flèche 
+		try {
+		    imgf2 = ImageIO.read(new File("bin/fleche.png"));
+		} catch (IOException e) {
+		   // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -52,7 +92,11 @@ public class PanneauRules extends JPanel {
 		
 	  super.paintComponent(g);
 		
-	  g.drawImage(imgf, 0, 0, this.getWidth(), this.getHeight(), this);
+	  g.drawImage(imgf1,0,0,this.getWidth(),this.getHeight(),this);
+	  
+	  g.drawImage(imgf2,360,110,200,120,this);
+	  
+	  
 	
    }
 	

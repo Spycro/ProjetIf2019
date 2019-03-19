@@ -31,6 +31,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private JButton bComtJouer;
 	
 	private Image imgf;
+	private JTextArea text;
 	
 	private PanneauDeJeu panneauZoneJeu; //sera peut etre un tableau de zone de jeu
 	private PanneauRules panneauRules;
@@ -89,6 +90,16 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		
+		text= new JTextArea();
+		text.setBounds(5,30,960,80);
+		text.setForeground(Color.white);
+		Font police1=new Font("Bookman Old Style",Font.BOLD,30);
+		text.setFont(police1);
+		text.setText("Bonjour jeune explorateur! Nous sommes ravis de constater\nque tu t'intéresses à notre merveilleuse galaxie!");
+		text.setEditable(false);
+		text.setOpaque(false);
+		this.add(text);
 	}
 	
 	
@@ -144,6 +155,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(bStart);
 			this.remove(bQuit);;
 			this.remove(bComtJouer);
+			this.remove(text);
 			
         }	
 		repaint();
