@@ -68,7 +68,7 @@ public class Bloc  {
 			switch (typeBloc) {
 			case '0':
 				sprite = null;
-				hitBox = new Rectangle();
+				hitBox = new Rectangle(coordX,coordY,0,0);
 			break;
 			case '1':
 				try {
