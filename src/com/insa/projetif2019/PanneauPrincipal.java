@@ -1,6 +1,6 @@
 package com.insa.projetif2019;
 /**
- * Menu principal du jeu. Permet de lancer le jeu ou de le quitter
+ * Panneau du projet oÃ¹ tout se passe
 */
 
 
@@ -43,6 +43,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	Timer tempsDeJeu;
 	Timer enMvt;
+	
+	boolean enPause = false;
+	PanneauPause panneauPause;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -53,10 +56,15 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		setLayout(null);
 		
-		toucheEnfonce = new HashSet<Integer>();
+		toucheEnfonce = new HashSet<Integer>(); //utilise pour contenir les touches de mouvement
 		enMvt = new Timer(33,this);
 		tempsDeJeu = new Timer(33,this);
-	
+		
+		//definition panneau Pause
+		panneauPause = new PanneauPause();
+		panneauPause.addKeyListener(this);
+		panneauPause.bQuit.addActionListener(this);
+		panneauPause.bReturn.addActionListener(this);
 
 		
 		//Definition du bouton de lancement
@@ -79,14 +87,15 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		niveau = niveauACharger;
 		
-		/*panneauZoneJeu = new PanneauDeJeu(niveau);
+		panneauZoneJeu = new PanneauDeJeu(niveau);
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
 		panneauRules = new PanneauRules();
-		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);*/
+		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
-
+		
+	
 		
 		// definition image fond  
 		try {
@@ -101,7 +110,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		text.setForeground(Color.white);
 		Font police1=new Font("Bookman Old Style",Font.BOLD,30);
 		text.setFont(police1);
-		text.setText("Bonjour jeune explorateur! Nous sommes ravis de constater\nque tu t'intéresses à notre merveilleuse galaxie!");
+		text.setText("Bonjour jeune explorateur! Nous sommes ravis de constater\nque tu t'interesses a notre merveilleuse galaxie!");
 		text.setEditable(false);
 		text.setOpaque(false);
 		this.add(text);
@@ -120,12 +129,12 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	public void setFenMere(JFrame mere) {
 		fenMere = mere;
 	}
-	
+	/*
 	public void afficherNiveau() {
 		panneauZoneJeu = new PanneauDeJeu(niveau);
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
-	}
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -140,6 +149,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(bStart);
 			this.remove(bQuit);;
 			this.remove(bComtJouer);
+			remove(text);
 			
 			tempsDeJeu.start();
 		
@@ -160,7 +170,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
         if(e.getSource() == bComtJouer){
 			
 			System.out.println("Button Pressed");
-			this.add(panneauRules);
+			add(panneauRules);
 			panneauRules.requestFocusInWindow();
 			
 			this.remove(bStart);
@@ -169,6 +179,14 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(text);
 			
         }	
+        
+        if(e.getSource() == panneauPause.bReturn) {
+        	switchPause();
+        }
+        if(e.getSource() == panneauPause.bQuit) {
+        	fenMere.dispose();
+        }
+        
 		repaint();
 		
 	}
@@ -180,8 +198,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(e.getSource() == panneauZoneJeu) {
 			toucheEnfonce.add(e.getKeyCode()); 
 			enMvt.start();
+
 		}
-		this.repaint();
+		repaint();
 		
 	}
 
@@ -193,6 +212,12 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(toucheEnfonce.isEmpty()) {
 			enMvt.stop();
 		}
+		
+		
+		if(e.getKeyCode() == 27){
+			switchPause();
+		}
+		
 	}
 
 
@@ -201,6 +226,34 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		// TODO Auto-generated method stub
 		
 	}	
+	
+	/**
+	 * Methode permettant de mettre le jeu en pause
+	 */
+	
+	private void switchPause() {
+		if(!enPause) {
+			System.out.println(enPause);
+			tempsDeJeu.stop();
+			enMvt.stop();
+			add(panneauPause);
+			remove(panneauZoneJeu);
+			panneauPause.grabFocus();
+			enPause = !enPause;
+			repaint();
+		}
+		
+		else{
+			tempsDeJeu.restart();
+			enMvt.restart();
+			remove(panneauPause);
+			add(panneauZoneJeu);
+			panneauZoneJeu.grabFocus();
+			enPause = !enPause;
+			repaint();
+			
+		}
+	}
 
 
 	

@@ -123,7 +123,7 @@ public class Personnage {
 		//////////////////////////////// HITBOX (PRODUCTION)
 		g.setColor(Color.white);
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
-		g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
+		//g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
 		
 		
 		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
