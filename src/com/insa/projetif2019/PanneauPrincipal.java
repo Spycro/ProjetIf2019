@@ -164,14 +164,17 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    if(e.getSource() == enMvt) {
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce);
 	    }
-	    if(e.getSource() == tempsDeJeu) 
+	    if(e.getSource() == tempsDeJeu) {
 	    	panneauZoneJeu.getJoueur().maj();
+	    	if(!panneauZoneJeu.getJoueur().getEnVie())
+	    		stopGame();
+	    }
 	    
         if(e.getSource() == bComtJouer){
 			
 			System.out.println("Button Pressed");
 			add(panneauRules);
-			panneauRules.requestFocusInWindow();
+			panneauRules.grabFocus();
 			
 			this.remove(bStart);
 			this.remove(bQuit);;
@@ -233,7 +236,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	private void switchPause() {
 		if(!enPause) {
-			System.out.println(enPause);
 			tempsDeJeu.stop();
 			enMvt.stop();
 			add(panneauPause);
@@ -253,6 +255,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			repaint();
 			
 		}
+	}
+	
+	private void stopGame() {
+		
 	}
 
 

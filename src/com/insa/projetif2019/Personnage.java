@@ -23,6 +23,7 @@ public class Personnage {
 	// ATTRIBUTS
 	////////////////////////////////////////////////////////////////////////////////////////
 	Image sprite;
+	Image coeur;
 	Rectangle hitBox;
 	private int posX;
 	private int posY;
@@ -42,12 +43,16 @@ public class Personnage {
 
 	private final int LARGEUR = 40;
 	private final int HAUTEUR = 75;
+	
+	boolean enVie = true;
+	int pointDeVie;
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	/// METHODES
 	public Personnage() {
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,11 +70,12 @@ public class Personnage {
 		// creation du personnage
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
+			coeur = ImageIO.read(new File("bin/heart.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		pointDeVie = 3;
 		posX = pX;
 		posY = pY;
 		speedX = 0;
@@ -136,6 +142,12 @@ public class Personnage {
 		if(solCourant != null) {
 			g.setColor(Color.white);
 			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getCote(), Bloc.getCote());
+		}
+		if(posX > 350)
+			g.translate(posX-350, 0);
+		for(int i=0;i<pointDeVie;i++) {
+			
+			g.drawImage(coeur, i*40, 0, 32, 32, null);
 		}
 		///////////////////////////////
 	}
@@ -224,6 +236,7 @@ public class Personnage {
 		if(!onGround) 
 			acceleration(0, gravity);
 		
+		enVie();
 		onGround = checkGround();
 		
 		if (collision()) {
@@ -283,6 +296,17 @@ public class Personnage {
 		return a;
 		
 	}
+	
+	private void enVie() {
+		if(pointDeVie <= 0) {
+			enVie = false;
+		}
+	}
+	
+	public boolean getEnVie() {
+		return enVie;
+	}
+	
 
 	public double getGravity() {
 		return gravity;
