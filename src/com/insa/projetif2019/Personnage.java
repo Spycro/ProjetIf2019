@@ -45,7 +45,7 @@ public class Personnage {
 	private final int HAUTEUR = 75;
 	
 	boolean enVie = true;
-	int pointDeVie;
+	public int pointDeVie;
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	/// METHODES
@@ -136,6 +136,7 @@ public class Personnage {
 		g.drawString("vitesse X : "+speedX+" vitesse Y : "+speedY, 0, 60);
 		g.drawString("on Ground :"+onGround, 0, 90);
 		g.drawString("collision : "+collision(), 200, 30);
+		g.drawString("vie :"+ pointDeVie, 400, 30);
 
 		///////////////////////////////////////////////////////
 		
@@ -198,13 +199,20 @@ public class Personnage {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
 					groundLevel = solCourant.getY();
+					if ( monde[i][j].getType()==7) {
+						pointVie(1);
+					}
+					if ( monde[i][j].getType()==8) {
+						pointVie(-1);
+					}
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-
+	
+	
 	public void acceleration(double aX, double aY) {
 		speedX += aX;
 		speedY += aY;
@@ -302,6 +310,7 @@ public class Personnage {
 			enVie = false;
 		}
 	}
+
 	
 	public boolean getEnVie() {
 		return enVie;
@@ -315,4 +324,19 @@ public class Personnage {
 	public void setGravity(double gravity) {
 		this.gravity = gravity;
 	}
+	
+	public void pointVie(int a) {
+		while (enVie=true) {
+			if ((a==1) && (pointDeVie<3)){
+				pointDeVie=pointDeVie+1;
+			}
+			if (a==-1) {
+				pointDeVie=pointDeVie-1;
+			}
+			enVie ();
+		}
+	}
+	
+	
+	
 }
