@@ -27,7 +27,9 @@ public class PanneauRules extends JPanel {
 		text1.setForeground(Color.white);
 		Font police1=new Font("Bookman Old Style",Font.BOLD,18);
 		text1.setFont(police1);
-		text1.setText("Pour devenir un astronaute confirmé, lis attentivement les règles du jeu!\nTu vas pouvoir te balader de planète en planète muni de ton équipement d'astronaute!\nC'est très simple :");
+		text1.setText("Pour devenir un astronaute confirme, lis attentivement les regles du jeu!\n"
+				+ "Tu vas pouvoir te balader de planete en planete muni de ton equipement d'astronaute!\n"
+				+ "C'est tres simple :");
 		text1.setEditable(false);
 		text1.setOpaque(false);
 		this.add(text1);
@@ -63,7 +65,11 @@ public class PanneauRules extends JPanel {
 		text5.setBounds(5,325,960,300);
 		text5.setForeground(Color.white);
 		text5.setFont(police1);
-		text5.setText("A chaque rencontre de planète, tu pourras partir l'explorer avec passion...\nTu pars en exploration avec 3 vies, mais quel chanceux!\nChaque rencontre avec un coeur te procure une vie, mais prends garde à ceux qui te veulent du mal\nils n'hésiteront pas à te les reprendre! Enfin tu pourras apprendre des choses... magnifique non?\nTu sais tout sur cette planète? Repars ene xpédition et passes à la suivante! ");
+		text5.setText("A chaque rencontre de planete, tu pourras partir l'explorer avec passion...\n"
+				+ "Tu pars en exploration avec 3 vies, mais quel chanceux!\n"
+				+ "Chaque rencontre avec un coeur te procure une vie, mais prends garde a ceux qui te veulent du mal\n"
+				+ "ils n'hesiteront pas a te les reprendre! Enfin tu pourras apprendre des choses... magnifique non?\n"
+				+ "Tu sais tout sur cette planete? Repars en expedition et passes a la suivante! ");
 		text5.setEditable(false);
 		text5.setOpaque(false);
 		this.add(text5);  
@@ -77,7 +83,7 @@ public class PanneauRules extends JPanel {
 			e.printStackTrace();
 		}
 		
-		//définition image flèche 
+		//dï¿½finition image flï¿½che 
 		try {
 		    imgf2 = ImageIO.read(new File("bin/fleche.png"));
 		} catch (IOException e) {
