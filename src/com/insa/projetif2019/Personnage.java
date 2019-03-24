@@ -35,7 +35,6 @@ public class Personnage {
 	private final double FRICTION = 0.92;
 
 	private boolean onGround;
-	private int groundLevel;
 	private int[] posMonde;
 
 	private Bloc[][] monde;
@@ -148,7 +147,7 @@ public class Personnage {
 			g.translate(posX-350, 0);
 		for(int i=0;i<pointDeVie;i++) {
 			
-			g.drawImage(coeur, i*40, 0, 32, 32, null);
+			g.drawImage(coeur, i*40, 0, 32, 32, obs);
 		}
 		///////////////////////////////
 	}
@@ -198,7 +197,6 @@ public class Personnage {
 				
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
-					groundLevel = solCourant.getY();
 					if ( monde[i][j].getType()==7) {
 						pointVie(1);
 					}
