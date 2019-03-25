@@ -36,13 +36,15 @@ public class PanneauDeJeu extends JPanel{
 	private Personnage joueur;
 	private File map;
 	private JPanel pCarte;
+	private String niveau;
 	
 	
 	
 	public PanneauDeJeu(String nomNiveau) {
 
 		grille = new Bloc[10][90];
-		map = new File("bin/"+nomNiveau+".txt");
+		niveau = nomNiveau;
+		map = new File("bin/"+niveau+".txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
 		pCarte.setOpaque(false); // Fond transparent
@@ -86,8 +88,7 @@ public class PanneauDeJeu extends JPanel{
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), "Terre");
-	    		System.out.print(strStore[i].charAt(k));
+	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), niveau);
 	    		k++;
 	    	}
 	    	k=0;

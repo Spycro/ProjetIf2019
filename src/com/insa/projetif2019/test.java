@@ -20,7 +20,7 @@ public class test {
 			BufferedWriter bw;
 			try {
 				bw = new BufferedWriter(new FileWriter("file0.sav"));
-				bw.write("level");
+				bw.write("Terre");
 	        	bw.close();
 	        	savefile = new File("file0.sav");
 			} catch (IOException e) {
