@@ -1,3 +1,8 @@
 /bin/
 .DS_Store
 /.metadata/
+.metadata/.mylyn/.taskListIndex/segments.gen
+.metadata/.mylyn/tasks.xml.zip
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+.metadata/.plugins/org.eclipse.core.resources/.root/1.tree
+.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources

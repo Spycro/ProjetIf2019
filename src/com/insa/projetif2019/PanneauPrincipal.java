@@ -93,6 +93,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		panneauRules = new PanneauRules();
 		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
+		panneauRules.bReturn.addActionListener(this);
 		
 		
 	
@@ -106,11 +107,11 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		} 
 		
 		text= new JTextArea();
-		text.setBounds(5,30,960,80);
+		text.setBounds(5,30,960,130);
 		text.setForeground(Color.white);
-		Font police1=new Font("Bookman Old Style",Font.BOLD,30);
+		Font police1=new Font("Bookman Old Style",Font.BOLD,35);
 		text.setFont(police1);
-		text.setText("Bonjour jeune explorateur! Nous sommes ravis de constater\nque tu t'interesses a notre merveilleuse galaxie!");
+		text.setText("Bonjour jeune explorateur! Nous sommes ravis de\nconstater que tu t'interesses a notre merveilleuse\ngalaxie!");
 		text.setEditable(false);
 		text.setOpaque(false);
 		this.add(text);
@@ -182,13 +183,27 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.remove(bComtJouer);
 			this.remove(text);
 			
+			
         }	
+        
+        
         
         if(e.getSource() == panneauPause.bReturn) {
         	switchPause();
         }
         if(e.getSource() == panneauPause.bQuit) {
         	fenMere.dispose();
+        }
+        
+        if(e.getSource() == panneauRules.bReturn) {
+        	this.remove(panneauRules);
+        	grabFocus();
+        	this.add(bStart);
+			this.add(bQuit);;
+			this.add(bComtJouer);
+			this.add(text);
+        	
+        	
         }
         
 		repaint();

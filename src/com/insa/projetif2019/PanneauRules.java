@@ -2,12 +2,15 @@ package com.insa.projetif2019;
 
 
 import java.awt.Graphics;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Color;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+
 import java.awt.Font;
 
 public class PanneauRules extends JPanel{
@@ -19,6 +22,9 @@ public class PanneauRules extends JPanel{
 	private JTextArea text5;
 	private Image imgf1;
 	private Image imgf2;
+	public JButton bReturn;
+
+
 	
 	public PanneauRules() {
 		
@@ -34,8 +40,10 @@ public class PanneauRules extends JPanel{
 		text1.setOpaque(false);
 		this.add(text1);
 		
+		
+		
 		text2=new JTextArea();
-		text2.setBounds(420,170,100,50);
+		text2.setBounds(420,120,100,50);
 		text2.setForeground(Color.white);
 		text2.setFont(police1);
 		text2.setText("SAUTER");
@@ -44,7 +52,7 @@ public class PanneauRules extends JPanel{
 		this.add(text2);  
 		
 		text3=new JTextArea();
-		text3.setBounds(260,275,100,50);
+		text3.setBounds(260,225,100,50);
 		text3.setForeground(Color.white);
 		text3.setFont(police1);
 		text3.setText("RECULER");
@@ -53,7 +61,7 @@ public class PanneauRules extends JPanel{
 		this.add(text3);  
 		
 		text4=new JTextArea();
-		text4.setBounds(570,275,100,50);
+		text4.setBounds(570,225,100,50);
 		text4.setForeground(Color.white);
 		text4.setFont(police1);
 		text4.setText("AVANCER");
@@ -62,7 +70,7 @@ public class PanneauRules extends JPanel{
 		this.add(text4);  
 		
 		text5=new JTextArea();
-		text5.setBounds(5,400,960,300);
+		text5.setBounds(5,330,960,250);
 		text5.setForeground(Color.white);
 		text5.setFont(police1);
 		text5.setText("A chaque rencontre de planete, tu pourras partir l'explorer avec passion...\n"
@@ -72,7 +80,12 @@ public class PanneauRules extends JPanel{
 				+ "Tu sais tout sur cette planete? Repars en expedition et passes a la suivante! ");
 		text5.setEditable(false);
 		text5.setOpaque(false);
-		this.add(text5);  
+		this.add(text5);
+		
+		//Definition du bouton pour quitter
+	    bReturn = new JButton("Return");
+	    bReturn.setBounds(840,560,100,50);
+		this.add(bReturn);
 		
 		
 		// definition image fond  
@@ -94,6 +107,12 @@ public class PanneauRules extends JPanel{
 		
 		
 		
+     
+		
+		
+		
+		
+		
 	}
 	
    public void paintComponent(Graphics g) {
@@ -102,13 +121,15 @@ public class PanneauRules extends JPanel{
 		
 	  g.drawImage(imgf1,0,0,this.getWidth(),this.getHeight(),this);
 	  
-	  g.drawImage(imgf2,360,200,200,120,this);
+	  g.drawImage(imgf2,360,150,200,120,this);
 	  
 	  
 	
    }
-  
-	
-	
 
+
+
+	
 }
+   
+
