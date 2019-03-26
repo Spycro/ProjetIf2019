@@ -65,6 +65,8 @@ public class Comete extends Astre  {
 		}
 		return appa;
 	}
-	
+	public  int calculPoids(int pTerre) {
+		return 0;
+	}
 
 }

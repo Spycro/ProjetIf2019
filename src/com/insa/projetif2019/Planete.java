@@ -26,7 +26,10 @@ public class Planete extends Astre {
 		return grille;
 	}*/
 		
-
+	public  String calculProchaineAp(int date, int age) {
+		return null;
+	}
+	
 	public double calculpesanteur(){
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
