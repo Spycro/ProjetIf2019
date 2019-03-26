@@ -33,7 +33,7 @@ public class PanneauRules extends JPanel{
 		text1.setForeground(Color.white);
 		Font police1=new Font("Bookman Old Style",Font.BOLD,20);
 		text1.setFont(police1);
-		text1.setText("Pour devenir un astronaute confirmé, lis attentivement les regles du jeu!\n"
+		text1.setText("Pour devenir un astronaute confirme, lis attentivement les regles du jeu!\n"
 				+ "Tu vas pouvoir te balader de planete en planete muni de ton equipement d'astronaute!\n"
 				+ "C'est tres simple :");
 		text1.setEditable(false);
@@ -43,7 +43,7 @@ public class PanneauRules extends JPanel{
 		
 		
 		text2=new JTextArea();
-		text2.setBounds(420,120,100,50);
+		text2.setBounds(420,110,100,50);
 		text2.setForeground(Color.white);
 		text2.setFont(police1);
 		text2.setText("SAUTER");
@@ -52,7 +52,7 @@ public class PanneauRules extends JPanel{
 		this.add(text2);  
 		
 		text3=new JTextArea();
-		text3.setBounds(260,225,100,50);
+		text3.setBounds(240,225,100,50);
 		text3.setForeground(Color.white);
 		text3.setFont(police1);
 		text3.setText("RECULER");
@@ -61,7 +61,7 @@ public class PanneauRules extends JPanel{
 		this.add(text3);  
 		
 		text4=new JTextArea();
-		text4.setBounds(570,225,100,50);
+		text4.setBounds(580,225,100,50);
 		text4.setForeground(Color.white);
 		text4.setFont(police1);
 		text4.setText("AVANCER");
@@ -70,21 +70,23 @@ public class PanneauRules extends JPanel{
 		this.add(text4);  
 		
 		text5=new JTextArea();
-		text5.setBounds(5,330,960,250);
+		text5.setBounds(5,330,960,200);
 		text5.setForeground(Color.white);
 		text5.setFont(police1);
 		text5.setText("A chaque rencontre de planete, tu pourras partir l'explorer avec passion...\n"
 				+ "Tu pars en exploration avec 3 vies, mais quel chanceux!\n"
-				+ "Chaque rencontre avec un coeur te procure une vie, mais prends garde a ceux qui te\nveulent du mal"
-				+ "ils n'hesiteront pas a te les reprendre!\nEnfin tu pourras apprendre des choses... magnifique non?\n"
-				+ "Tu sais tout sur cette planete? Repars en expedition et passes a la suivante! ");
+				+ "Chaque rencontre avec un coeur te procure une vie (et peut etre un coup de foudre!),\n"
+				+ "mais prends garde a ceux qui te veulent du mal, ils n'hesiteront pas a te les reprendre!\n"
+				+ "Enfin tu pourras apprendre des choses...(ou pas). Magnifique non?\n"
+				+ "Tu sais tout sur cette planete?\n"
+				+ "Repars en expedition et passes a la suivante! (sauf si tu as la flemme)");
 		text5.setEditable(false);
 		text5.setOpaque(false);
 		this.add(text5);
 		
 		//Definition du bouton pour quitter
 	    bReturn = new JButton("Return");
-	    bReturn.setBounds(840,560,100,50);
+	    bReturn.setBounds(840,530,100,50);
 		this.add(bReturn);
 		
 		
