@@ -54,7 +54,7 @@ public class Planete extends Astre {
 			info1=info1+",c'est a dire que je ne suis pas principalement constituee d hydrogene et d helium, mais de composes volatils"
 					+ " tels que l'eau, le methane ou l'ammoniac\n ";
 		}
-		
+		info1=info1+"\n Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info1;	
 	}
 	public String info2() {
@@ -65,7 +65,7 @@ public class Planete extends Astre {
 		}else{
 			info2=" Je porte aussi le jolie attribut de geante, et oui mon rayon est de"+ rayon+ "km \n ";
 		}
-		
+		info2=info2+"\n Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info2;	
 	}
 	
@@ -78,6 +78,7 @@ public class Planete extends Astre {
 			info3="Je suis vraiment desolee mais chez moi il fait assez froid:je varie de"+temperatureMin+" C a " +temperatureMax+"C; mais ne t'en fait pas j'ai "
 					+ "plein d'amour pour te rechauffer.\n ";
 		}
+		info3=info3+"\n Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info3;	
 	}
 	
@@ -91,7 +92,7 @@ public class Planete extends Astre {
 			info4="Oulalallala tu as trop mange aujourd'hui, Je sais personne n'aime le dire mais assume toi. Renseigne ce qu'indique ta balance"
 					+ " dans la zone et clic sur le bouton\n ";
 		}
-		
+		info4=info4+"\n Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info4;	
 	}
 	
