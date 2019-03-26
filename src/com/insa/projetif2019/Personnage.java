@@ -202,21 +202,22 @@ public class Personnage {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
-					blocRencontre = monde[i][j];
 					
-					if ( blocRencontre.getType()=='7') {
+					
+					
+					if ( monde[i][j].getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
 						break;
 					}
 					
 					
-					else if ( blocRencontre.getType()=='D') {
+					else if ( monde[i][j].getType()=='D') {
 						pointVie(-1);
 						//parent.miseAJourGrille(i, j);
 						break;
 					}
-					else  if (blocRencontre.getType()=='8') {
+					else  if (monde[i][j].getType()=='8') {
 						ct.switchPause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
 						parent.miseAJourGrille(i, j);
@@ -225,7 +226,7 @@ public class Personnage {
 						break;
 						
 					}
-					else if (blocRencontre.getType()=='9') {
+					else if (monde[i][j].getType()=='9') {
 						ct.switchPause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
@@ -233,21 +234,21 @@ public class Personnage {
 					
 						
 					}
-					else if (blocRencontre.getType()=='A') {
+					else if (monde[i][j].getType()=='A') {
 						ct.switchPause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
-					else if (blocRencontre.getType()=='B') {
+					else if (monde[i][j].getType()=='B') {
 						ct.switchPause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
-					
+					blocRencontre = monde[i][j];
 					
 					return true;
 				}
