@@ -87,7 +87,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		niveau = niveauACharger;
 		
-		panneauZoneJeu = new PanneauDeJeu(niveau);
+		panneauZoneJeu = new PanneauDeJeu(niveau,this);
 		panneauZoneJeu.addKeyListener(this);
 		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
 		
@@ -235,7 +235,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	 * Methode permettant de mettre le jeu en pause
 	 */
 	
-	private void switchPause() {
+	public void switchPause() {
 		if(!enPause) {
 			tempsDeJeu.stop();
 			enMvt.stop();

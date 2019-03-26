@@ -21,22 +21,29 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	private Planete planete;
 	private Comete comete;
 	private JTextArea annee; 
-	private JTextArea age; 
+	private JTextArea age;
+	private Astre a;
 
 	private JButton Calcul1;
 	
-	public FenetreInfo(Astre p,int numero) {}
-	public void GenererPlaneteInfo() {
+	public FenetreInfo(Astre p,int numero) {
+		a=p;
+		if (a.genre=="Planete") {
+			GenererPlaneteInfo(numero);
+		}else {
+			GenererAstreInfo(numero);
+		}
+	}
+	public void GenererPlaneteInfo(int num) {
+		int numero=num;
 		// paramétrage de la fenetre
-		this.setTitle("A la decouverte de "+p.getNom());
+		this.setTitle("A la decouverte de "+a.getNom());
 		this.setLayout(null);
 		this.setSize(960,200);
-		this.setLocation(700,200);
+		this.setLocation(100,200);
 		this.setVisible(true);
-	
-		planete=p;
-		
-		JLabel couverture = new JLabel(new ImageIcon("bin/"+p.getNom()+".planete.jpg"));
+
+		JLabel couverture = new JLabel(new ImageIcon("bin/"+a.getNom()+".planete.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
 
@@ -57,18 +64,18 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.add(info);
 		switch (numero) {
 		case 1: 
-			info.setText(p.info1());
+			info.setText(a.info1());
 			
 		break;
 		case 2:
-			info.setText(p.info2());
+			info.setText(a.info2());
 			
 		break;
 		case 3:
-			info.setText(p.info3()); 
+			info.setText(a.info3()); 
 		break;
 		case 4:
-			info.setText(p.info4());
+			info.setText(a.info4());
 			couverture.add(Calcul);
 			couverture.add(balance);
 		break;
@@ -85,14 +92,14 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		repaint();
 		}
 		
-	public FenetreInfo(Comete c, int numero){
-		this.setTitle("A la decouverte de "+c.getNom());
+	public void GenererAstreInfo(int nu){
+		int numero=nu;
+		this.setTitle("A la decouverte de "+a.getNom());
 		this.setLayout(null);
 		this.setSize(960,200);
 		this.setLocation(700,200);
 		this.setVisible(true);
 	
-		comete=c;
 		JLabel couverture = new JLabel(new ImageIcon("bin/06_b1.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
@@ -116,18 +123,18 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.add(info);
 		switch (numero) {
 		case 1: 
-			info.setText(c.info1());
+			info.setText(a.info1());
 			
 		break;
 		case 2:
-			info.setText(c.info2());
+			info.setText(a.info2());
 			
 		break;
 		case 3:
-			info.setText(c.info3()); 
+			info.setText(a.info3()); 
 		break;
 		case 4:
-			info.setText(c.info4());
+			info.setText(a.info4());
 			couverture.add(Calcul1);
 			couverture.add(annee);
 			couverture.add(age);
@@ -170,13 +177,13 @@ public void keyTyped(KeyEvent arg0) {
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource()==Calcul) {
 		int choix=Integer.parseInt(balance.getText());
-		int poid = planete.calculPoids(choix);
-		info.setText("Sur "+planete.getNom()+" tu peses "+poid+" kg");
+		int poid = a.calculPoids(choix);
+		info.setText("Sur "+a.getNom()+" tu peses "+poid+" kg");
 	}	
 	if (e.getSource()==Calcul1){
 		int an=Integer.parseInt(annee.getText());
 		int ag =Integer.parseInt(age.getText());
-		info.setText(comete.calculProchaineAp(an,ag));
+		info.setText(a.calculProchaineAp(an,ag));
 	}
 }
 	
