@@ -37,7 +37,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private PanneauRules panneauRules;
 	private final int LARGEUR;
 	private final int HAUTEUR;
-	private Set<Integer> toucheEnfonce; //gerer touche multiple
+	private HashSet<Integer> toucheEnfonce; //gerer touche multiple
 	
 	protected Astre niveau;
 	
