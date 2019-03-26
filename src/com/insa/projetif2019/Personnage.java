@@ -38,7 +38,7 @@ public class Personnage {
 	private int[] posMonde;
 
 	private Bloc[][] monde;
-	private Bloc solCourant;
+	private Bloc blocRencontre;
 
 	private final int LARGEUR = 40;
 	private final int HAUTEUR = 75;
@@ -137,17 +137,13 @@ public class Personnage {
 		//g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
 		
 		
-		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
-		g.drawString("vitesse X : "+speedX+" vitesse Y : "+speedY, 0, 60);
-		g.drawString("on Ground :"+onGround, 0, 90);
-		g.drawString("collision : "+collision(), 200, 30);
-		g.drawString("vie :"+ pointDeVie, 400, 30);
+		
 
 		///////////////////////////////////////////////////////
 		
-		if(solCourant != null) {
-			/*g.setColor(Color.white);
-			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getCote(), Bloc.getCote());*/
+		if(blocRencontre != null) {
+			g.setColor(Color.white);
+			g.fillRect(blocRencontre.getX(), blocRencontre.getY(), Bloc.getCote(), Bloc.getCote());
 		}
 		if(posX > 350)
 			g.translate(posX-350, 0);
@@ -155,6 +151,11 @@ public class Personnage {
 			
 			g.drawImage(coeur, i*40, 0, 32, 32, obs);
 		}
+		g.drawString("position X : "+posX+" Position Y : "+posY, 0, 30);
+		g.drawString("vitesse X : "+speedX+" vitesse Y : "+speedY, 0, 60);
+		g.drawString("on Ground :"+onGround, 0, 90);
+		g.drawString("collision : "+collision(), 200, 30);
+		g.drawString("vie :"+ pointDeVie, 400, 30);
 		///////////////////////////////
 	}
 
@@ -201,24 +202,53 @@ public class Personnage {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
-					solCourant = monde[i][j];
-					if ( solCourant.getType()=='7') {
+					blocRencontre = monde[i][j];
+					
+					if ( blocRencontre.getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
 						break;
 					}
-					else if ( solCourant.getType()=='D') {
+					
+					
+					else if ( blocRencontre.getType()=='D') {
 						pointVie(-1);
 						//parent.miseAJourGrille(i, j);
 						break;
 					}
-					else if (solCourant.getType()=='8') {
+					else  if (blocRencontre.getType()=='8') {
 						ct.switchPause();
-						FenetreInfo fenetre = new FenetreInfo(parent.getAstre(),1);
+						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
+						parent.miseAJourGrille(i, j);
+						speedX = 0;
+						speedY = 0;
+						break;
+						
+					}
+					else if (blocRencontre.getType()=='9') {
+						ct.switchPause();
+						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
+						parent.miseAJourGrille(i, j);
+						break;
+					
+						
+					}
+					else if (blocRencontre.getType()=='A') {
+						ct.switchPause();
+						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
+					else if (blocRencontre.getType()=='B') {
+						ct.switchPause();
+						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
+						parent.miseAJourGrille(i, j);
+						break;
+						
+					}
+					
+					
 					return true;
 				}
 			}
@@ -261,16 +291,21 @@ public class Personnage {
 		enVie();
 		onGround = checkGround();
 		
-		if (collision()) {
+			if (collision()) {
 			move(-speedX,0);
+			
+			
 			if(speedX < 0) {
 				speedX = 0;
 			}
 			if(speedX > 0) {
 				speedX = 0;
 			}
+			
+			//Si le personnage tombe et traverse la case actuelle
 			if(speedY>0) {
-				setY(solCourant.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
+				
+				setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
 				System.out.println("vitesse y = 0");
 				speedY = 0;
 				
@@ -285,6 +320,8 @@ public class Personnage {
 		move(speedX, speedY);
 		speedX *= FRICTION;
 		speedY *= FRICTION;
+		
+		
 		refreshHB();
 		posMonde = positionCourante();
 	}
@@ -292,9 +329,9 @@ public class Personnage {
 	private boolean checkGround() {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
-		if(solCourant != null) {
+		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
-			if(pH.intersection(solCourant.hitBox).height >0 && pH.intersection(solCourant.hitBox).width >0 && pH.intersection(solCourant.hitBox).width<64) {
+			if(pH.intersection(blocRencontre.hitBox).height >0 && pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).width<64) {
 				return true;
 			}
 			else {
