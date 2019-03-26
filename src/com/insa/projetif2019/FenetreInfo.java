@@ -18,8 +18,6 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 	private JLabel couverture;
 	private JButton Calcul;
 	private JTextArea balance; 
-	private Planete planete;
-	private Comete comete;
 	private JTextArea annee; 
 	private JTextArea age;
 	private Astre a;
@@ -43,7 +41,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.setLocation(100,200);
 		this.setVisible(true);
 
-		JLabel couverture = new JLabel(new ImageIcon("bin/"+a.getNom()+".planete.jpg"));
+		couverture = new JLabel(new ImageIcon("bin/"+a.getNom()+".planete.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
 
@@ -100,7 +98,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.setLocation(700,200);
 		this.setVisible(true);
 	
-		JLabel couverture = new JLabel(new ImageIcon("bin/06_b1.jpg"));
+		couverture = new JLabel(new ImageIcon("bin/06_b1.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
 		
@@ -178,7 +176,7 @@ public void actionPerformed(ActionEvent e) {
 	if (e.getSource()==Calcul) {
 		int choix=Integer.parseInt(balance.getText());
 		int poid = a.calculPoids(choix);
-		info.setText("Sur "+a.getNom()+" tu peses "+poid+" kg");
+		info.setText("Sur "+a.getNom()+" tu peses "+poid+" kg \n Tu as fini de lire, ferme ma fenetre et appuie sur retour");
 	}	
 	if (e.getSource()==Calcul1){
 		int an=Integer.parseInt(annee.getText());

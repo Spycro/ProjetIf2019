@@ -92,7 +92,6 @@ public class Planete extends Astre {
 			info4="Oulalallala tu as trop mange aujourd'hui, Je sais personne n'aime le dire mais assume toi. Renseigne ce qu'indique ta balance"
 					+ " dans la zone et clic sur le bouton\n ";
 		}
-		info4=info4+"\n Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info4;	
 	}
 	
