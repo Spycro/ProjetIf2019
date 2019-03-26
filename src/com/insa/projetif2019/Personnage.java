@@ -225,7 +225,7 @@ public class Personnage {
 						break;
 						
 					}
-					else if (solCourant.getType()=='9') {
+					else if (blocRencontre.getType()=='9') {
 						ct.switchPause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
@@ -233,14 +233,14 @@ public class Personnage {
 					
 						
 					}
-					else if (solCourant.getType()=='A') {
+					else if (blocRencontre.getType()=='A') {
 						ct.switchPause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
-					else if (solCourant.getType()=='B') {
+					else if (blocRencontre.getType()=='B') {
 						ct.switchPause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
 						parent.miseAJourGrille(i, j);
