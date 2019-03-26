@@ -34,7 +34,7 @@ public class PanneauRules extends JPanel{
 		Font police1=new Font("Bookman Old Style",Font.BOLD,20);
 		text1.setFont(police1);
 		text1.setText("Pour devenir un astronaute confirme, lis attentivement les regles du jeu!\n"
-				+ "Tu vas pouvoir te balader de planete en planete muni de ton equipement d'astronaute!\n"
+				+ "Tu vas pouvoir te balader d'astre en astre muni de ton equipement d'astronaute!\n"
 				+ "C'est tres simple :");
 		text1.setEditable(false);
 		text1.setOpaque(false);
@@ -73,8 +73,7 @@ public class PanneauRules extends JPanel{
 		text5.setBounds(5,330,960,200);
 		text5.setForeground(Color.white);
 		text5.setFont(police1);
-		text5.setText("A chaque rencontre de planete, tu pourras partir l'explorer avec passion...\n"
-				+ "Tu pars en exploration avec 3 vies, mais quel chanceux!\n"
+		text5.setText("Tu pars en exploration avec 3 vies, mais quel chanceux!\n"
 				+ "Chaque rencontre avec un coeur te procure une vie (et peut etre un coup de foudre!),\n"
 				+ "mais prends garde a ceux qui te veulent du mal, ils n'hesiteront pas a te les reprendre!\n"
 				+ "Enfin tu pourras apprendre des choses...(ou pas). Magnifique non?\n"
