@@ -218,12 +218,37 @@ public class Personnage {
 					}
 					else  if (blocRencontre.getType()=='8') {
 						ct.switchPause();
-						FenetreInfo fenetre = new FenetreInfo(parent.getAstre(),1);
+						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
+						parent.miseAJourGrille(i, j);
+						speedX = 0;
+						speedY = 0;
+						break;
+						
+					}
+					else if (solCourant.getType()=='9') {
+						ct.switchPause();
+						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
 						break;
 					
 						
 					}
+					else if (solCourant.getType()=='A') {
+						ct.switchPause();
+						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
+						parent.miseAJourGrille(i, j);
+						break;
+						
+					}
+					else if (solCourant.getType()=='B') {
+						ct.switchPause();
+						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
+						parent.miseAJourGrille(i, j);
+						break;
+						
+					}
+					
+					
 					return true;
 				}
 			}
