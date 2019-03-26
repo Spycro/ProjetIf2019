@@ -29,8 +29,11 @@ import javax.swing.JPanel;
  * 5 - bloc int�rieur
  * 6 - bloc cot� droit
  * 7: bloc coeur
- * 8:bloc info
- * 9: bloc fin
+ * 8:bloc info 1
+ * 9:bloc info 2
+ * A:bloc info 3
+ * B: bloc info 4
+ * C: bloc fin
  * 0: vide
  */
 public class Bloc  {
@@ -59,6 +62,9 @@ public class Bloc  {
 	}
 	public int getY() {
 		return coordY;
+	}
+	public void setType (char c) {
+		typeBloc=c;
 	}
 	public static int getCote() {
 		return COTES;
@@ -134,7 +140,31 @@ public class Bloc  {
 					e.printStackTrace();
 				}
 			break;
-			case '9': // image a changer +nom
+			case '9': 
+				try {
+					sprite = ImageIO.read(new File("bin/infobox.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;
+			case 'A': 
+				try {
+					sprite = ImageIO.read(new File("bin/infobox.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;
+			case 'B': 
+				try {
+					sprite = ImageIO.read(new File("bin/infobox.png"));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;
+			case 'C': // image a changer +nom
 				try {
 					sprite = ImageIO.read(new File("bin/heart.png"));
 				} catch (IOException e) {

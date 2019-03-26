@@ -2,16 +2,15 @@ package com.insa.projetif2019;
 import java.util.Scanner;
 
 
-public class Comete  {
+public class Comete extends Astre  {
 	private int anneeAp;
 	private int moisAp;
 	private int jourAp;
-	private double periode;
 	//private int[][] grilleDeNiveau;
-	private String nom;
 
 	private String decouvreur;
 	public Comete (String n, int a, int m, int j, double p, String d){
+		genre="Comete";
 		anneeAp=a;
 		nom=n;
 		decouvreur=d;
@@ -49,10 +48,7 @@ public class Comete  {
 		return info4;
 	}
 	
-	public String getNom() {
-		String n=nom;
-		return n;
-	}
+
 	
 	public String calculProchaineAp (int date, int age) {
 		String appa;

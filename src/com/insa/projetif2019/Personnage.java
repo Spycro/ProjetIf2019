@@ -33,7 +33,7 @@ public class Personnage {
 
 	private double gravity;
 	private final double FRICTION = 0.92;
-
+	private PanneauDeJeu parent; 
 	private boolean onGround;
 	private int[] posMonde;
 
@@ -63,10 +63,12 @@ public class Personnage {
 		speedY = 0;
 		gravity = 5.0;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
+		parent= null;
 	}
 
-	public Personnage(int pX, int pY, Bloc[][] pMonde) {
+	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa) {
 		// creation du personnage
+		parent=papa;
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 			coeur = ImageIO.read(new File("bin/heart.png"));
@@ -140,8 +142,8 @@ public class Personnage {
 		///////////////////////////////////////////////////////
 		
 		if(solCourant != null) {
-			g.setColor(Color.white);
-			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getCote(), Bloc.getCote());
+			/*g.setColor(Color.white);
+			g.fillRect(solCourant.getX(), solCourant.getY(), Bloc.getCote(), Bloc.getCote());*/
 		}
 		if(posX > 350)
 			g.translate(posX-350, 0);
@@ -194,14 +196,21 @@ public class Personnage {
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					solCourant = monde[i][j];
-					if ( monde[i][j].getType()==7) {
+					if ( solCourant.getType()=='7') {
 						pointVie(1);
+						parent.miseAJourGrille(i, j);
+						
 					}
-					if ( monde[i][j].getType()==8) {
+					if ( solCourant.getType()=='8') {
 						pointVie(-1);
+						System.out.println("ok");
+						parent.miseAJourGrille(i, j);
+					}
+					if (solCourant.getType()=='9') {
+						FenetreInfo fenetre = new FenetreInfo(parent.getAstre(),1);
+						
 					}
 					return true;
 				}
@@ -219,13 +228,13 @@ public class Personnage {
 
 	public void deplacementDroite() {
 		if (speedX < speedMax) {
-			acceleration(1, 0);
+			acceleration(3, 0);
 		}
 	}
 
 	public void deplacementGauche() {
 		if (speedX > -speedMax) {
-			acceleration(-1, 0);
+			acceleration(-3, 0);
 		}
 	}
 
@@ -324,15 +333,14 @@ public class Personnage {
 	}
 	
 	public void pointVie(int a) {
-		while (enVie=true) {
+		
 			if ((a==1) && (pointDeVie<3)){
 				pointDeVie=pointDeVie+1;
 			}
-			if (a==-1) {
+			if ((a==-1) && (pointDeVie>1)) {
 				pointDeVie=pointDeVie-1;
 			}
-			enVie ();
-		}
+		
 	}
 	
 	

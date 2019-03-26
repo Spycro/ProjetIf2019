@@ -37,8 +37,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	 
 	
 	
-	public FenetrePrincipale(String niveau){
-		super("SusperStar");
+	public FenetrePrincipale(Astre niveau){
+		super("SuperStar");
 		setSize(LARGEUR,HAUTEUR);
 		setLocationRelativeTo(null);
 		setResizable(false);

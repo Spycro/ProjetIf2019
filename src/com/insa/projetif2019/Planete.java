@@ -1,10 +1,8 @@
 package com.insa.projetif2019;
 
-public class Planete {
-	private String nom;
+public class Planete extends Astre {
 	private double rayon;
 	private double pesanteur;
-	private double periodeRevolution;
 	private double temperatureMin;
 	private double temperatureMax;
 	double masse;
@@ -12,8 +10,9 @@ public class Planete {
 	//private Bloc[][] grilleDeNiveau;
 
 	public Planete (double r, double p, double tm, double tmx,double m, String n, String ty) {
+		genre="Planete";
 		rayon =r;
-		periodeRevolution=p;
+		periode=p;
 		temperatureMin=tm;
 		temperatureMax=tmx;
 		masse=m;
@@ -27,10 +26,7 @@ public class Planete {
 		return grille;
 	}*/
 		
-	public String getNom() {
-		String n=nom;
-		return n;
-	}
+
 	public double calculpesanteur(){
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
@@ -84,7 +80,7 @@ public class Planete {
 	
 	public String info4() {
 		String info4;
-		info4="je fais un tour autour du soleil en "+periodeRevolution+" jours .Tu penses pouvoir me battre.\n ";
+		info4="je fais un tour autour du soleil en "+periode+" jours .Tu penses pouvoir me battre.\n ";
 		if (pesanteur<10){
 			info4="Youpi!!! Tu es tout leger chez moi. Je sais personne n'aime le dire mais assume toi. Renseigne ce qu'indique ta balance "
 					+ " dans la zone et clic sur le bouton\n ";

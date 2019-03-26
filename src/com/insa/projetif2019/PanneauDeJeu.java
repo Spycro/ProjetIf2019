@@ -36,15 +36,15 @@ public class PanneauDeJeu extends JPanel{
 	private Personnage joueur;
 	private File map;
 	private JPanel pCarte;
-	private String niveau;
+	protected Astre niveau;
 	
 	
 	
-	public PanneauDeJeu(String nomNiveau) {
+	public PanneauDeJeu(Astre nomNiveau) {
 
 		grille = new Bloc[10][90];
 		niveau = nomNiveau;
-		map = new File("bin/"+niveau+".txt");
+		map = new File("bin/"+niveau.getNom()+".txt");
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
 		pCarte.setOpaque(false); // Fond transparent
@@ -53,7 +53,7 @@ public class PanneauDeJeu extends JPanel{
 		this.genererCarte();
 		this.add(pCarte);
 		
-		joueur = new Personnage(50, 250, grille);
+		joueur = new Personnage(50, 250, grille, this);
 	}
 	
 	public void genererCarte() {
@@ -88,7 +88,7 @@ public class PanneauDeJeu extends JPanel{
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), niveau);
+	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), niveau.getNom());
 	    		k++;
 	    	}
 	    	k=0;
@@ -139,11 +139,18 @@ public class PanneauDeJeu extends JPanel{
 	public Bloc[][] getGrille() {
 		return grille;
 	}
+	public Astre getAstre() {
+		return niveau;
+	}
 	
 	private void currentOffset(Graphics g) {
 		if(joueur.getX() > 350) {
 			g.translate(-(joueur.getX() - 350), 0);
 		}
+	}
+	public void miseAJourGrille (int i, int j) {
+		grille[i][j].setType('0');
+		repaint();
 	}
 
 }

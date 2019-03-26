@@ -25,7 +25,8 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 
 	private JButton Calcul1;
 	
-	public FenetreInfo(Planete p,int numero) {
+	public FenetreInfo(Astre p,int numero) {}
+	public void GenererPlaneteInfo() {
 		// paramétrage de la fenetre
 		this.setTitle("A la decouverte de "+p.getNom());
 		this.setLayout(null);

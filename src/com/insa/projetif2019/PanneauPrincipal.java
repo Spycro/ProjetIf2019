@@ -39,7 +39,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int HAUTEUR;
 	private Set<Integer> toucheEnfonce; //gerer touche multiple
 	
-	private String niveau;
+	protected Astre niveau;
 	
 	Timer tempsDeJeu;
 	Timer enMvt;
@@ -49,7 +49,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public PanneauPrincipal(int largeur, int hauteur, String niveauACharger) {
+	public PanneauPrincipal(int largeur, int hauteur, Astre niveauACharger) {
 		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
 		this.HAUTEUR=hauteur;
@@ -163,6 +163,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    
 	    if(e.getSource() == enMvt) {
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce);
+	    	
 	    }
 	    if(e.getSource() == tempsDeJeu) {
 	    	panneauZoneJeu.getJoueur().maj();
