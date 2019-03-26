@@ -45,6 +45,8 @@ public class Personnage {
 	
 	boolean enVie = true;
 	public int pointDeVie;
+	
+	private PanneauPrincipal ct;
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	/// METHODES
@@ -64,11 +66,13 @@ public class Personnage {
 		gravity = 5.0;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
 		parent= null;
+		ct=null;
 	}
 
-	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa) {
+	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa, PanneauPrincipal c) {
 		// creation du personnage
 		parent=papa;
+		ct=c;
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 			coeur = ImageIO.read(new File("bin/heart.png"));
@@ -201,15 +205,18 @@ public class Personnage {
 					if ( solCourant.getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
-						
+						break;
 					}
-					if ( solCourant.getType()=='8') {
+					else if ( solCourant.getType()=='D') {
 						pointVie(-1);
-						System.out.println("ok");
-						parent.miseAJourGrille(i, j);
+						//parent.miseAJourGrille(i, j);
+						break;
 					}
-					if (solCourant.getType()=='9') {
+					else if (solCourant.getType()=='8') {
+						ct.switchPause();
 						FenetreInfo fenetre = new FenetreInfo(parent.getAstre(),1);
+						parent.miseAJourGrille(i, j);
+						break;
 						
 					}
 					return true;

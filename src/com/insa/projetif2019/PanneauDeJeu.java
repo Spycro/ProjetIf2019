@@ -37,11 +37,11 @@ public class PanneauDeJeu extends JPanel{
 	private File map;
 	private JPanel pCarte;
 	protected Astre niveau;
+	protected PanneauPrincipal paternel;
 	
 	
-	
-	public PanneauDeJeu(Astre nomNiveau) {
-
+	public PanneauDeJeu(Astre nomNiveau,PanneauPrincipal p) {
+		paternel=p;
 		grille = new Bloc[10][90];
 		niveau = nomNiveau;
 		map = new File("bin/"+niveau.getNom()+".txt");
@@ -53,7 +53,7 @@ public class PanneauDeJeu extends JPanel{
 		this.genererCarte();
 		this.add(pCarte);
 		
-		joueur = new Personnage(50, 250, grille, this);
+		joueur = new Personnage(50, 250, grille, this, paternel);
 	}
 	
 	public void genererCarte() {
