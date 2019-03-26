@@ -1,5 +1,6 @@
 package com.insa.projetif2019;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -182,7 +183,17 @@ public class Bloc  {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			break;
+			
+			case 'E': // image a changer (en cours)
+				try {
+					sprite = ImageIO.read(new File("bin/heart.png"));
+					coordY-=1;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			break;	
+			
 		default:
 			String err = "Erreur lors du chargement du bloc. Le type : " + this.typeBloc + " n'existe pas !";
 			JOptionPane.showMessageDialog(parent, err);
@@ -193,6 +204,17 @@ public class Bloc  {
 	public void setCoord(int x, int y){
 		coordX = x;
 		coordY = y;
+	}
+	
+	public void dessineBloc(Graphics g, ImageObserver obs) {
+		if(typeBloc == 'E'){
+			setCoord(-10, 0);
+		}
+		g.drawImage(sprite, coordX, coordY, COTES, COTES, obs);
+	}
+	
+	public void majPos(Graphics g){
+		g.translate(-10, 0);
 	}
 	
 }
