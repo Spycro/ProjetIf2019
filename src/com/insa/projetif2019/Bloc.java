@@ -170,7 +170,7 @@ public class Bloc  {
 			break;
 			case 'C': // image a changer +nom
 				try {
-					sprite = ImageIO.read(new File("bin/heart.png"));
+					sprite = ImageIO.read(new File("bin/drapeau.png"));
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
 					e.printStackTrace();
