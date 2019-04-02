@@ -214,7 +214,7 @@ public class Personnage {
 					
 					else if ( monde[i][j].getType()=='D') {
 						pointVie(-1);
-						//parent.miseAJourGrille(i, j);
+						parent.miseAJourGrille(i, j);
 						break;
 					}
 					else  if (monde[i][j].getType()=='8') {
