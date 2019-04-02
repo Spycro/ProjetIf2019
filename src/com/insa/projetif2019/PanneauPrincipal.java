@@ -186,11 +186,11 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 		}
 
-		String niveauActuel = "";
+		String ligne = "";
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
-			niveauActuel = br.readLine();
+			ligne = br.readLine();
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
@@ -205,7 +205,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		}
 		
 		for (int i=0; i<listeAstre.size(); i++) {
-	    	if (listeAstre.get(i).getNom().contains(niveauActuel)) {
+	    	if (listeAstre.get(i).getNom().contains(ligne)) {
 	    		return listeAstre.get(i);
 	    	}		
 	    }
@@ -215,6 +215,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	// Methode de mise a jour du fichier de sauvegarde
 	public void majSave() {
+		
 		File savefile;
 		savefile = new File("file0.sav");
 		
@@ -226,7 +227,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			pw = new PrintWriter(savefile);
 			pw.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -240,7 +240,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 				bw = new BufferedWriter(new FileWriter(savefile));
 				bw.write(temp.getNom());
 				bw.close();
-				savefile = new File("file0.sav");
 			} catch (IOException e) {
 				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
 				e.printStackTrace();
@@ -250,9 +249,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			BufferedWriter bw;
 			try {
 				bw = new BufferedWriter(new FileWriter(savefile));
-				bw.write(temp.getNom());
+				bw.write("Game Over !!!");
 				bw.close();
-				savefile = new File("Game Over !!!");
 			} catch (IOException e) {
 				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
 				e.printStackTrace();

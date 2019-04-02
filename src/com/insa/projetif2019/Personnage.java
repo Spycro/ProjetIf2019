@@ -298,9 +298,7 @@ public class Personnage {
 		enVie();
 		onGround = checkGround();
 		
-			if (collision()) {
-			move(-speedX,0);
-			
+		if (collision()) {
 			
 			if(speedX < 0) {
 				speedX = 0;
@@ -313,13 +311,15 @@ public class Personnage {
 			if(speedY>0) {
 				
 				setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
-				System.out.println("vitesse y = 0");
+				//System.out.println("vitesse y = 0");
 				speedY = 0;
 				
 			}	
 			if(speedY<0) {
 				speedY = 0;
 			}
+			
+			move(-speedX,0);
 		}
 		
 		
@@ -327,7 +327,6 @@ public class Personnage {
 		move(speedX, speedY);
 		speedX *= FRICTION;
 		speedY *= FRICTION;
-		
 		
 		refreshHB();
 		posMonde = positionCourante();
@@ -357,7 +356,7 @@ public class Personnage {
 		//calcul x
 		int x = posX / 64;
 		//calcul y
-		int y = posY/64 + 1;
+		int y = posY/64+1;
 		int[] a = {x,y};
 		return a;
 		

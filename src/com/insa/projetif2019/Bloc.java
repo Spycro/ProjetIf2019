@@ -29,15 +29,15 @@ import javax.swing.JPanel;
  * 4 - bloc cot� gauche
  * 5 - bloc int�rieur
  * 6 - bloc cot� droit
- * 7: bloc coeur
- * 8:bloc info 1
- * 9:bloc info 2
- * A:bloc info 3
- * B: bloc info 4
- * C: bloc fin
- * D : ennemi
- * E : Pics
- * 0 : vide
+ * 7 - bloc coeur
+ * 8 - bloc info 1
+ * 9 - bloc info 2
+ * A - bloc info 3
+ * B - bloc info 4
+ * C - bloc fin
+ * D - ennemi
+ * E - Pics
+ * 0 - vide
  */
 public class Bloc  {
 	
@@ -84,7 +84,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"SupG.png"));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break; 
@@ -92,7 +91,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"Sup.png"));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;	
@@ -100,7 +98,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"SupD.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
@@ -108,7 +105,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"CoteG.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
@@ -116,7 +112,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"Int.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
@@ -124,7 +119,6 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/Bloc"+nom+"CoteD.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
@@ -132,54 +126,48 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/heart.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
 			case '8': 
 				try {
-					sprite = ImageIO.read(new File("bin/infobox.png"));
+					sprite = ImageIO.read(new File("bin/infobox1.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
 			case '9': 
 				try {
-					sprite = ImageIO.read(new File("bin/infobox.png"));
+					sprite = ImageIO.read(new File("bin/infobox2.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
 			case 'A': 
 				try {
-					sprite = ImageIO.read(new File("bin/infobox.png"));
+					sprite = ImageIO.read(new File("bin/infobox3.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
 			case 'B': 
 				try {
-					sprite = ImageIO.read(new File("bin/infobox.png"));
+					sprite = ImageIO.read(new File("bin/infobox4.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
-			case 'C': // image a changer +nom
+			case 'C':
 				try {
-					sprite = ImageIO.read(new File("bin/heart.png"));
+					sprite = ImageIO.read(new File("bin/rocket.png"));
 				} catch (IOException e) {
-						// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			break;
 			
 			case 'D': // image a changer (en cours)
 				try {
-					sprite = ImageIO.read(new File("bin/heart.png"));
+					sprite = ImageIO.read(new File("bin/ennemi.png"));
 					coordY-=1;
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -188,7 +176,7 @@ public class Bloc  {
 			
 			case 'E': // image a changer (en cours)
 				try {
-					sprite = ImageIO.read(new File("bin/heart.png"));
+					sprite = ImageIO.read(new File("bin/pics.png"));
 					coordY-=1;
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -208,14 +196,7 @@ public class Bloc  {
 	}
 	
 	public void dessineBloc(Graphics g, ImageObserver obs) {
-		if(typeBloc == 'E'){
-			setCoord(-10, 0);
-		}
 		g.drawImage(sprite, coordX, coordY, COTES, COTES, obs);
-	}
-	
-	public void majPos(Graphics g){
-		g.translate(-10, 0);
 	}
 	
 }
