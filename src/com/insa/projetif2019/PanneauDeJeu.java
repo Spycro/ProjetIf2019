@@ -88,7 +88,7 @@ public class PanneauDeJeu extends JPanel{
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc(pCarte, j*64,i*64, strStore[i].charAt(k), niveau.getNom());
+	    		grille[i][j] = new Bloc( pCarte, j*64,i*64, strStore[i].charAt(k), niveau.getNom());
 	    		k++;
 	    	}
 	    	k=0;

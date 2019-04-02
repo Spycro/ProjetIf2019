@@ -47,9 +47,10 @@ public class Bloc  {
 	private char typeBloc; 
 	Image sprite;
 	Rectangle hitBox;
-	
-	public Bloc(JPanel parent, int x, int y, char type, String astre) {
 
+	
+	public Bloc( JPanel parent, int x, int y, char type, String astre) {
+	
 		coordY = y;
 		coordX = x;
 		hitBox = new Rectangle(x,y,COTES, COTES);
@@ -182,7 +183,7 @@ public class Bloc  {
 					coordY-=1;
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}	
 			break;
 			
 			case 'E': // image a changer (en cours)
