@@ -248,6 +248,14 @@ public class Personnage {
 						break;
 						
 					}
+					
+					else if (monde[i][j].getType()=='C') {
+						ct.switchPause();
+						parent.miseAJourGrille(i, j);
+						break;
+						
+					}
+					
 					blocRencontre = monde[i][j];
 					
 					return true;
