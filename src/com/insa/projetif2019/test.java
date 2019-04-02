@@ -25,61 +25,22 @@ public class test {
 				Comete Halley=new Comete("Halley",1994,2,16,76.09,"Edmond Halley");
 				Comete Tempel=new Comete ("Tempel",1867,4,3,5.56, "Ernst Wilhelm Tempel");
 				Comete Tuttle= new Comete (" M�chain-Tuttle",1790,1,9,13.58 ,"Pierre M�chain");
-				ArrayList<Astre> ListeAstre = new ArrayList <Astre> ();
-				ListeAstre.add(Terre);
-				ListeAstre.add(Mercure);
-				ListeAstre.add(Venus);
-				ListeAstre.add(Mars);
-				ListeAstre.add(Jupiter);
-				ListeAstre.add(Saturne);
-				ListeAstre.add(Uranus);
-				ListeAstre.add(Neptune);
-				ListeAstre.add(Halley);
-				ListeAstre.add(Tempel);
-				ListeAstre.add(Tuttle);
+				ArrayList<Astre> listeAstre = new ArrayList <Astre> ();
+				listeAstre.add(Terre);
+				listeAstre.add(Mercure);
+				listeAstre.add(Venus);
+				listeAstre.add(Mars);
+				listeAstre.add(Jupiter);
+				listeAstre.add(Saturne);
+				listeAstre.add(Uranus);
+				listeAstre.add(Neptune);
+				/*listeAstre.add(Halley);
+				listeAstre.add(Tempel);
+				listeAstre.add(Tuttle);*/
 		//Fichier de sauvegarde
 		
-		File savefile;
-		
-		savefile = new File("file0.sav");
-		
-		if(!savefile.isFile()) { 
-			BufferedWriter bw;
-			try {
-				bw = new BufferedWriter(new FileWriter("file0.sav"));
-				bw.write("Terre");
-	        	bw.close();
-	        	savefile = new File("file0.sav");
-			} catch (IOException e) {
-				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
-				e.printStackTrace();
-			}
-        	
-		}
-		
-		String niveauActuel = "";
-		BufferedReader br = null;
-	    try {
-	        br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
-	        niveauActuel = br.readLine();
-	    } 
-	    catch (IOException e) {
-	            e.printStackTrace();
-	            System.out.println("Erreur lors du chargement du fichier de sauvegarde !");
-	        } 
-	    finally {
-	            try {
-	                if (br != null)br.close();
-	            } catch (IOException ex) {
-	                ex.printStackTrace();
-	            }
-	        }
-	    System.out.println(niveauActuel);	
-	   for (int i=0; i<ListeAstre.size(); i++) {
-	    	if (ListeAstre.get(i).getNom().contains(niveauActuel)) {
-	    		fen = new FenetrePrincipale(ListeAstre.get(i));		
-	    	}		
-	    }
+		fen = new FenetrePrincipale(listeAstre);
+	   
 
 	}
 

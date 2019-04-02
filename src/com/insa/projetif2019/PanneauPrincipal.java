@@ -1,6 +1,6 @@
 package com.insa.projetif2019;
 /**
- * Panneau du projet où tout se passe
+ * Panneau du projet ou tout se passe
 */
 
 
@@ -9,8 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +46,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int HAUTEUR;
 	private HashSet<Integer> toucheEnfonce; //gerer touche multiple
 	
-	protected Astre niveau;
+	//protected Astre niveau;
+	
+	private ArrayList<Astre> listeAstre;
 	
 	Timer tempsDeJeu;
 	Timer enMvt;
@@ -49,7 +58,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public PanneauPrincipal(int largeur, int hauteur, Astre niveauACharger) {
+	public PanneauPrincipal(int largeur, int hauteur, ArrayList<Astre> listeA) {
 		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
 		this.HAUTEUR=hauteur;
@@ -85,11 +94,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		bComtJouer.addActionListener(this);
 		this.add(bComtJouer);
 		
-		niveau = niveauACharger;
+		listeAstre = listeA;
 		
-		panneauZoneJeu = new PanneauDeJeu(niveau,this);
-		panneauZoneJeu.addKeyListener(this);
-		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
+		panneauZoneJeu = null;
 		
 		panneauRules = new PanneauRules();
 		panneauRules.setBounds(0, 0, LARGEUR, HAUTEUR);
@@ -127,6 +134,133 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 	}
 	
+	// Methode gerant le lancement d'un niveau
+	public void startGame() {
+		// Lecture du fichier de sauvegarde
+		Astre niveau = getLevel();
+		
+		// Cas ou l'astre existe
+		if(niveau != null) {
+			panneauZoneJeu = new PanneauDeJeu(niveau,this);
+			panneauZoneJeu.addKeyListener(this);
+			panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
+			this.add(panneauZoneJeu);
+			panneauZoneJeu.requestFocusInWindow();
+
+			this.remove(bStart);
+			this.remove(bQuit);
+			this.remove(bComtJouer);
+			remove(text);
+
+			tempsDeJeu.start();
+			
+			System.out.println(niveau.getNom()); //TODO A virer, c'est juste pour tester le bon enchainement des niveaux
+		}
+		
+		// Cas ou l'astre n'existe pas, cad que le jeu est termine
+		else {
+			System.out.println("Game Over !"); 
+			//TODO creer une methode fin de jeu qui affiche un JPanel qui felicite le joueur d'etre arriver au bout.
+		}
+	}
+	
+	// Methode de lecture du fichier de sauvegarde
+	public Astre getLevel() {
+		// Fichier de sauvegarde
+		
+		File savefile;
+
+		savefile = new File("file0.sav");
+
+		if(!savefile.isFile()) { 
+			BufferedWriter bw;
+			try {
+				bw = new BufferedWriter(new FileWriter("file0.sav"));
+				bw.write("Terre");
+				bw.close();
+				savefile = new File("file0.sav");
+			} catch (IOException e) {
+				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+				e.printStackTrace();
+			}
+
+		}
+
+		String niveauActuel = "";
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
+			niveauActuel = br.readLine();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Erreur lors du chargement du fichier de sauvegarde !");
+		} 
+		finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		
+		for (int i=0; i<listeAstre.size(); i++) {
+	    	if (listeAstre.get(i).getNom().contains(niveauActuel)) {
+	    		return listeAstre.get(i);
+	    	}		
+	    }
+		
+		return null;
+	}
+	
+	// Methode de mise a jour du fichier de sauvegarde
+	public void majSave() {
+		File savefile;
+		savefile = new File("file0.sav");
+		
+		Astre temp = getLevel();
+		
+		// On vide le fichier de sauvegarde
+		PrintWriter pw;
+		try {
+			pw = new PrintWriter(savefile);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// On va chercher l'astre suivant a charger
+		int ind = listeAstre.indexOf(temp);
+		
+		if (ind < (listeAstre.size()-1)) {
+			temp = listeAstre.get(ind+1);
+			BufferedWriter bw;
+			try {
+				bw = new BufferedWriter(new FileWriter(savefile));
+				bw.write(temp.getNom());
+				bw.close();
+				savefile = new File("file0.sav");
+			} catch (IOException e) {
+				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+				e.printStackTrace();
+			}
+		}
+		else {
+			BufferedWriter bw;
+			try {
+				bw = new BufferedWriter(new FileWriter(savefile));
+				bw.write(temp.getNom());
+				bw.close();
+				savefile = new File("Game Over !!!");
+			} catch (IOException e) {
+				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public void setFenMere(JFrame mere) {
 		fenMere = mere;
 	}
@@ -144,15 +278,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(e.getSource() == bStart){
 			
 			System.out.println("Button Pressed");
-			this.add(panneauZoneJeu);
-			panneauZoneJeu.requestFocusInWindow();
-			
-			this.remove(bStart);
-			this.remove(bQuit);;
-			this.remove(bComtJouer);
-			remove(text);
-			
-			tempsDeJeu.start();
+			startGame();
 		
 		}
 			
@@ -273,8 +399,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		}
 	}
 	
-	private void stopGame() {
-		
+	public void stopGame() {
+		tempsDeJeu.stop();
+		enMvt.stop();
+		remove(panneauZoneJeu);
 	}
 
 

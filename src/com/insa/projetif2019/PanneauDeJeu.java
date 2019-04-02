@@ -153,5 +153,11 @@ public class PanneauDeJeu extends JPanel{
 		grille[i][j].setType('0');
 		repaint();
 	}
+	
+	public void endLevel() {
+		paternel.stopGame();
+		paternel.majSave();
+		paternel.startGame();
+	}
 
 }

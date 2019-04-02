@@ -23,35 +23,29 @@ public class FenetrePrincipale extends JFrame implements ActionListener, KeyList
 	private PanneauPrincipal panneauMenuPrincipal;
 	
 	
-	private JButton bStart;
-	private JButton bQuit;
+	/*private JButton bStart;
+	private JButton bQuit;*/ //TODO A virer je crois ?
 	
 	private final int LARGEUR = 960; //15 blocs de 64 pixels de large
 	private final int HAUTEUR = 640; //10 blocs de 64 pixels de large
 	//TOTAL : 15 * 10 = 150 blocs pour la grille 
 	
-	private int niveauActuel;
 	private final int NBNIVEAUX = 5;
 	private final int FRAMERATE = 30;
-
-	 
 	
-	
-	public FenetrePrincipale(Astre niveau){
+	public FenetrePrincipale(ArrayList<Astre> listeAstre){
 		super("SuperStar");
 		setSize(LARGEUR,HAUTEUR);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	
 		
-		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR, niveau);
+		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR, listeAstre);
 		panneauMenuPrincipal.setFenMere(this);
 		//panneauMenuPrincipal.afficherNiveau();
 		
 		
 		setContentPane(panneauMenuPrincipal);
-		
-		niveauActuel =1; 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
