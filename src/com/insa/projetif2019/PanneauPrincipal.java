@@ -395,6 +395,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			repaint();
 			
 		}
+		
+		toucheEnfonce.clear();
 	}
 	
 	public void stopGame() {
