@@ -102,14 +102,14 @@ public class PanneauDeJeu extends JPanel{
 	
 		// Dessin du background (ca marche !!!)
 		// Dessine avec l'image "earthBG"
-		try {
+		/*try {
 
 			Image bg = ImageIO.read(new File("bin/earthBG.jpg"));
 			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		currentOffset(g);
 		
