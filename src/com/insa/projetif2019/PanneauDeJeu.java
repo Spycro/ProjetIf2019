@@ -145,8 +145,11 @@ public class PanneauDeJeu extends JPanel{
 	}
 	
 	private void currentOffset(Graphics g) {
-		if(joueur.getX() > 350) {
+		if(joueur.getX() > 350 && joueur.getX() < 5150) {
 			g.translate(-(joueur.getX() - 350), 0);
+		}
+		else if(joueur.getX() >= 5150) {
+			g.translate(-(5150 - 350), 0);
 		}
 	}
 	public void miseAJourGrille (int i, int j) {

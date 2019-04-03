@@ -292,8 +292,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    }
 	    if(e.getSource() == tempsDeJeu) {
 	    	panneauZoneJeu.getJoueur().maj();
-	    	if(!panneauZoneJeu.getJoueur().getEnVie())
+	    	if(!panneauZoneJeu.getJoueur().getEnVie()) { //Mort du joueur
 	    		stopGame();
+	    		startGame();
+	    	}
 	    }
 	    
         if(e.getSource() == bComtJouer){

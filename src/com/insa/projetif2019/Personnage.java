@@ -385,11 +385,11 @@ public class Personnage {
 	
 	public void pointVie(int a) {
 		
-			if ((a==1) && (pointDeVie<3)){
-				pointDeVie=pointDeVie+1;
+			if ((a>0) && (pointDeVie<3)){
+				pointDeVie=pointDeVie+a;
 			}
-			if ((a==-1) && (pointDeVie>1)) {
-				pointDeVie=pointDeVie-1;
+			if ((a<=0)) {
+				pointDeVie=pointDeVie+a;
 			}
 		
 	}
