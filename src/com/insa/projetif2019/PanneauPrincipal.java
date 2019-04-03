@@ -50,8 +50,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	private ArrayList<Astre> listeAstre;
 	
-	Timer tempsDeJeu;
-	Timer enMvt;
+	private Timer tempsDeJeu;
+	private Timer enMvt;
 	
 	boolean enPause = false;
 	PanneauPause panneauPause;
@@ -109,7 +109,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		try {
 			imgf = ImageIO.read(new File("bin/Galaxie.jpg"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
@@ -145,7 +144,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			try {
 				imgf = ImageIO.read(new File("bin/earthBG.jpg"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -391,7 +389,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}	
 	
