@@ -203,9 +203,10 @@ public class Personnage {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
 					
-					
-					
-					if ( monde[i][j].getType()=='7') {
+					if(monde[i][j].getType()=='0' && i == monde.length-1 ) {
+						parent.endLevel(false);
+					}
+					else if ( monde[i][j].getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
 						break;
@@ -250,7 +251,7 @@ public class Personnage {
 					}
 					
 					else if (monde[i][j].getType()=='C') {
-						parent.endLevel();
+						parent.endLevel(true);
 						break;
 					}
 					
@@ -298,12 +299,16 @@ public class Personnage {
 		enVie();
 		onGround = checkGround();
 		
+		if(getY() > parent.getHeight()-HAUTEUR) {
+			pointVie(-pointDeVie);
+		}
+		
 		if (collision()) {
 			
 			if(speedX < 0) {
 				speedX = 0;
 			}
-			if(speedX > 0) {
+			else if(speedX > 0) {
 				speedX = 0;
 			}
 			
@@ -315,7 +320,7 @@ public class Personnage {
 				speedY = 0;
 				
 			}	
-			if(speedY<0) {
+			else if(speedY<0) {
 				speedY = 0;
 			}
 			
@@ -343,13 +348,16 @@ public class Personnage {
 			}
 			else {
 				
-				if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
-					return true;
+				if(posMonde[1]+1 < monde.length && posMonde[0] < monde[0].length) {
+					if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
+						return true;
+					}
 				}
 				
 				
 			}
 		}
+		
 		return false;
 	}
 	

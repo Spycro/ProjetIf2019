@@ -158,10 +158,18 @@ public class PanneauDeJeu extends JPanel{
 		repaint();
 	}
 	
-	public void endLevel() {
-		paternel.stopGame();
-		paternel.majSave();
-		paternel.startGame();
+	public void endLevel(boolean win) {
+		
+		if(win) {
+			paternel.stopGame();
+			paternel.majSave();
+			paternel.startGame();
+		}
+		
+		else {
+			paternel.stopGame();
+			paternel.startGame();
+		}
 	}
 
 }

@@ -190,7 +190,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 				bw.close();
 				savefile = new File("file0.sav");
 			} catch (IOException e) {
-				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+				System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde !");
 				e.printStackTrace();
 			}
 
@@ -201,6 +201,19 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		try {
 			br = new BufferedReader(new FileReader(savefile.getCanonicalPath()));
 			ligne = br.readLine();
+			
+			if(ligne == null || ligne.isEmpty()) {
+				BufferedWriter bw;
+				try {
+					bw = new BufferedWriter(new FileWriter(savefile));
+					bw.write(listeAstre.get(0).getNom());
+					bw.close();
+					ligne = listeAstre.get(0).getNom();
+				} catch (IOException e) {
+					System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde !");
+					e.printStackTrace();
+				}
+			}
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
