@@ -338,7 +338,8 @@ public class Personnage {
 		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(pH.intersection(blocRencontre.hitBox).height >0 && pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).width<64) {
-				return true;
+				if(blocRencontre.getType() == '1' || blocRencontre.getType() == '2' || blocRencontre.getType() == '3' || blocRencontre.getType() == '4' || blocRencontre.getType() == '5' || blocRencontre.getType() == '6')
+					return true;
 			}
 			else {
 				
