@@ -141,6 +141,16 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		// Cas ou l'astre existe
 		if(niveau != null) {
+			
+			try {
+				imgf = ImageIO.read(new File("bin/earthBG.jpg"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			repaint();
+			
 			panneauZoneJeu = new PanneauDeJeu(niveau,this);
 			panneauZoneJeu.addKeyListener(this);
 			panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);

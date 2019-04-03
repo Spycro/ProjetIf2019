@@ -41,6 +41,7 @@ public class PanneauDeJeu extends JPanel{
 	
 	
 	public PanneauDeJeu(Astre nomNiveau,PanneauPrincipal p) {
+		this.setOpaque(false);
 		paternel=p;
 		grille = new Bloc[10][90];
 		niveau = nomNiveau;
