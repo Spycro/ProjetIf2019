@@ -55,7 +55,6 @@ public class Personnage {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -77,7 +76,6 @@ public class Personnage {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 			coeur = ImageIO.read(new File("bin/heart.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		pointDeVie = 3;
@@ -255,6 +253,11 @@ public class Personnage {
 						break;
 					}
 					
+					else if (monde[i][j].getType()=='E') {
+						pointVie(-1);
+						break;
+					}
+					
 					blocRencontre = monde[i][j];
 					
 					return true;
@@ -305,23 +308,36 @@ public class Personnage {
 		
 		if (collision()) {
 			
-			if(speedX < 0) {
+			if(speedX < 0 && checkBack()) {
+				setX(blocRencontre.getX() + Bloc.getCote()); //+ (LARGEUR - Bloc.getCote()));
 				speedX = 0;
 			}
+			
+			else if(speedX > 0 && checkFront()) {
+				setX(blocRencontre.getX() - Bloc.getCote() - (LARGEUR - Bloc.getCote()));
+				speedX = 0;
+			}
+			
 			else if(speedX > 0) {
 				speedX = 0;
 			}
 			
+			else if(speedX < 0) {
+				speedX = 0;
+			}
+			
 			//Si le personnage tombe et traverse la case actuelle
-			if(speedY>0) {
-				
-				setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
-				//System.out.println("vitesse y = 0");
-				speedY = 0;
-				
-			}	
-			else if(speedY<0) {
-				speedY = 0;
+			if(onGround) {
+				if(speedY>0) {
+
+					setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
+					//System.out.println("vitesse y = 0");
+					speedY = 0;
+
+				}	
+				else if(speedY<0) {
+					speedY = 0;
+				}
 			}
 			
 			move(-speedX,0);
@@ -342,14 +358,64 @@ public class Personnage {
 		pH.y += 1;
 		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
-			if(pH.intersection(blocRencontre.hitBox).height >0 && pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).width<64) {
-				if(blocRencontre.getType() == '1' || blocRencontre.getType() == '2' || blocRencontre.getType() == '3' || blocRencontre.getType() == '4' || blocRencontre.getType() == '5' || blocRencontre.getType() == '6')
+			if(blocRencontre.estSol()) {
+				if(pH.intersection(blocRencontre.hitBox).height >0 && pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).width<64) {
+					return true;
+				}
+				else {
+
+					if(posMonde[1]+1 < monde.length && posMonde[0] < monde[0].length && monde[posMonde[1]+1][posMonde[0]].estSol()) {
+						if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean checkFront() {
+		Rectangle pH = new Rectangle(hitBox);
+		pH.x += 1;
+		pH.y -=1;
+		if(blocRencontre != null) {
+			//System.out.println(pH.intersection(solCourant.hitBox));
+			if(pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).height>=pH.intersection(blocRencontre.hitBox).width) {
+				if(blocRencontre.estSol())
 					return true;
 			}
 			else {
 				
-				if(posMonde[1]+1 < monde.length && posMonde[0] < monde[0].length) {
-					if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
+				if(posMonde[1] < monde.length && posMonde[0]+1 < monde[0].length) {
+					if(monde[posMonde[1]][posMonde[0]+1].hitBox.intersects(pH)) {
+						return true;
+					}
+				}
+				
+				
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean checkBack() {
+		Rectangle pH = new Rectangle(hitBox);
+		pH.x -= 1;
+		pH.y -=1;
+		if(blocRencontre != null) {
+			//System.out.println(pH.intersection(solCourant.hitBox));
+			if(pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).height<64 && pH.intersection(blocRencontre.hitBox).height>pH.intersection(blocRencontre.hitBox).width) {
+				if(blocRencontre.estSol())
+					return true;
+			}
+			else {
+				
+				if(posMonde[1] < monde.length && posMonde[0]-1 > 0) {
+					if(monde[posMonde[1]][posMonde[0]-1].hitBox.intersects(pH)) {
 						return true;
 					}
 				}

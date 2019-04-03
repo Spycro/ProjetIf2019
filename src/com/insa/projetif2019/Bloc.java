@@ -73,6 +73,15 @@ public class Bloc  {
 	public static int getCote() {
 		return COTES;
 	}
+	
+	public boolean estSol() {
+		if(getType() == '1' || getType() == '2' || getType() == '3' || getType() == '4' || getType() == '5' || getType() == '6' || getType() == 'E') {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void generationBloc (String nom, JPanel parent) {
 		
 			switch (typeBloc) {
