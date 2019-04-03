@@ -45,8 +45,8 @@ public class Bloc  {
 	private int coordX;
 	private int coordY;
 	private char typeBloc; 
-	Image sprite;
-	Rectangle hitBox;
+	private Image sprite;
+	private Rectangle hitBox;
 
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
@@ -72,6 +72,14 @@ public class Bloc  {
 	}
 	public static int getCote() {
 		return COTES;
+	}
+	
+	public Rectangle getHitBox() {
+		return hitBox;
+	}
+	
+	public Image getSprite() {
+		return sprite;
 	}
 	
 	public boolean estSol() {

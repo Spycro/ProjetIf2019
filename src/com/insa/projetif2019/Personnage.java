@@ -46,7 +46,6 @@ public class Personnage {
 	boolean enVie = true;
 	public int pointDeVie;
 	
-	private PanneauPrincipal ct;
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	/// METHODES
@@ -65,13 +64,11 @@ public class Personnage {
 		gravity = 5.0;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
 		parent= null;
-		ct=null;
 	}
 
-	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa, PanneauPrincipal c) {
+	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa) {
 		// creation du personnage
 		parent=papa;
-		ct=c;
 		try {
 			sprite = ImageIO.read(new File("bin/astronaut.png"));
 			coeur = ImageIO.read(new File("bin/heart.png"));
@@ -199,7 +196,7 @@ public class Personnage {
 	public boolean collision() {
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
-				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].hitBox)) {
+				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].getHitBox())) {
 					
 					if(monde[i][j].getType()=='0' && i == monde.length-1 ) {
 						parent.endLevel(false);
@@ -217,7 +214,7 @@ public class Personnage {
 						break;
 					}
 					else  if (monde[i][j].getType()=='8') {
-						ct.switchPause();
+						parent.pause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
 						parent.miseAJourGrille(i, j);
 						speedX = 0;
@@ -226,7 +223,7 @@ public class Personnage {
 						
 					}
 					else if (monde[i][j].getType()=='9') {
-						ct.switchPause();
+						parent.pause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
 						break;
@@ -234,14 +231,14 @@ public class Personnage {
 						
 					}
 					else if (monde[i][j].getType()=='A') {
-						ct.switchPause();
+						parent.pause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
 					else if (monde[i][j].getType()=='B') {
-						ct.switchPause();
+						parent.pause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
 						parent.miseAJourGrille(i, j);
 						break;
@@ -359,13 +356,13 @@ public class Personnage {
 		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(blocRencontre.estSol()) {
-				if(pH.intersection(blocRencontre.hitBox).height >0 && pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).width<64) {
+				if(pH.intersection(blocRencontre.getHitBox()).height >0 && pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).width<64) {
 					return true;
 				}
 				else {
 
 					if(posMonde[1]+1 < monde.length && posMonde[0] < monde[0].length && monde[posMonde[1]+1][posMonde[0]].estSol()) {
-						if(monde[posMonde[1]+1][posMonde[0]].hitBox.intersects(pH)) {
+						if(monde[posMonde[1]+1][posMonde[0]].getHitBox().intersects(pH)) {
 							return true;
 						}
 					}
@@ -380,17 +377,17 @@ public class Personnage {
 	public boolean checkFront() {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.x += 1;
-		pH.y -=1;
+		pH.y -=10;
 		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
-			if(pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).height>=pH.intersection(blocRencontre.hitBox).width) {
+			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>=pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
 			}
 			else {
 				
-				if(posMonde[1] < monde.length && posMonde[0]+1 < monde[0].length) {
-					if(monde[posMonde[1]][posMonde[0]+1].hitBox.intersects(pH)) {
+				if(posMonde[1] < monde.length && posMonde[0]+1 < monde[0].length && monde[posMonde[1]][posMonde[0]+1].estSol()) {
+					if(monde[posMonde[1]][posMonde[0]+1].getHitBox().intersects(pH)) {
 						return true;
 					}
 				}
@@ -408,14 +405,14 @@ public class Personnage {
 		pH.y -=1;
 		if(blocRencontre != null) {
 			//System.out.println(pH.intersection(solCourant.hitBox));
-			if(pH.intersection(blocRencontre.hitBox).width >0 && pH.intersection(blocRencontre.hitBox).height<64 && pH.intersection(blocRencontre.hitBox).height>pH.intersection(blocRencontre.hitBox).width) {
+			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
 			}
 			else {
 				
-				if(posMonde[1] < monde.length && posMonde[0]-1 > 0) {
-					if(monde[posMonde[1]][posMonde[0]-1].hitBox.intersects(pH)) {
+				if(posMonde[1] < monde.length && posMonde[0]-1 > 0 && monde[posMonde[1]][posMonde[0]-1].estSol()) {
+					if(monde[posMonde[1]][posMonde[0]-1].getHitBox().intersects(pH)) {
 						return true;
 					}
 				}
@@ -427,6 +424,7 @@ public class Personnage {
 		return false;
 	}
 	
+
 	private int[] positionCourante() {
 		//calcul x
 		int x = posX / 64;

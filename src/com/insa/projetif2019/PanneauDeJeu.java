@@ -36,8 +36,8 @@ public class PanneauDeJeu extends JPanel{
 	private Personnage joueur;
 	private File map;
 	private JPanel pCarte;
-	protected Astre niveau;
-	protected PanneauPrincipal paternel;
+	private Astre niveau;
+	private PanneauPrincipal paternel;
 	
 	
 	public PanneauDeJeu(Astre nomNiveau,PanneauPrincipal p) {
@@ -54,7 +54,7 @@ public class PanneauDeJeu extends JPanel{
 		this.genererCarte();
 		this.add(pCarte);
 		
-		joueur = new Personnage(50, 250, grille, this, paternel);
+		joueur = new Personnage(50, 250, grille, this);
 	}
 	
 	public void genererCarte() {
@@ -170,6 +170,10 @@ public class PanneauDeJeu extends JPanel{
 			paternel.stopGame();
 			paternel.startGame();
 		}
+	}
+	
+	public void pause() {
+		paternel.switchPause();
 	}
 
 }
