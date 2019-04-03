@@ -159,11 +159,7 @@ public class Bloc  {
 			break;
 			case 'C':
 				try {
-<<<<<<< HEAD
 					sprite = ImageIO.read(new File("bin/rocket.png"));
-=======
-					sprite = ImageIO.read(new File("bin/drapeau.png"));
->>>>>>> c897097a50019dd41433f167fd08e9ab9988214c
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
