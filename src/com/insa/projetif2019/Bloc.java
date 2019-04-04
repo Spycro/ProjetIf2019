@@ -21,14 +21,14 @@ import javax.swing.JPanel;
  */
 /**
  * astre : Astre pour lequel on demande un bloc
- * type : type de bloc demand�
+ * type : type de bloc demande
  * Description type :
- * 1 - coin sup�rieur gauche
- * 2 - sol sup�rieur plat
- * 3 - coin sup�rieur droit
- * 4 - bloc cot� gauche
- * 5 - bloc int�rieur
- * 6 - bloc cot� droit
+ * 1 - coin superieur gauche
+ * 2 - sol superieur plat
+ * 3 - coin superieur droit
+ * 4 - bloc cote gauche
+ * 5 - bloc interieur
+ * 6 - bloc cote droit
  * 7 - bloc coeur
  * 8 - bloc info 1
  * 9 - bloc info 2
@@ -47,7 +47,7 @@ public class Bloc  {
 	private char typeBloc; 
 	private Image sprite;
 	private Rectangle hitBox;
-
+	private Mechant ennemi;
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
 	
@@ -186,9 +186,11 @@ public class Bloc  {
 				try {
 					sprite = ImageIO.read(new File("bin/ennemi.png"));
 					coordY-=1;
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
+				/*Mechant ennemi=new Mechant (coordX,coordY);*/
 			break;
 			
 			case 'E':

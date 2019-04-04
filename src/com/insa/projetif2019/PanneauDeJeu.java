@@ -34,6 +34,7 @@ public class PanneauDeJeu extends JPanel{
 
 	private Bloc[][] grille;
 	private Personnage joueur;
+	
 	private File map;
 	private JPanel pCarte;
 	private Astre niveau;
@@ -133,7 +134,9 @@ public class PanneauDeJeu extends JPanel{
 		
 
 	}
-
+	public void creationMechant(int x, int y) {
+		Mechant ennemi=new Mechant (x, y);
+	}
 	public Personnage getJoueur() {
 		return joueur;
 	}
