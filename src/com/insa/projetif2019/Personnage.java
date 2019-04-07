@@ -224,17 +224,19 @@ public class Personnage implements ActionListener {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].getHitBox())) {
 					
-					if(monde[i][j].getType()=='0' && i == monde.length-1 ) {
+					blocRencontre = monde[i][j];
+					
+					if(blocRencontre.getType()=='0' && i == monde.length-1 ) {
 						parent.endLevel(false);
 					}
-					else if ( monde[i][j].getType()=='7') {
+					else if (blocRencontre.getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
 						break;
 					}
 					
 					
-					else if ( monde[i][j].getType()=='D') {
+					else if (blocRencontre.getType()=='D') {
 						if(!getInvincible()) {
 							pointVie(-1);
 							setInvincible();
@@ -242,7 +244,7 @@ public class Personnage implements ActionListener {
 						parent.miseAJourGrille(i, j);
 						break;
 					}
-					else  if (monde[i][j].getType()=='8') {
+					else  if (blocRencontre.getType()=='8') {
 						parent.pause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
 						parent.miseAJourGrille(i, j);
@@ -251,7 +253,7 @@ public class Personnage implements ActionListener {
 						break;
 						
 					}
-					else if (monde[i][j].getType()=='9') {
+					else if (blocRencontre.getType()=='9') {
 						parent.pause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
@@ -259,14 +261,14 @@ public class Personnage implements ActionListener {
 					
 						
 					}
-					else if (monde[i][j].getType()=='A') {
+					else if (blocRencontre.getType()=='A') {
 						parent.pause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
-					else if (monde[i][j].getType()=='B') {
+					else if (blocRencontre.getType()=='B') {
 						parent.pause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
 						parent.miseAJourGrille(i, j);
@@ -274,20 +276,18 @@ public class Personnage implements ActionListener {
 						
 					}
 					
-					else if (monde[i][j].getType()=='C') {
+					else if (blocRencontre.getType()=='C') {
 						parent.endLevel(true);
 						break;
 					}
 					
-					else if (monde[i][j].getType()=='E') {
+					else if (blocRencontre.getType()=='E') {
 						if(!getInvincible()) {
 							pointVie(-1);
 							setInvincible();
 						}
 						break;
 					}
-					
-					blocRencontre = monde[i][j];
 					
 					return true;
 				}
