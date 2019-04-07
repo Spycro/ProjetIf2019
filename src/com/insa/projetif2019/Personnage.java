@@ -338,20 +338,30 @@ public class Personnage implements ActionListener {
 		if(!collision()) {
 
 			if(speedX < 0 && checkBack()) {
-				setX(0);
+				setX(blocRencontre.getX() + Bloc.getCote());
 				speedX = 0;
 			}
 
 			else if(speedX > 0 && checkFront()) {
-				setX(monde[0].length*64-LARGEUR);
+				setX(blocRencontre.getX() - LARGEUR);
 				speedX = 0;
 			}
 
 		}
 		
 		if (collision()) {
+		
+			if(speedX < 0 && checkBack()) {
+				setX(blocRencontre.getX() + Bloc.getCote());
+				speedX = 0;
+			}
+
+			else if(speedX > 0 && checkFront()) {
+				setX(blocRencontre.getX() - LARGEUR);
+				speedX = 0;
+			}
 			
-			if(speedX > 0) {
+			else if(speedX > 0) {
 				speedX = 0;
 			}
 			
@@ -390,7 +400,6 @@ public class Personnage implements ActionListener {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(blocRencontre.estSol()) {
 				if(pH.intersection(blocRencontre.getHitBox()).height >0 && pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).width<64) {
 					return true;
@@ -415,7 +424,6 @@ public class Personnage implements ActionListener {
 		pH.x += 1;
 		pH.y -=10;
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>=pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
@@ -444,9 +452,7 @@ public class Personnage implements ActionListener {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.x -= 1;
 		pH.y -=1;
-		System.out.println(posMonde[0]);
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
