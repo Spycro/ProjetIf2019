@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -46,6 +47,9 @@ public class Bloc  {
 	private char typeBloc; 
 	private Image sprite;
 	private Rectangle hitBox;
+	private JPanel papa; 
+
+
 	
 	/**
 	 * Constructeur
@@ -57,12 +61,13 @@ public class Bloc  {
 	 */
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
-	
+		papa=parent; 
 		coordY = y;
 		coordX = x;
 		hitBox = new Rectangle(x,y,COTES, COTES);
 		typeBloc=type; 
 		generationBloc(astre, parent);
+		
 	}	
 
 	public char getType() {
@@ -201,8 +206,7 @@ public class Bloc  {
 			break;
 			
 			case 'D':
-				Mechant ennemi= new Mechant (coordX,coordY);
-				/*Mechant ennemi=new Mechant (coordX,coordY);*/
+							
 			break;
 			
 			case 'E':
@@ -235,5 +239,6 @@ public class Bloc  {
 	public void dessineBloc(Graphics g, ImageObserver obs) {
 		g.drawImage(sprite, coordX, coordY, COTES, COTES, obs);
 	}
+
 	
 }

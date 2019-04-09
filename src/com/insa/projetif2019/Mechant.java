@@ -23,13 +23,8 @@ public class Mechant {
 		private int posY;
 		private int sens;
 		
-		private PanneauDeJeu parent; 
-		private boolean onGround;
-		private int[] posMonde;
-
 		private Bloc[][] monde;
-		private Bloc blocRencontre;
-
+	
 		private final int LARGEUR = 40;
 		private final int HAUTEUR = 75;
 		boolean enVie = true;		
@@ -38,20 +33,20 @@ public class Mechant {
 		/////////////////////////////////////////////////////////////////////////////////////////
 
 		/// METHODES
-		public Mechant(int x, int y) {
+		public Mechant(int x, int y, Bloc [][] md) {
 			try {
 				sprite = ImageIO.read(new File("bin/ennemi.png"));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			monde=md;
 			posX = x;
 			posY = y;
 			hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
-			parent= null;
 			enVie = true;
 			sens=-1;
+			
 		}
 		public int getX() {
 			return posX;
@@ -77,7 +72,7 @@ public class Mechant {
 
 			posX += dX;
 			posY += dY;
-			refreshHB();
+			/*refreshHB();*/
 
 		}
 
@@ -90,16 +85,9 @@ public class Mechant {
 
 		public void dessineMechant(Graphics g, ImageObserver obs) {
 			g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
-			g.drawRect(posX, posY, hitBox.width, hitBox.height);
+			/*g.drawRect(posX, posY, hitBox.width, hitBox.height);*/
 			
 			///////////////////////////////////////////////////////
-			
-			if(blocRencontre != null) {
-				g.setColor(Color.white);
-				g.fillRect(blocRencontre.getX(), blocRencontre.getY(), Bloc.getCote(), Bloc.getCote());
-			}
-			if(posX > 350)
-				g.translate(posX-350, 0);
 		}
 
 		/**
@@ -110,27 +98,16 @@ public class Mechant {
 		}
 
 		
+		
 		public boolean collision() {
 			for (int i = 0; i < monde.length; i++) {
 				for (int j = 0; j < monde[0].length; j++) {
-					if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].getHitBox())) {
-						move(0,5);				
-						blocRencontre = monde[i][j];
+					if (monde[i][j].getType() != '0' && monde[i][j].getType() != '7'&& monde[i][j].getType() != '8' && monde[i][j].getType() != '9' && monde[i][j].getType() != 'A'&& monde[i][j].getType() != 'B' && hitBox.intersects(monde[i][j].getHitBox())) {	
 						return true;
 					}
 				}
 			}
 			return false;
-		}
-		
-		private int[] positionCourante() {
-			//calcul x
-			int x = posX / 64;
-			//calcul y
-			int y = posY/64+1;
-			int[] a = {x,y};
-			return a;
-			
 		}
 		
 	
@@ -149,15 +126,15 @@ public class Mechant {
 			deplacement(sens);	
 		}
 		public void deplacement(int sens) {
-			while (enVie==true) {
 				if(sens==1) {
 					posX+=3;
 				}
 			
 				else {
-					posY-=3;
+					posX-=3;
 				}
-			}
+				refreshHB();
+			
 		}
 		
 	}
