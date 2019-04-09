@@ -324,18 +324,63 @@ public class Personnage implements ActionListener {
 	}
 
 	public void maj() {
-		
-		if(!onGround) 
-			acceleration(0, gravity);
-		
 		enVie();
 		onGround = checkGround();
+		
+		// On verifie si le personnage est dans les limites de la carte
 		
 		if(getY() > parent.getHeight()-HAUTEUR) {
 			pointVie(-pointDeVie);
 		}
 		
-		if(!collision()) {
+		
+		//Verification du sol
+		
+		if(onGround) {
+			if(speedY>0) {
+
+				setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
+				System.out.println("vitesse y = 0");
+				speedY = 0;
+
+			}	
+		}
+		else {
+			acceleration(0, gravity);
+		}
+		
+		// Verification du bloc frontal
+		if(getX() < 0) {
+			setX(0);
+			speedX = 0;
+		}
+		
+		else if(getX() > (monde[0].length-1)*64) {
+			if(getX() > (monde[0].length)*64-HAUTEUR && speedX > 0) {
+				setX(monde[0].length*64-LARGEUR);
+				speedX = 0;
+			}
+		}
+		
+		else if(getX() > 64) {
+			if(checkFront()) {
+				if(speedX > 0) {
+					setX(blocRencontre.getX() - LARGEUR);
+					speedX = 0;
+				}
+			}
+
+			// Verification du bloc arriere
+
+			if(checkBack()) {
+				if(speedX < 0) {
+					setX(blocRencontre.getX() + Bloc.getCote());
+					speedX = 0;
+				}
+			}
+		}
+		
+		/*if(!collision()) {
 
 			if(speedX < 0 && checkBack()) {
 				setX(blocRencontre.getX() + Bloc.getCote());
@@ -347,9 +392,8 @@ public class Personnage implements ActionListener {
 				speedX = 0;
 			}
 
-		}
-		
-		if (collision()) {
+		}*/
+		/*if (collision()) {
 		
 			if(speedX < 0 && checkBack()) {
 				setX(blocRencontre.getX() + Bloc.getCote());
@@ -384,7 +428,7 @@ public class Personnage implements ActionListener {
 			}
 			
 			move(-speedX,0);
-		}
+		}*/
 		
 		
 		
@@ -397,21 +441,16 @@ public class Personnage implements ActionListener {
 	}
 	
 	private boolean checkGround() {
+		int indiceX = posMonde[0];
+		int indiceY = posMonde[1];
+		Bloc blocBas = monde[indiceY+1][indiceX];
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
-		if(blocRencontre != null) {
-			if(blocRencontre.estSol()) {
-				if(pH.intersection(blocRencontre.getHitBox()).height >0 && pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).width<64) {
+		if(blocBas != null) {
+			if(blocBas.estSol()) {
+				if(pH.intersection(blocBas.getHitBox()).height >0) {
+					blocRencontre = blocBas;
 					return true;
-				}
-				else {
-
-					if(posMonde[1]+1 < monde.length && posMonde[0] < monde[0].length && monde[posMonde[1]+1][posMonde[0]].estSol()) {
-						if(monde[posMonde[1]+1][posMonde[0]].getHitBox().intersects(pH)) {
-							return true;
-						}
-					}
-
 				}
 			}
 		}
@@ -419,7 +458,61 @@ public class Personnage implements ActionListener {
 		return false;
 	}
 	
-	public boolean checkFront() {
+	private boolean checkFront() {
+		int indiceX = posMonde[0];
+		int indiceY = posMonde[1];
+		
+		Bloc blocFront = monde[indiceY][indiceX];
+		
+		if(blocFront != null) {
+			if(blocFront.estSol()) {
+				return true;
+			}
+		}
+		
+		blocFront = monde[indiceY][indiceX+1];
+		Rectangle pH = new Rectangle(hitBox);
+		pH.x += 1;
+		if(blocFront != null) {
+			if(blocFront.estSol()){
+				if(pH.intersection(blocFront.getHitBox()).width >0) {
+					blocRencontre = blocFront;
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean checkBack() {
+		int indiceX = posMonde[0];
+		int indiceY = posMonde[1];
+		
+		Bloc blocBack = monde[indiceY][indiceX];
+		
+		if(blocBack != null) {
+			if(blocBack.estSol()) {
+				return true;
+			}
+		}
+		
+		blocBack = monde[indiceY][indiceX-1];
+		Rectangle pH = new Rectangle(hitBox);
+		pH.x -= 1;
+		if(blocBack != null) {
+			if(blocBack.estSol()) {
+				if(pH.intersection(blocBack.getHitBox()).width >0) {
+					blocRencontre = blocBack;
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	/*public boolean checkFront() {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.x += 1;
 		pH.y -=10;
@@ -446,9 +539,9 @@ public class Personnage implements ActionListener {
 		}
 		
 		return false;
-	}
+	}*/
 	
-	public boolean checkBack() {
+	/*public boolean checkBack() {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.x -= 1;
 		pH.y -=1;
@@ -475,7 +568,7 @@ public class Personnage implements ActionListener {
 		}
 		
 		return false;
-	}
+	}*/
 	
 
 	private int[] positionCourante() {
