@@ -105,16 +105,7 @@ public class PanneauDeJeu extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	
-		// Dessin du background (ca marche !!!)
-		// Dessine avec l'image "earthBG"
-		/*try {
-
-			Image bg = ImageIO.read(new File("bin/earthBG.jpg"));
-			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), this);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+		
 
 		currentOffset(g);
 		
@@ -236,7 +227,6 @@ public class PanneauDeJeu extends JPanel{
 		this.add(Fond);
 		this.remove(pCarte);
 		Fond.add(Pplanete);
-		
-    
+     }
 
 }
