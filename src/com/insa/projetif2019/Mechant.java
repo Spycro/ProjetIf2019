@@ -141,7 +141,15 @@ public class Mechant {
 			
 		}
 		
-		
+		public void deplacement(boolean direction) {
+			if(direction) {
+				posX+=3;
+			}
+			
+			else {
+				posY-=3;
+			}
+		}
 		
 	}
 
