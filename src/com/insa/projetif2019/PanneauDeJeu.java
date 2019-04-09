@@ -6,12 +6,15 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -134,9 +137,6 @@ public class PanneauDeJeu extends JPanel{
 		
 
 	}
-	public void creationMechant(int x, int y) {
-		Mechant ennemi=new Mechant (x, y);
-	}
 	public Personnage getJoueur() {
 		return joueur;
 	}
@@ -178,5 +178,65 @@ public class PanneauDeJeu extends JPanel{
 	public void pause() {
 		paternel.switchPause();
 	}
+	
+	public void PanneauMort() {
+		
+    	
+		JTextArea Pmort=new JTextArea();
+		Font police1=new Font("Bookman Old Style",Font.BOLD,20);
+		Pmort.setBounds(2880, 300, 100, 100);
+		Pmort.setForeground(Color.white);
+		Pmort.setFont(police1);
+		Pmort.setText("OUPS! Tu es mort. Retentes ta chance, il ne faut jamais s'arreter sur un echec");
+		Pmort.setEditable(false);
+		Pmort.setOpaque(false);
+		this.add(Pmort);
+		this.remove(pCarte);
+		
+		
+	}
+	
+    public void PanneauFinJeu() {
+		
+    	JLabel Fond=new JLabel(); 
+    	Fond= new JLabel(new ImageIcon("bin/feu-artifice.jpg"));
+    	Fond.setBounds(0,0,960,200);
+    	Fond.setLayout(null); 
+    	
+		JTextArea Pfin=new JTextArea();
+		Font police1=new Font("Bookman Old Style",Font.BOLD,20);
+		Pfin.setBounds(2880, 300, 100, 100);
+		Pfin.setForeground(Color.white);
+		Pfin.setFont(police1);
+		Pfin.setText("Felicitations! Tu as finis ton exploration avec brio!");
+		Pfin.setEditable(false);
+		Pfin.setOpaque(false);
+		this.add(Fond);
+		this.remove(pCarte);
+		Fond.add(Pfin);
+		
+		
+	}
+    
+     public void PanneauPlanete() {
+		
+    	JLabel Fond=new JLabel(); 
+    	Fond= new JLabel(new ImageIcon("bin/"+niveau.getNom()+".planete.jpg"));
+    	Fond.setBounds(0,0,960,200);
+    	Fond.setLayout(null); 
+ 		
+		JTextArea Pplanete=new JTextArea();
+		Font police1=new Font("Bookman Old Style",Font.BOLD,20);
+		Pplanete.setBounds(2880, 300, 100, 100);
+		Pplanete.setForeground(Color.white);
+		Pplanete.setFont(police1);
+		Pplanete.setText(niveau.getNom());
+		Pplanete.setEditable(false);
+		Pplanete.setOpaque(false);
+		this.add(Fond);
+		this.remove(pCarte);
+		Fond.add(Pplanete);
+		
+    
 
 }
