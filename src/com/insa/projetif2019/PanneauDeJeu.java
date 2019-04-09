@@ -31,8 +31,10 @@ import javax.imageio.ImageIO;
 public class PanneauDeJeu extends JPanel{
 
 	/**
-	 *
+	 * Panneau ou se passe tout le jeu
+	 * se trouve le joueur, la grille de jeu etc..
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	private Bloc[][] grille;
@@ -43,6 +45,11 @@ public class PanneauDeJeu extends JPanel{
 	private Astre niveau;
 	private PanneauPrincipal paternel;
 	
+	/**
+	 * Constructeur
+	 * @param nomNiveau
+	 * @param p Panneau parent pour mis à jour de terrain de jeu
+	 */
 	
 	public PanneauDeJeu(Astre nomNiveau,PanneauPrincipal p) {
 		this.setOpaque(false);
@@ -60,6 +67,10 @@ public class PanneauDeJeu extends JPanel{
 		
 		joueur = new Personnage(50, 250, grille, this);
 	}
+	
+	/**
+	 * Generation a pratir des fichiers textes en ressources
+	 */
 	
 	public void genererCarte() {
 		int f=0;
@@ -136,8 +147,15 @@ public class PanneauDeJeu extends JPanel{
 		return grille;
 	}
 	public Astre getAstre() {
+
 		return niveau;
 	}
+	
+	/**
+	 * Modifie l'origine de l'objet graphique pour une 
+	 * translation de la carte de jeu
+	 * @param g
+	 */
 	
 	private void currentOffset(Graphics g) {
 		if(joueur.getX() > 350 && joueur.getX() < 5150) {
@@ -147,10 +165,24 @@ public class PanneauDeJeu extends JPanel{
 			g.translate(-(5150 - 350), 0);
 		}
 	}
+	
+	/**
+	 * Met a jour le bloc de la carte
+	 * (efface une infoBox ou un coeur)
+	 * @param i x
+	 * @param j y
+	 */
+	
 	public void miseAJourGrille (int i, int j) {
 		grille[i][j].setType('0');
 		repaint();
 	}
+	
+	/**
+	 * valide apres la prise de l'objet 
+	 * de fin de niveau
+	 * @param win
+	 */
 	
 	public void endLevel(boolean win) {
 		
