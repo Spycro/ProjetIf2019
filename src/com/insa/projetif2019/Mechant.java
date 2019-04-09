@@ -102,9 +102,6 @@ public class Mechant {
 		
 		
 		public boolean collision() {
-			System.out.println(hitBox);
-			System.out.println(joueur);
-			System.out.println(joueur.getHitbox());
 			if( hitBox.intersects(joueur.getHitbox())) {
 				if(joueur.getInvincible()==false) {
 						joueur.pointVie(-1);
