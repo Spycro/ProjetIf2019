@@ -237,6 +237,8 @@ public class PanneauDeJeu extends JPanel{
 		this.remove(pCarte);
 		Fond.add(Pplanete);
 		
+     }
+		
     
 
 }
