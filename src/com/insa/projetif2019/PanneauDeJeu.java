@@ -213,7 +213,7 @@ public class PanneauDeJeu extends JPanel{
 		
     	JLabel Fond=new JLabel(); 
     	Fond= new JLabel(new ImageIcon("bin/"+niveau.getNom()+".planete.jpg"));
-    	Fond.setBounds(0,0,960,200);
+    	Fond.setBounds(0,0,this.WIDTH,this.HEIGHT);
     	Fond.setLayout(null); 
  		
 		JTextArea Pplanete=new JTextArea();
@@ -227,6 +227,7 @@ public class PanneauDeJeu extends JPanel{
 		this.add(Fond);
 		this.remove(pCarte);
 		Fond.add(Pplanete);
+
      }
 
 }
