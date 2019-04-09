@@ -27,7 +27,6 @@ public class Mechant {
 	
 		private final int LARGEUR = 40;
 		private final int HAUTEUR = 75;
-		boolean enVie = true;	
 		private Personnage joueur;
 		
 		
@@ -46,7 +45,6 @@ public class Mechant {
 			posX = x;
 			posY = y;
 			hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
-			enVie = true;
 			sens=-1;
 			
 		}
@@ -120,27 +118,17 @@ public class Mechant {
 			return false;
 		}
 		
-	
-		public boolean getEnVie() {
-			return enVie;
-		}
 
 		public void actionPerformed(ActionEvent e) {
 			
 			
 		}
 		public void vieMechant(){
-			if (enVie) {
-				if (collision()) {
-					sens=-1*sens;
-				}
-				deplacement(sens);	
-			}else {
-				
+			if (collision()) {
+				sens=-1*sens;
 			}
-				
-			}
-			
+			deplacement(sens);	
+		}
 		public void deplacement(int sens) {
 				if(sens==1) {
 					posX+=3;
