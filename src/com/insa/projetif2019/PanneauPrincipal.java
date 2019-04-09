@@ -426,6 +426,8 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		enMvt.stop();
 		remove(panneauZoneJeu);
 	}
+	
+	
 
 
 	
