@@ -58,6 +58,15 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	/**
+	 * Constructeur
+	 * Ce panneau gere tout les panneaux ou il y aura le menu pause, panneau de jeu etc
+	 * @param largeur
+	 * @param hauteur
+	 * @param listeA Liste des niveaux
+	 */
+	
 	public PanneauPrincipal(int largeur, int hauteur, ArrayList<Astre> listeA) {
 		//setBackground(Color.LIGHT_GRAY);
 		this.LARGEUR=largeur;
@@ -133,6 +142,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 	}
 	
+	/**
+	 * Lance le jeu après appui du bouton start en generant les panneaux necessaires.
+	 */
+	
 	// Methode gerant le lancement d'un niveau
 	public void startGame() {
 		// Lecture du fichier de sauvegarde
@@ -173,6 +186,13 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	}
 	
 	// Methode de lecture du fichier de sauvegarde
+	
+	/**
+	 * Charge le fichier file0.sav et lis sont contenu
+	 * @return Un Astre 
+	 */
+	
+	
 	public Astre getLevel() {
 		// Fichier de sauvegarde
 		
@@ -233,8 +253,11 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		return null;
 	}
+		
+	/**
+	 * Methode de mise a jour du fichier de sauvegarde
+	 */
 	
-	// Methode de mise a jour du fichier de sauvegarde
 	public void majSave() {
 		
 		File savefile;
@@ -283,12 +306,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	public void setFenMere(JFrame mere) {
 		fenMere = mere;
 	}
-	/*
-	public void afficherNiveau() {
-		panneauZoneJeu = new PanneauDeJeu(niveau);
-		panneauZoneJeu.addKeyListener(this);
-		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
-	}*/
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -420,6 +438,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		toucheEnfonce.clear();
 	}
+	
+	/**
+	 * Méthode stoppant le jeu
+	 */
 	
 	public void stopGame() {
 		tempsDeJeu.stop();
