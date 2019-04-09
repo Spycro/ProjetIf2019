@@ -224,17 +224,19 @@ public class Personnage implements ActionListener {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].getHitBox())) {
 					
-					if(monde[i][j].getType()=='0' && i == monde.length-1 ) {
+					blocRencontre = monde[i][j];
+					
+					if(blocRencontre.getType()=='0' && i == monde.length-1 ) {
 						parent.endLevel(false);
 					}
-					else if ( monde[i][j].getType()=='7') {
+					else if (blocRencontre.getType()=='7') {
 						pointVie(1);
 						parent.miseAJourGrille(i, j);
 						break;
 					}
 					
 					
-					else if ( monde[i][j].getType()=='D') {
+					else if (blocRencontre.getType()=='D') {
 						if(!getInvincible()) {
 							pointVie(-1);
 							setInvincible();
@@ -242,7 +244,7 @@ public class Personnage implements ActionListener {
 						parent.miseAJourGrille(i, j);
 						break;
 					}
-					else  if (monde[i][j].getType()=='8') {
+					else  if (blocRencontre.getType()=='8') {
 						parent.pause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
 						parent.miseAJourGrille(i, j);
@@ -251,7 +253,7 @@ public class Personnage implements ActionListener {
 						break;
 						
 					}
-					else if (monde[i][j].getType()=='9') {
+					else if (blocRencontre.getType()=='9') {
 						parent.pause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(),2);
 						parent.miseAJourGrille(i, j);
@@ -259,14 +261,14 @@ public class Personnage implements ActionListener {
 					
 						
 					}
-					else if (monde[i][j].getType()=='A') {
+					else if (blocRencontre.getType()=='A') {
 						parent.pause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(),3);
 						parent.miseAJourGrille(i, j);
 						break;
 						
 					}
-					else if (monde[i][j].getType()=='B') {
+					else if (blocRencontre.getType()=='B') {
 						parent.pause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(),4);
 						parent.miseAJourGrille(i, j);
@@ -274,20 +276,18 @@ public class Personnage implements ActionListener {
 						
 					}
 					
-					else if (monde[i][j].getType()=='C') {
+					else if (blocRencontre.getType()=='C') {
 						parent.endLevel(true);
 						break;
 					}
 					
-					else if (monde[i][j].getType()=='E') {
+					else if (blocRencontre.getType()=='E') {
 						if(!getInvincible()) {
 							pointVie(-1);
 							setInvincible();
 						}
 						break;
 					}
-					
-					blocRencontre = monde[i][j];
 					
 					return true;
 				}
@@ -335,15 +335,29 @@ public class Personnage implements ActionListener {
 			pointVie(-pointDeVie);
 		}
 		
-		if (collision()) {
-			
+		if(!collision()) {
+
 			if(speedX < 0 && checkBack()) {
-				setX(blocRencontre.getX() + Bloc.getCote()); //+ (LARGEUR - Bloc.getCote()));
+				setX(blocRencontre.getX() + Bloc.getCote());
 				speedX = 0;
 			}
-			
+
 			else if(speedX > 0 && checkFront()) {
-				setX(blocRencontre.getX() - Bloc.getCote() - (LARGEUR - Bloc.getCote()));
+				setX(blocRencontre.getX() - LARGEUR);
+				speedX = 0;
+			}
+
+		}
+		
+		if (collision()) {
+		
+			if(speedX < 0 && checkBack()) {
+				setX(blocRencontre.getX() + Bloc.getCote());
+				speedX = 0;
+			}
+
+			else if(speedX > 0 && checkFront()) {
+				setX(blocRencontre.getX() - LARGEUR);
 				speedX = 0;
 			}
 			
@@ -386,7 +400,6 @@ public class Personnage implements ActionListener {
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(blocRencontre.estSol()) {
 				if(pH.intersection(blocRencontre.getHitBox()).height >0 && pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).width<64) {
 					return true;
@@ -411,7 +424,6 @@ public class Personnage implements ActionListener {
 		pH.x += 1;
 		pH.y -=10;
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>=pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
@@ -422,6 +434,11 @@ public class Personnage implements ActionListener {
 					if(monde[posMonde[1]][posMonde[0]+1].getHitBox().intersects(pH)) {
 						return true;
 					}
+				}
+				
+				else if(posMonde[0]+1 > monde[0].length) {
+					if(getX()>= monde[0].length*64-LARGEUR)
+						return true;
 				}
 				
 				
@@ -436,7 +453,6 @@ public class Personnage implements ActionListener {
 		pH.x -= 1;
 		pH.y -=1;
 		if(blocRencontre != null) {
-			//System.out.println(pH.intersection(solCourant.hitBox));
 			if(pH.intersection(blocRencontre.getHitBox()).width >0 && pH.intersection(blocRencontre.getHitBox()).height>pH.intersection(blocRencontre.getHitBox()).width) {
 				if(blocRencontre.estSol())
 					return true;
@@ -447,6 +463,11 @@ public class Personnage implements ActionListener {
 					if(monde[posMonde[1]][posMonde[0]-1].getHitBox().intersects(pH)) {
 						return true;
 					}
+				}
+				
+				else if(posMonde[0]-1 < 0) {
+					if(getX()<=0)
+						return true;
 				}
 				
 				

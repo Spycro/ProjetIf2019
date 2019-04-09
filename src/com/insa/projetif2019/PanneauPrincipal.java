@@ -142,7 +142,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(niveau != null) {
 			
 			try {
-				imgf = ImageIO.read(new File("bin/earthBG.jpg"));
+				imgf = ImageIO.read(new File("bin/"+niveau.getNom()+"BG.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
