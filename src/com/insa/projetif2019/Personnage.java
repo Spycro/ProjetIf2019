@@ -234,12 +234,6 @@ public class Personnage implements ActionListener {
 						break;
 					}
 
-					
-					
-					
-					else  if (blocRencontre.getType()=='8') {
-
-
 					else if (blocRencontre.getType() == 'D') {
 						if (!getInvincible()) {
 							pointVie(-1);

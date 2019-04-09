@@ -54,65 +54,51 @@ public class Mechant {
 			return posX;
 		}
 
-	private Bloc[][] monde;
-
-	private final int LARGEUR = 40;
-	private final int HAUTEUR = 75;
-	boolean enVie = true;
-
-	/////////////////////////////////////////////////////////////////////////////////////////
-
-	/// METHODES
-	public Mechant(int x, int y, Bloc[][] md) {
-		try {
-			sprite = ImageIO.read(new File("bin/ennemi.png"));
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		public int getY() {
+			return posY;
 		}
-		monde = md;
-		posX = x;
-		posY = y;
-		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
-		enVie = true;
-		sens = -1;
 
-	}
+		public void setX(int pX) {
+			posX = pX;
+		}
 
-	public int getX() {
-		return posX;
-	}
+		public void setY(int pY) {
+			posY = pY;
+		}
+		
+		/**
+		 * Gere le deplacement du mechant 
+		 **/
 
-	public int getY() {
-		return posY;
-	}
+		public void move(double dX, double dY) {
 
-	public void setX(int pX) {
-		posX = pX;
-	}
+			posX += dX;
+			posY += dY;
+			/*refreshHB();*/
 
-	public void setY(int pY) {
-		posY = pY;
-	}
+		}
 
-	/**
-	 * Gere le deplacement du mechant
-	 **/
+		/**
+		 * permet le dessin du sprite du mechant
+		 * 
+		 * @param g   objet graphique
+		 * @param obs endroit ou sera afficher l'image
+		 */
 
-	public void move(double dX, double dY) {
+		public void dessineMechant(Graphics g, ImageObserver obs) {
+			g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
+			/*g.drawRect(posX, posY, hitBox.width, hitBox.height);*/
+			
+			///////////////////////////////////////////////////////
+		}
 
-		posX += dX;
-		posY += dY;
-		/* refreshHB(); */
+		/**
+		 * Met A jour l'emplacement de la hitbox
+		 */
+		public void refreshHB() {
+			hitBox.setLocation(posX, posY);
+		}
 
-	}
-
-	/**
-	 * permet le dessin du sprite du mechant
-	 * 
-	 * @param g   objet graphique
-	 * @param obs endroit ou sera afficher l'image
-	 */
 		
 		
 		public boolean collision() {
@@ -134,21 +120,17 @@ public class Mechant {
 					}
 				}
 			}
+			return false;
 		}
-		return false;
-	}
+		
+	
+		public boolean getEnVie() {
+			return enVie;
+		}
 
-	public boolean getEnVie() {
-		return enVie;
-	}
-
-	public void actionPerformed(ActionEvent e) {
-
-	}
-
-	public void vieMechant() {
-		if (collision()) {
-			sens = -1 * sens;
+		public void actionPerformed(ActionEvent e) {
+			
+			
 		}
 		public void vieMechant(){
 			if (enVie) {
@@ -171,9 +153,9 @@ public class Mechant {
 					posX-=3;
 				}
 				refreshHB();
+			
 		}
-		refreshHB();
-
+		
 	}
 
-}
+
