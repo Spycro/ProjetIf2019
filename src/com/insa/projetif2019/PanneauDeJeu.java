@@ -2,30 +2,18 @@ package com.insa.projetif2019;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Set;
-
-import javax.imageio.ImageIO;
 
 
 public class PanneauDeJeu extends JPanel{
@@ -124,19 +112,6 @@ public class PanneauDeJeu extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	
-
-		// Dessin du background (ca marche !!!)
-		// Dessine avec l'image "earthBG"
-		/*try {
-
-			Image bg = ImageIO.read(new File("bin/earthBG.jpg"));
-			g.drawImage(bg, 0, 0, this.getWidth(), this.getHeight(), this);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-
-		
 		currentOffset(g);
 		for (int k=0; k<mechant.size(); k++) {
 			mechant.get(k).dessineMechant(g, pCarte);
@@ -144,18 +119,7 @@ public class PanneauDeJeu extends JPanel{
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[i].length; j++) {
 				if (grille[i][j].getType() != '0') {
-					if (grille[i][j].getType()=='D') {
-						
-					}else {
-						grille[i][j].dessineBloc(g, this);
-						//g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), this);
-						/*g.setColor(Color.black);
-						g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getCote(), Bloc.getCote());*/
-					}		
-				}
-				else {
-					/*g.setColor(Color.red);
-					g.drawRect(grille[i][j].getX(), grille[i][j].getY(),Bloc.getCote(),Bloc.getCote());*/
+					grille[i][j].dessineBloc(g, this);	
 				}
 			}
 		}
