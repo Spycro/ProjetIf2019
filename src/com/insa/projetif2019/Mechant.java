@@ -27,19 +27,21 @@ public class Mechant {
 	
 		private final int LARGEUR = 40;
 		private final int HAUTEUR = 75;
-		boolean enVie = true;		
+		boolean enVie = true;	
+		private Personnage joueur;
 		
 		
 		/////////////////////////////////////////////////////////////////////////////////////////
 
 		/// METHODES
-		public Mechant(int x, int y, Bloc [][] md) {
+		public Mechant(int x, int y, Bloc [][] md, Personnage perso) {
 			try {
 				sprite = ImageIO.read(new File("bin/ennemi.png"));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			joueur=perso;
 			monde=md;
 			posX = x;
 			posY = y;
@@ -100,9 +102,20 @@ public class Mechant {
 		
 		
 		public boolean collision() {
+			System.out.println(hitBox);
+			System.out.println(joueur);
+			System.out.println(joueur.getHitbox());
+			if( hitBox.intersects(joueur.getHitbox())) {
+				if(joueur.getInvincible()==false) {
+						joueur.pointVie(-1);
+						joueur.setInvincible();
+				}
+			}
 			for (int i = 0; i < monde.length; i++) {
 				for (int j = 0; j < monde[0].length; j++) {
-					if (monde[i][j].getType() != '0' && monde[i][j].getType() != '7'&& monde[i][j].getType() != '8' && monde[i][j].getType() != '9' && monde[i][j].getType() != 'A'&& monde[i][j].getType() != 'B' && hitBox.intersects(monde[i][j].getHitBox())) {	
+					if (monde[i][j].getType() != '0' && monde[i][j].getType() != '7'&& 
+							monde[i][j].getType() != '8' && monde[i][j].getType() != '9' && monde[i][j].getType() != 'A'&&
+							monde[i][j].getType() != 'B' && hitBox.intersects(monde[i][j].getHitBox())) {	
 						return true;
 					}
 				}
@@ -120,11 +133,17 @@ public class Mechant {
 			
 		}
 		public void vieMechant(){
-			if (collision()) {
-				sens=-1*sens;
+			if (enVie) {
+				if (collision()) {
+					sens=-1*sens;
+				}
+				deplacement(sens);	
+			}else {
+				
 			}
-			deplacement(sens);	
-		}
+				
+			}
+			
 		public void deplacement(int sens) {
 				if(sens==1) {
 					posX+=3;

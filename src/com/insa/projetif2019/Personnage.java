@@ -28,7 +28,7 @@ public class Personnage implements ActionListener {
 	////////////////////////////////////////////////////////////////////////////////////////
 	Image sprite;
 	Image coeur;
-	Rectangle hitBox;
+	private Rectangle hitBox;
 	private int posX;
 	private int posY;
 	private double speedX;
@@ -96,6 +96,10 @@ public class Personnage implements ActionListener {
 		invincible = false;
 	}
 
+	public Rectangle getHitbox() {
+		return hitBox;
+	}
+	
 	public int getX() {
 		return posX;
 	}
@@ -237,14 +241,7 @@ public class Personnage implements ActionListener {
 					}
 					
 					
-					else if (blocRencontre.getType()=='D') {
-						if(!getInvincible()) {
-							pointVie(-1);
-							setInvincible();
-						}
-						parent.miseAJourGrille(i, j);
-						break;
-					}
+					
 					else  if (blocRencontre.getType()=='8') {
 						parent.pause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(),1);
