@@ -182,7 +182,7 @@ public class Bloc  {
 				}
 			break;
 			
-			case 'D': // image a changer (en cours)
+			case 'D':
 				try {
 					sprite = ImageIO.read(new File("bin/ennemi.png"));
 					coordY-=1;
@@ -191,7 +191,7 @@ public class Bloc  {
 				}	
 			break;
 			
-			case 'E': // image a changer (en cours)
+			case 'E':
 				try {
 					sprite = ImageIO.read(new File("bin/pics.png"));
 					coordY-=1;

@@ -8,7 +8,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
+
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -18,7 +22,7 @@ import java.awt.Rectangle;
  *
  */
 
-public class Personnage {
+public class Personnage implements ActionListener {
 
 	// ATTRIBUTS
 	////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +50,9 @@ public class Personnage {
 	boolean enVie = true;
 	public int pointDeVie;
 	
+	private Timer invincibleTimer;
+	private boolean invincible;
+	
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	/// METHODES
@@ -64,6 +71,7 @@ public class Personnage {
 		gravity = 5.0;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
 		parent= null;
+		invincibleTimer = new Timer(33,this);
 	}
 
 	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa) {
@@ -84,6 +92,8 @@ public class Personnage {
 		monde = pMonde;
 		hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR);
 		posMonde = positionCourante();
+		invincibleTimer = new Timer(2000,this);
+		invincible = false;
 	}
 
 	public int getX() {
@@ -100,6 +110,17 @@ public class Personnage {
 
 	public void setY(int pY) {
 		posY = pY;
+	}
+	
+	public boolean getInvincible() {
+		return invincible;
+	}
+	
+	public void setInvincible() {
+		if(!invincibleTimer.isRunning()) {
+			invincibleTimer.start();
+			invincible = true;
+		}
 	}
 
 	/**
@@ -127,7 +148,12 @@ public class Personnage {
 		g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
 
 		//////////////////////////////// HITBOX (PRODUCTION)
-		g.setColor(Color.white);
+		if(getInvincible()) {
+			g.setColor(Color.red);
+		}
+		else {
+			g.setColor(Color.white);
+		}
 		g.drawRect(posX, posY, hitBox.width, hitBox.height);
 		//g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
 		
@@ -209,7 +235,10 @@ public class Personnage {
 					
 					
 					else if ( monde[i][j].getType()=='D') {
-						pointVie(-1);
+						if(!getInvincible()) {
+							pointVie(-1);
+							setInvincible();
+						}
 						parent.miseAJourGrille(i, j);
 						break;
 					}
@@ -251,7 +280,10 @@ public class Personnage {
 					}
 					
 					else if (monde[i][j].getType()=='E') {
-						pointVie(-1);
+						if(!getInvincible()) {
+							pointVie(-1);
+							setInvincible();
+						}
 						break;
 					}
 					
@@ -463,6 +495,14 @@ public class Personnage {
 			if ((a<=0)) {
 				pointDeVie=pointDeVie+a;
 			}
+		
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == invincibleTimer) {
+			invincible = false;
+			invincibleTimer.stop();
+		}
 		
 	}
 	
