@@ -19,7 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -39,6 +39,8 @@ public class PanneauDeJeu extends JPanel{
 	private JPanel pCarte;
 	private Astre niveau;
 	private PanneauPrincipal paternel;
+	private ArrayList <Mechant> mechant;
+
 	
 	
 	public PanneauDeJeu(Astre nomNiveau,PanneauPrincipal p) {
@@ -50,7 +52,8 @@ public class PanneauDeJeu extends JPanel{
 		pCarte = new JPanel();
 		pCarte.setBounds(0, 0, 5760, 640);
 		pCarte.setOpaque(false); // Fond transparent
-		
+		 mechant = new ArrayList<Mechant>();
+
 	
 		this.genererCarte();
 		this.add(pCarte);
@@ -90,13 +93,18 @@ public class PanneauDeJeu extends JPanel{
 	    int k = 0;
 	    for(int i = 0; i<strStore.length;i++) {
 	    	for (int j = 0; j<grille[i].length;j++) {
-	    		grille[i][j] = new Bloc( pCarte, j*64,i*64, strStore[i].charAt(k), niveau.getNom());
+	    		if (strStore[i].charAt(k)!='D') {
+	    			grille[i][j] = new Bloc( pCarte, j*64,i*64, strStore[i].charAt(k), niveau.getNom());
+	    		}else {
+	    			grille[i][j] = new Bloc( pCarte, j*64,i*64, '0', niveau.getNom());
+	    			Mechant ennemi=new Mechant (j*64,i*64,grille);
+	    			mechant.add(ennemi);
+	    		}
 	    		k++;
 	    	}
 	    	k=0;
 	    	System.out.println();
 	    }
-	    
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -112,16 +120,22 @@ public class PanneauDeJeu extends JPanel{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}*/
-
-		currentOffset(g);
 		
+		currentOffset(g);
+		for (int k=0; k<mechant.size(); k++) {
+			mechant.get(k).dessineMechant(g, pCarte);
+		}
 		for (int i = 0; i < grille.length; i++) {
 			for (int j = 0; j < grille[i].length; j++) {
 				if (grille[i][j].getType() != '0') {
-					grille[i][j].dessineBloc(g, this);
-					//g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), this);
-					/*g.setColor(Color.black);
-					g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getCote(), Bloc.getCote());*/
+					if (grille[i][j].getType()=='D') {
+						
+					}else {
+						grille[i][j].dessineBloc(g, this);
+						//g.drawImage(grille[i][j].sprite, grille[i][j].getX(), grille[i][j].getY(), this);
+						/*g.setColor(Color.black);
+						g.drawRect(grille[i][j].getX(), grille[i][j].getY(), Bloc.getCote(), Bloc.getCote());*/
+					}		
 				}
 				else {
 					/*g.setColor(Color.red);
@@ -143,6 +157,9 @@ public class PanneauDeJeu extends JPanel{
 	}
 	public Astre getAstre() {
 		return niveau;
+	}
+	public ArrayList<Mechant> getMechant() {
+		return mechant;
 	}
 	
 	private void currentOffset(Graphics g) {

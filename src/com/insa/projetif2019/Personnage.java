@@ -220,6 +220,7 @@ public class Personnage implements ActionListener {
 	}
 
 	public boolean collision() {
+		
 		for (int i = 0; i < monde.length; i++) {
 			for (int j = 0; j < monde[0].length; j++) {
 				if (monde[i][j].getType() != '0' && hitBox.intersects(monde[i][j].getHitBox())) {

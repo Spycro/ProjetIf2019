@@ -52,7 +52,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	private Timer tempsDeJeu;
 	private Timer enMvt;
-	
+	private Timer tempsMechant;
 	boolean enPause = false;
 	PanneauPause panneauPause;
 
@@ -68,7 +68,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		toucheEnfonce = new HashSet<Integer>(); //utilise pour contenir les touches de mouvement
 		enMvt = new Timer(33,this);
 		tempsDeJeu = new Timer(33,this);
-		
+		tempsMechant=new Timer(20,this);
 		//definition panneau Pause
 		panneauPause = new PanneauPause();
 		panneauPause.addKeyListener(this);
@@ -161,6 +161,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			remove(text);
 
 			tempsDeJeu.start();
+			tempsMechant.start();
 			
 			System.out.println(niveau.getNom()); //TODO A virer, c'est juste pour tester le bon enchainement des niveaux
 		}
@@ -340,6 +341,11 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
         }
         if(e.getSource() == panneauPause.bQuit) {
         	fenMere.dispose();
+        }
+        if (e.getSource()==tempsMechant) {
+        	for(Mechant mechant :panneauZoneJeu.getMechant()) {
+        		mechant.vieMechant();
+        	}
         }
         
         if(e.getSource() == panneauRules.bReturn) {
