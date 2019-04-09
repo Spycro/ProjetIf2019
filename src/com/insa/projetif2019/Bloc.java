@@ -17,7 +17,6 @@ import javax.swing.JPanel;
  *Faire les sols et les objets 
  * avec lesquels on pourra interragir comme les pics ou les points 
  * d'interrogations.
- * @author Lucas, Loic, Janna
  * 
  */
 /**
@@ -51,6 +50,15 @@ public class Bloc  {
 	private JPanel papa; 
 
 
+	
+	/**
+	 * Constructeur
+	 * @param parent : JPanel invoquant ce bloc (Panneau de Jeu)
+	 * @param x
+	 * @param y
+	 * @param type : Cf ci-dessus
+	 * @param astre : Permet colorisation des blocs.
+	 */
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
 		papa=parent; 
@@ -86,6 +94,11 @@ public class Bloc  {
 		return sprite;
 	}
 	
+	/**
+	 * 
+	 * @return true si bloc de collision false si non
+	 */
+	
 	public boolean estSol() {
 		if(getType() == '1' || getType() == '2' || getType() == '3' || getType() == '4' || getType() == '5' || getType() == '6' || getType() == 'E') {
 			return true;
@@ -93,6 +106,12 @@ public class Bloc  {
 		
 		return false;
 	}
+	
+	/**
+	 * 
+	 * @param nom Astre permettant la couleur
+	 * @param parent
+	 */
 	
 	public void generationBloc (String nom, JPanel parent) {
 		
@@ -210,6 +229,12 @@ public class Bloc  {
 		coordX = x;
 		coordY = y;
 	}
+	
+	/**
+	 * 
+	 * @param g Objet graphique du JPanel invoque.
+	 * @param obs
+	 */
 	
 	public void dessineBloc(Graphics g, ImageObserver obs) {
 		g.drawImage(sprite, coordX, coordY, COTES, COTES, obs);
