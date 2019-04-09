@@ -134,9 +134,6 @@ public class PanneauDeJeu extends JPanel{
 		
 
 	}
-	public void creationMechant(int x, int y) {
-		Mechant ennemi=new Mechant (x, y);
-	}
 	public Personnage getJoueur() {
 		return joueur;
 	}

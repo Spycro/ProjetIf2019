@@ -21,6 +21,7 @@ public class Mechant {
 		Rectangle hitBox;
 		private int posX;
 		private int posY;
+		private int sens;
 		
 		private PanneauDeJeu parent; 
 		private boolean onGround;
@@ -50,6 +51,7 @@ public class Mechant {
 			hitBox = new Rectangle(posX, posY, LARGEUR, HAUTEUR - 20);
 			parent= null;
 			enVie = true;
+			sens=-1;
 		}
 		public int getX() {
 			return posX;
@@ -140,8 +142,23 @@ public class Mechant {
 			
 			
 		}
-		
-		
+		public void vieMechant(){
+			if (collision()) {
+				sens=-1*sens;
+			}
+			deplacement(sens);	
+		}
+		public void deplacement(int sens) {
+			while (enVie==true) {
+				if(sens==1) {
+					posX+=3;
+				}
+			
+				else {
+					posY-=3;
+				}
+			}
+		}
 		
 	}
 

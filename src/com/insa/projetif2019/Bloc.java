@@ -47,7 +47,6 @@ public class Bloc  {
 	private char typeBloc; 
 	private Image sprite;
 	private Rectangle hitBox;
-	private Mechant ennemi;
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
 	
@@ -183,13 +182,7 @@ public class Bloc  {
 			break;
 			
 			case 'D':
-				try {
-					sprite = ImageIO.read(new File("bin/ennemi.png"));
-					coordY-=1;
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}	
+				Mechant ennemi= new Mechant (coordX,coordY);
 				/*Mechant ennemi=new Mechant (coordX,coordY);*/
 			break;
 			
