@@ -330,7 +330,7 @@ public class Personnage implements ActionListener {
 		
 		// On verifie si le personnage est dans les limites de la carte
 		
-		if(getY() > parent.getHeight()-HAUTEUR) {
+		if(getY() > monde.length*64-HAUTEUR) {
 			pointVie(-pointDeVie);
 		}
 		
@@ -341,7 +341,6 @@ public class Personnage implements ActionListener {
 			if(speedY>0) {
 
 				setY(blocRencontre.getY() - Bloc.getCote() - (HAUTEUR - Bloc.getCote()));
-				System.out.println("vitesse y = 0");
 				speedY = 0;
 
 			}	
@@ -377,6 +376,13 @@ public class Personnage implements ActionListener {
 				if(speedX < 0) {
 					setX(blocRencontre.getX() + Bloc.getCote());
 					speedX = 0;
+				}
+			}
+			
+			if(checkTop()) {
+				if(speedY < 0) {
+					setY(blocRencontre.getY()+Bloc.getCote());
+					acceleration(0, gravity);
 				}
 			}
 		}
@@ -444,7 +450,16 @@ public class Personnage implements ActionListener {
 	private boolean checkGround() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
-		Bloc blocBas = monde[indiceY+1][indiceX];
+		
+		Bloc blocBas = monde[indiceY][indiceX];
+		
+		if(blocBas != null) {
+			if(blocBas.estSol()) {
+				return true;
+			}
+		}
+		
+		blocBas = monde[indiceY+1][indiceX];
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
 		if(blocBas != null) {
@@ -478,6 +493,33 @@ public class Personnage implements ActionListener {
 			if(blocFront.estSol()){
 				if(pH.intersection(blocFront.getHitBox()).width >0) {
 					blocRencontre = blocFront;
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean checkTop() {
+		int indiceX = posMonde[0];
+		int indiceY = posMonde[1];
+		
+		Bloc blocTop = monde[indiceY][indiceX];
+		
+		if(blocTop != null) {
+			if(blocTop.estSol()) {
+				return true;
+			}
+		}
+		
+		blocTop = monde[indiceY-1][indiceX];
+		Rectangle pH = new Rectangle(hitBox);
+		pH.x += 1;
+		if(blocTop != null) {
+			if(blocTop.estSol()){
+				if(pH.intersection(blocTop.getHitBox()).height >0) {
+					blocRencontre = blocTop;
 					return true;
 				}
 			}
