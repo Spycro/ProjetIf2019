@@ -174,7 +174,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		// Cas ou l'astre n'existe pas, cad que le jeu est termine
 		else {
-			annonce = new EcranAnnonce(null, "Felicitations! \nTu as finis ton exploration avec brio!\nUn jeu créé par Loic, Lucas, Janna et Joanna, 2019", true, this);
+			annonce = new EcranAnnonce(null, "Felicitations! \nTu as finis ton exploration avec brio!\nUn jeu cree par Loic, Lucas, Janna et Joanna, 2019", true, this);
 			
 			this.removeAll();
 			this.add(annonce);
