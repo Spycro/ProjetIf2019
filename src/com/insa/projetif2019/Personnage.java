@@ -73,6 +73,16 @@ public class Personnage implements ActionListener {
 		invincibleTimer = new Timer(33, this);
 	}
 
+	/**
+	 * Constructeur de Personnage
+	 * Il iniatilise les differenents sprite ainsi que sa position initiale
+	 * Il y en a un seul dans le jeu
+	 * @param pX Position X de depart
+	 * @param pY Position Y de Depart
+	 * @param pMonde Carte du Monde
+	 * @param papa PanneauDeJeu invoqueur
+	 */
+	
 	public Personnage(int pX, int pY, Bloc[][] pMonde, PanneauDeJeu papa) {
 		// creation du personnage
 		parent = papa;
@@ -95,36 +105,7 @@ public class Personnage implements ActionListener {
 		invincible = false;
 	}
 
-	public Rectangle getHitbox() {
-		return hitBox;
-	}
-
-	public int getX() {
-		return posX;
-	}
-
-	public int getY() {
-		return posY;
-	}
-
-	public void setX(int pX) {
-		posX = pX;
-	}
-
-	public void setY(int pY) {
-		posY = pY;
-	}
-
-	public boolean getInvincible() {
-		return invincible;
-	}
-
-	public void setInvincible() {
-		if (!invincibleTimer.isRunning()) {
-			invincibleTimer.start();
-			invincible = true;
-		}
-	}
+	
 
 	/**
 	 * Gere le deplacement du joueur
@@ -189,6 +170,11 @@ public class Personnage implements ActionListener {
 		hitBox.setLocation(posX, posY);
 	}
 
+	/**
+	 * Effectue des actions en fonction des touches pressees
+	 * @param moveSet Set contenant les touches actuellement pressees
+	 */
+	
 	public void preMouvement(Set<Integer> moveSet) {
 
 		if (moveSet.contains(39)) {
@@ -210,14 +196,12 @@ public class Personnage implements ActionListener {
 			jump();
 		}
 
-		if (moveSet.contains(27)) {
-
-		}
+	
 		// 39 droite
 		// 37 gauche
 		// 38 haut
 		// 40 bas
-		// 27 echap
+		
 
 	}
 
@@ -279,24 +263,45 @@ public class Personnage implements ActionListener {
 		return false;
 	}
 
+	/**
+	 * Modifie l'acceleration actuelle
+	 * @param aX acc en X
+	 * @param aY acc en Y
+	 */
+	
 	public void acceleration(double aX, double aY) {
 		speedX += Math.round(aX);
 		speedY += Math.round(aY);
 
 	}
 
+	/**
+	 * Une acceleration a droite dans la limite
+	 * de speedMax
+	 */
+	
 	public void deplacementDroite() {
 		if (speedX < speedMax) {
 			acceleration(3, 0);
 		}
 	}
 
+	/**
+	 * Une acceleration a gauche dans la limite
+	 * de speedMax
+	 */
+	
 	public void deplacementGauche() {
 		if (speedX > -speedMax) {
 			acceleration(-3, 0);
 		}
 	}
 
+	/**
+	 * Permet le saut du personnage
+	 * acceleration negative
+	 */
+	
 	public void jump() {
 		if (onGround) {
 			acceleration(0, -15);
@@ -305,6 +310,12 @@ public class Personnage implements ActionListener {
 
 	}
 
+	/**
+	 * Methode principale du personnage
+	 * Gere le prochain mouvement du personnage
+	 * invoquée par PanneauPrincipal	
+	 */
+	
 	public void maj() {
 		enVie();
 		onGround = checkGround();
@@ -374,6 +385,11 @@ public class Personnage implements ActionListener {
 		posMonde = positionCourante();
 	}
 
+	/**
+	 * Verifie le sol
+	 * @return true si un sol present
+	 */
+	
 	private boolean checkGround() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
@@ -413,7 +429,12 @@ public class Personnage implements ActionListener {
 
 		return false;
 	}
-
+	
+	/**
+	 * verifie en face
+	 * @return true si bloc en face
+	 */
+	
 	private boolean checkFront() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
@@ -441,6 +462,11 @@ public class Personnage implements ActionListener {
 		return false;
 	}
 
+	/**
+	 * verifie au dessus (pendant les sauts par exemple
+	 * @return true si bloc au dessus
+	 */
+	
 	private boolean checkTop() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
@@ -482,7 +508,12 @@ public class Personnage implements ActionListener {
 
 		return false;
 	}
-
+	
+	/**
+	 * verife en bloc arriere
+	 * @return true si bloc derriere
+	 */
+	
 	private boolean checkBack() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
@@ -510,6 +541,12 @@ public class Personnage implements ActionListener {
 		return false;
 	}
 
+	/**
+	 * Calcule la position actuelle des pieds
+	 * du personnage
+	 * @return x et y
+	 */
+	
 	private int[] positionCourante() {
 		// calcul x
 		int x = posX / 64;
@@ -519,13 +556,58 @@ public class Personnage implements ActionListener {
 		return a;
 
 	}
-
+	
+	/**
+	 * Verifie si le personnage est troujours en vie
+	 */
+	
 	private void enVie() {
 		if (pointDeVie <= 0) {
 			enVie = false;
 		}
 	}
+	
+	/**
+	 * Ajoute ou retire un nombre de point de vie
+	 * @param a int souvent 1 ou -1
+	 */
+	
+	public void pointVie(int a) {
 
+		if ((a > 0) && (pointDeVie < 3)) {
+			pointDeVie = pointDeVie + a;
+		}
+		if ((a <= 0)) {
+			pointDeVie = pointDeVie + a;
+		}
+
+	}
+	 
+	/**
+	 * Rend le personnage invincible par un Timer
+	 * de 2 secondes environ
+	 */
+	
+	public void setInvincible() {
+		if (!invincibleTimer.isRunning()) {
+			invincibleTimer.start();
+			invincible = true;
+		}
+	}
+	
+	
+	public boolean getInvincible() {
+		return invincible;
+	}
+
+
+	
+	/**
+	 * 
+	 * @return Valeur de EnVie
+	 */
+	
+	
 	public boolean getEnVie() {
 		return enVie;
 	}
@@ -538,17 +620,31 @@ public class Personnage implements ActionListener {
 		this.gravity = gravity;
 	}
 
-	public void pointVie(int a) {
-
-		if ((a > 0) && (pointDeVie < 3)) {
-			pointDeVie = pointDeVie + a;
-		}
-		if ((a <= 0)) {
-			pointDeVie = pointDeVie + a;
-		}
-
+	public Rectangle getHitbox() {
+		return hitBox;
 	}
 
+	public int getX() {
+		return posX;
+	}
+
+	public int getY() {
+		return posY;
+	}
+
+	public void setX(int pX) {
+		posX = pX;
+	}
+
+	public void setY(int pY) {
+		posY = pY;
+	}
+
+	/**
+	 * implementation
+	 * Utile pour l'attribut invincible
+	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == invincibleTimer) {
 			invincible = false;
