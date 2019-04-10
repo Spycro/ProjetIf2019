@@ -131,10 +131,10 @@ public class Personnage implements ActionListener {
 	public void dessineJoueur(Graphics g, ImageObserver obs) {
 		g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
 
-		if (blocRencontre != null) {
+		/*if (blocRencontre != null) {
 			g.setColor(Color.white);
 			g.fillRect(blocRencontre.getX(), blocRencontre.getY(), Bloc.getCote(), Bloc.getCote());
-		}
+		}*/
 		if (posX > 350 && posX < 5150)
 			g.translate(posX - 350, 0);
 		else if(posX >= 5150){
@@ -144,11 +144,11 @@ public class Personnage implements ActionListener {
 
 			g.drawImage(coeur, i * 40, 0, 32, 32, obs);
 		}
-		g.drawString("position X : " + posX + " Position Y : " + posY, 0, 30);
+		/*g.drawString("position X : " + posX + " Position Y : " + posY, 0, 30);
 		g.drawString("vitesse X : " + speedX + " vitesse Y : " + speedY, 0, 60);
 		g.drawString("on Ground :" + onGround, 0, 90);
 		g.drawString("collision : " + collision(), 200, 30);
-		g.drawString("vie :" + pointDeVie, 400, 30);
+		g.drawString("vie :" + pointDeVie, 400, 30);*/
 		///////////////////////////////
 	}
 
@@ -314,6 +314,10 @@ public class Personnage implements ActionListener {
 		if (getY() > monde.length * 64 - HAUTEUR) {
 			pointVie(-pointDeVie);
 		}
+		
+		// Interactions avec les objets
+		
+		collision();
 
 		// Verification du sol
 
@@ -410,9 +414,16 @@ public class Personnage implements ActionListener {
 		if (blocBas != null) {
 			if (blocBas.estSol()) {
 				if (pH.intersection(blocBas.getHitBox()).height > 0) {
+					if (blocBas.getType() == 'E') {
+						if (!getInvincible()) {
+							pointVie(-1);
+							setInvincible();
+						}
+					}
 					blocRencontre = blocBas;
 					return true;
 				}
+				
 			}
 		}
 
