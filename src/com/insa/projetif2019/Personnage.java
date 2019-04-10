@@ -131,17 +131,6 @@ public class Personnage implements ActionListener {
 	public void dessineJoueur(Graphics g, ImageObserver obs) {
 		g.drawImage(sprite, posX, posY, LARGEUR, HAUTEUR, obs);
 
-		//////////////////////////////// HITBOX (PRODUCTION)
-		if (getInvincible()) {
-			g.setColor(Color.red);
-		} else {
-			g.setColor(Color.white);
-		}
-		g.drawRect(posX, posY, hitBox.width, hitBox.height);
-		// g.fillRect(posMonde[0]*64, posMonde[1]*64, 64, 64);
-
-		///////////////////////////////////////////////////////
-
 		if (blocRencontre != null) {
 			g.setColor(Color.white);
 			g.fillRect(blocRencontre.getX(), blocRencontre.getY(), Bloc.getCote(), Bloc.getCote());
@@ -592,6 +581,11 @@ public class Personnage implements ActionListener {
 		if (!invincibleTimer.isRunning()) {
 			invincibleTimer.start();
 			invincible = true;
+			try {
+				sprite = ImageIO.read(new File("bin/astronautInv.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -648,6 +642,12 @@ public class Personnage implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == invincibleTimer) {
 			invincible = false;
+			try {
+				sprite = ImageIO.read(new File("bin/astronaut.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			invincibleTimer.stop();
 		}
 
