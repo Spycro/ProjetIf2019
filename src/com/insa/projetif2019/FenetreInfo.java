@@ -98,7 +98,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.setLocation(700,200);
 		this.setVisible(true);
 	
-		couverture = new JLabel(new ImageIcon("bin/06_b1.jpg"));
+		couverture = new JLabel(new ImageIcon("bin/Galaxie.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
 		

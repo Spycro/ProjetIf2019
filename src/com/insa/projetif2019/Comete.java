@@ -45,10 +45,10 @@ public class Comete extends Astre  {
 		return info3;
 	}
 	public String info4(){
-		String info4=". Je suis bien plus vieille que toi tu sais,\n "
+		String info4=". Je suis bien plus vieille que toi tu sais, "
 				+ "penses-tu que tu pourras me voir un jour ? \n Verifions, Pour commencer, ton interface preferee a besoin de toi.\n"
 				+ "Indique dans le premier cadre, en quelle annee somme nous ? \n Maintenant LA question qui fache, renseigne dans la seconde case ton age et clic sur le bouton \n ";
-		info4=info4+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
+
 		return info4;
 	}
 	
