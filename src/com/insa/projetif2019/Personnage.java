@@ -325,7 +325,6 @@ public class Personnage implements ActionListener {
 			acceleration(0, gravity);
 		}
 
-		// Verification du bloc frontal
 		if (getX() < 0) {
 			setX(0);
 			speedX = 0;
@@ -381,6 +380,11 @@ public class Personnage implements ActionListener {
 			if (blocBas.estSol()) {
 				return true;
 			}
+		}
+		
+		if(indiceY+1 >= monde.length && !blocBas.estSol()) {
+			enVie = false;
+			return false;
 		}
 
 		blocBas = monde[indiceY + 1][indiceX];
