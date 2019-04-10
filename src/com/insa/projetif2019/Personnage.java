@@ -357,6 +357,7 @@ public class Personnage implements ActionListener {
 			if (checkTop()) {
 				if (speedY < 0) {
 					setY(blocRencontre.getY() + Bloc.getCote());
+					speedY = 0;
 					acceleration(0, gravity);
 				}
 			}
@@ -446,6 +447,13 @@ public class Personnage implements ActionListener {
 		}
 
 		Bloc blocTop = monde[indiceY - 1][indiceX];
+		
+		if(Math.round((getX()+LARGEUR)/64) > indiceX && indiceX+1 < monde[0].length ) {
+			if (monde[indiceY - 1][indiceX + 1].estSol()) {
+				indiceX += 1;
+				blocTop = monde[indiceY - 1][indiceX];
+			}
+		}
 
 		if (blocTop != null) {
 			if (blocTop.estSol()) {
