@@ -424,6 +424,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		if(!enPause) {
 			tempsDeJeu.stop();
 			enMvt.stop();
+			tempsMechant.stop();
 			add(panneauPause);
 			remove(panneauZoneJeu);
 			panneauPause.grabFocus();
@@ -434,6 +435,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		else{
 			tempsDeJeu.restart();
 			enMvt.restart();
+			tempsMechant.restart();
 			remove(panneauPause);
 			add(panneauZoneJeu);
 			panneauZoneJeu.grabFocus();

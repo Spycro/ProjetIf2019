@@ -27,7 +27,7 @@ public class Personnage implements ActionListener {
 	////////////////////////////////////////////////////////////////////////////////////////
 	Image sprite;
 	Image coeur;
-	Rectangle hitBox;
+	private Rectangle hitBox;
 	private int posX;
 	private int posY;
 	private double speedX;
@@ -93,6 +93,10 @@ public class Personnage implements ActionListener {
 		posMonde = positionCourante();
 		invincibleTimer = new Timer(2000, this);
 		invincible = false;
+	}
+
+	public Rectangle getHitbox() {
+		return hitBox;
 	}
 
 	public int getX() {
@@ -224,50 +228,38 @@ public class Personnage implements ActionListener {
 
 					if (blocRencontre.getType() == '0' && i == monde.length - 1) {
 						parent.endLevel(false);
-					} else if (blocRencontre.getType() == '7') {
-						pointVie(1);
-						parent.miseAJourGrille(i, j);
-						break;
 					}
 
-					else if (blocRencontre.getType() == 'D') {
-						if (!getInvincible()) {
-							pointVie(-1);
-							setInvincible();
-						}
+					else if (blocRencontre.getType() == '7') {
+						pointVie(1);
 						parent.miseAJourGrille(i, j);
-						break;
 					} else if (blocRencontre.getType() == '8') {
+
 						parent.pause();
 						FenetreInfo fenetre1 = new FenetreInfo(parent.getAstre(), 1);
 						parent.miseAJourGrille(i, j);
 						speedX = 0;
 						speedY = 0;
-						break;
 
 					} else if (blocRencontre.getType() == '9') {
 						parent.pause();
 						FenetreInfo fenetre2 = new FenetreInfo(parent.getAstre(), 2);
 						parent.miseAJourGrille(i, j);
-						break;
 
 					} else if (blocRencontre.getType() == 'A') {
 						parent.pause();
 						FenetreInfo fenetre3 = new FenetreInfo(parent.getAstre(), 3);
 						parent.miseAJourGrille(i, j);
-						break;
 
 					} else if (blocRencontre.getType() == 'B') {
 						parent.pause();
 						FenetreInfo fenetre4 = new FenetreInfo(parent.getAstre(), 4);
 						parent.miseAJourGrille(i, j);
-						break;
 
 					}
 
 					else if (blocRencontre.getType() == 'C') {
 						parent.endLevel(true);
-						break;
 					}
 
 					else if (blocRencontre.getType() == 'E') {
@@ -275,7 +267,6 @@ public class Personnage implements ActionListener {
 							pointVie(-1);
 							setInvincible();
 						}
-						break;
 					}
 
 					return true;
@@ -286,8 +277,8 @@ public class Personnage implements ActionListener {
 	}
 
 	public void acceleration(double aX, double aY) {
-		speedX += aX;
-		speedY += aY;
+		speedX += Math.round(aX);
+		speedY += Math.round(aY);
 
 	}
 
@@ -334,13 +325,12 @@ public class Personnage implements ActionListener {
 			acceleration(0, gravity);
 		}
 
-		// Verification du bloc frontal
 		if (getX() < 0) {
 			setX(0);
 			speedX = 0;
 		}
 
-		else if (getX() > (monde[0].length - 1) * 64) {
+		else if (getX() >= (monde[0].length - 1) * 64) {
 			if (getX() > (monde[0].length) * 64 - HAUTEUR && speedX > 0) {
 				setX(monde[0].length * 64 - LARGEUR);
 				speedX = 0;
@@ -391,8 +381,21 @@ public class Personnage implements ActionListener {
 				return true;
 			}
 		}
+		
+		if(indiceY+1 >= monde.length && !blocBas.estSol()) {
+			enVie = false;
+			return false;
+		}
 
 		blocBas = monde[indiceY + 1][indiceX];
+		
+		if(Math.round((getX()+LARGEUR)/64) > indiceX && indiceX+1 < monde[0].length ) {
+			if (monde[indiceY + 1][indiceX + 1].estSol()) {
+				indiceX += 1;
+				blocBas = monde[indiceY + 1][indiceX];
+			}
+		}
+		
 		Rectangle pH = new Rectangle(hitBox);
 		pH.y += 1;
 		if (blocBas != null) {
@@ -437,25 +440,33 @@ public class Personnage implements ActionListener {
 	private boolean checkTop() {
 		int indiceX = posMonde[0];
 		int indiceY = posMonde[1];
+		
+		if(indiceY - 1 < 0 || indiceY-2 < 0) {
+			return false;
+		}
 
-		Bloc blocTop = monde[indiceY-1][indiceX];
+		Bloc blocTop = monde[indiceY - 1][indiceX];
 
 		if (blocTop != null) {
 			if (blocTop.estSol()) {
 				return true;
 			}
 		}
+		
+		else {
 
-		blocTop = monde[indiceY - 2][indiceX];
-		Rectangle pH = new Rectangle(hitBox);
-		pH.x += 1;
-		if (blocTop != null) {
-			if (blocTop.estSol()) {
-				if (pH.intersection(blocTop.getHitBox()).height > 0) {
-					blocRencontre = blocTop;
-					return true;
+			blocTop = monde[indiceY - 2][indiceX];
+			Rectangle pH = new Rectangle(hitBox);
+			pH.x += 1;
+			if (blocTop != null) {
+				if (blocTop.estSol()) {
+					if (pH.intersection(blocTop.getHitBox()).height > 0) {
+						blocRencontre = blocTop;
+						return true;
+					}
 				}
 			}
+
 		}
 
 		return false;

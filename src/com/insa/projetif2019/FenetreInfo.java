@@ -41,7 +41,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		this.setLocation(100,200);
 		this.setVisible(true);
 
-		couverture = new JLabel(new ImageIcon("bin/"+a.getNom()+"BG.png"));
+		couverture = new JLabel(new ImageIcon("bin/Galaxie.jpg"));
 		couverture.setBounds(0,0,960,200);
 		couverture.setLayout(null);
 
@@ -56,9 +56,9 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		info= new JTextArea();
 		info.setBounds(10,10,910,600);
 		info.setLineWrap(true);
-		Font police = new Font(" Arial ",Font.BOLD,13);
+		Font police = new Font("Cambria ",Font.BOLD,15);
 		info.setFont(police);
-		info.setForeground(Color.white);
+		info.setForeground(Color.black);
 		this.add(info);
 		switch (numero) {
 		case 1: 
@@ -115,7 +115,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		info= new JTextArea();
 		info.setBounds(10,10,910,600);
 		info.setLineWrap(true);
-		Font police = new Font(" Arial ",Font.BOLD,13);
+		Font police = new Font("Cambria ",Font.BOLD,15);
 		info.setFont(police);
 		info.setForeground(Color.white);
 		this.add(info);
