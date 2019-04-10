@@ -20,6 +20,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -46,15 +47,18 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	private final int HAUTEUR;
 	private HashSet<Integer> toucheEnfonce; //gerer touche multiple
 	
-	//protected Astre niveau;
+	private Astre niveau;
 	
 	private ArrayList<Astre> listeAstre;
 	
 	private Timer tempsDeJeu;
 	private Timer enMvt;
 	private Timer tempsMechant;
+	private Timer tempsEcran;
 	boolean enPause = false;
 	PanneauPause panneauPause;
+	
+	private EcranAnnonce annonce;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -78,6 +82,10 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		enMvt = new Timer(33,this);
 		tempsDeJeu = new Timer(33,this);
 		tempsMechant=new Timer(20,this);
+		tempsEcran = new Timer(3000, this);
+		
+		niveau = null;
+		
 		//definition panneau Pause
 		panneauPause = new PanneauPause();
 		panneauPause.addKeyListener(this);
@@ -149,41 +157,51 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	// Methode gerant le lancement d'un niveau
 	public void startGame() {
 		// Lecture du fichier de sauvegarde
-		Astre niveau = getLevel();
+		niveau = getLevel();
 		
 		// Cas ou l'astre existe
 		if(niveau != null) {
 			
-			try {
-				imgf = ImageIO.read(new File("bin/"+niveau.getNom()+"BG.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			annonce = new EcranAnnonce(niveau, "", false, this);
 			
-			repaint();
+			this.removeAll();
+			this.add(annonce);
 			
-			panneauZoneJeu = new PanneauDeJeu(niveau,this);
-			panneauZoneJeu.addKeyListener(this);
-			panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
-			this.add(panneauZoneJeu);
-			panneauZoneJeu.requestFocusInWindow();
-
-			this.remove(bStart);
-			this.remove(bQuit);
-			this.remove(bComtJouer);
-			remove(text);
-
-			tempsDeJeu.start();
-			tempsMechant.start();
+			tempsEcran.start();
 			
 			System.out.println(niveau.getNom()); //TODO A virer, c'est juste pour tester le bon enchainement des niveaux
 		}
 		
 		// Cas ou l'astre n'existe pas, cad que le jeu est termine
 		else {
-			System.out.println("Game Over !"); 
+			annonce = new EcranAnnonce(null, "Felicitations! \nTu as finis ton exploration avec brio!", true, this);
+			
+			this.removeAll();
+			this.add(annonce);
 			//TODO creer une methode fin de jeu qui affiche un JPanel qui felicite le joueur d'etre arriver au bout.
 		}
+	}
+	
+	public void dispLevel(Astre niveau) {
+		
+		this.removeAll();
+		
+		try {
+			imgf = ImageIO.read(new File("bin/"+niveau.getNom()+"BG.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		repaint();
+		
+		panneauZoneJeu = new PanneauDeJeu(niveau,this);
+		panneauZoneJeu.addKeyListener(this);
+		panneauZoneJeu.setBounds(0, 0, LARGEUR, HAUTEUR);
+		this.add(panneauZoneJeu);
+		panneauZoneJeu.requestFocusInWindow();
+
+		tempsDeJeu.start();
+		tempsMechant.start();
 	}
 	
 	// Methode de lecture du fichier de sauvegarde
@@ -330,11 +348,22 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    	panneauZoneJeu.getJoueur().preMouvement(toucheEnfonce);
 	    	
 	    }
+	    
+	    if(e.getSource() == tempsEcran) {
+	    	if(niveau != null) {
+	    		dispLevel(niveau);
+	    	}
+	    	tempsEcran.stop();
+	    }
+	    
 	    if(e.getSource() == tempsDeJeu) {
 	    	panneauZoneJeu.getJoueur().maj();
 	    	if(!panneauZoneJeu.getJoueur().getEnVie()) { //Mort du joueur
 	    		stopGame();
-	    		startGame();
+	    		this.removeAll();
+	    		annonce = new EcranAnnonce(null, "OUPS! Tu es mort. \nRetentes ta chance, \nil ne faut jamais s'arreter sur un echec", false, this);
+	    		this.add(annonce);
+	    		tempsEcran.start();
 	    	}
 	    }
 	    
