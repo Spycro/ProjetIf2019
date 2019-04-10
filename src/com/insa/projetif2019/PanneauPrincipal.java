@@ -156,6 +156,9 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	
 	// Methode gerant le lancement d'un niveau
 	public void startGame() {
+		
+		toucheEnfonce.clear();
+		
 		// Lecture du fichier de sauvegarde
 		niveau = getLevel();
 		
