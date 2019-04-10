@@ -165,8 +165,11 @@ public class Personnage implements ActionListener {
 			g.setColor(Color.white);
 			g.fillRect(blocRencontre.getX(), blocRencontre.getY(), Bloc.getCote(), Bloc.getCote());
 		}
-		if (posX > 350)
+		if (posX > 350 && posX < 5150)
 			g.translate(posX - 350, 0);
+		else if(posX >= 5150){
+			g.translate(5150 - 350, 0);
+		}
 		for (int i = 0; i < pointDeVie; i++) {
 
 			g.drawImage(coeur, i * 40, 0, 32, 32, obs);
