@@ -25,26 +25,30 @@ public class Comete extends Astre  {
 	}*/
 	
 	public String info1 (){
-		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete. C est a dire que je suis composee de trois parties : un noyau, une chevelure"
-				+ " (je suis certaine qu'elle est plus belle que la tienne) et les queues."
-				+ " Mon noyau et ma chevelure constituent ce que les scientifiques appellent ma tete";
+		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete.\n C est a dire que je suis composee de trois parties : \n un noyau, une chevelure"
+				+ " (je suis certaine qu'elle est plus belle que la tienne) et les queues.\n"
+				+ " Mon noyau et ma chevelure constituent ce que les scientifiques appellent ma tete \n";
+		info1=info1+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info1;	
 	}
 	public String info2() {
 
 		String info2=decouvreur+"m'a decouvert le "+jourAp+"/"+moisAp+"/"+anneeAp+". Original n'est ce pas";
+		info2=info2+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info2;
 	}
 	public String info3() {
-		String info3="Ma periode orbitale est de"+periode+"ans,"
-				+ "cela correspond � la dur�e que je met pour revenir au m�me point. Bon j'avoue, je suis lente mais le principal"
-				+ "c'est d'arriv�e"; 
+		String info3="Ma periode orbitale est de"+periode+"ans,\n"
+				+ "cela correspond a la duree que je mets pour revenir au meme point. \n Bon j'avoue, je suis lente mais le principal"
+				+ "c'est d'arriver \n"; 
+		info3=info3+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info3;
 	}
 	public String info4(){
-		String info4=". Je suis bien plus vieille que toi tu sais, "
-				+ "penses-tu que tu pourras me voir un jour ? Verifions, Pour commencer, ton interface preferee a besoin de toi."
-				+ "Indique dans le premier cadre, en quelle annee somme nous ? Maintenant LA question qui fache, renseigne dans la seconde case ton age et clic sur le bouton ";
+		String info4=". Je suis bien plus vieille que toi tu sais,\n "
+				+ "penses-tu que tu pourras me voir un jour ? \n Verifions, Pour commencer, ton interface preferee a besoin de toi.\n"
+				+ "Indique dans le premier cadre, en quelle annee somme nous ? \n Maintenant LA question qui fache, renseigne dans la seconde case ton age et clic sur le bouton \n ";
+		info4=info4+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
 		return info4;
 	}
 	

@@ -115,7 +115,7 @@ public class FenetreInfo extends JFrame implements ActionListener, KeyListener{
 		info= new JTextArea();
 		info.setBounds(10,10,910,600);
 		info.setLineWrap(true);
-		Font police = new Font(" Arial ",Font.BOLD,13);
+		Font police = new Font("Cambria ",Font.BOLD,15);
 		info.setFont(police);
 		info.setForeground(Color.white);
 		this.add(info);

@@ -25,7 +25,7 @@ public class Mechant {
 		
 		private Bloc[][] monde;
 	
-		private final int LARGEUR = 40;
+		private final int LARGEUR = 50;
 		private final int HAUTEUR = 75;
 		private Personnage joueur;
 		
