@@ -52,12 +52,15 @@ public class Bloc  {
 
 	
 	/**
-	 * Constructeur
+	 * Constructeur des blocs
+	 * Les blocs initialise dependent des valeurs lues dans les fichiers
+	 * de carte de jeu
+	 * Ceux-ci sont colorise en fonction du monde actuel
 	 * @param parent : JPanel invoquant ce bloc (Panneau de Jeu)
 	 * @param x
 	 * @param y
-	 * @param type : Cf ci-dessus
-	 * @param astre : Permet colorisation des blocs.
+	 * @param type Cf ci-dessus
+	 * @param astre permet colorisation des blocs.
 	 */
 	
 	public Bloc( JPanel parent, int x, int y, char type, String astre) {
