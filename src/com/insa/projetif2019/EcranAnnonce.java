@@ -22,7 +22,7 @@ public class EcranAnnonce extends JPanel {
 	public EcranAnnonce(Astre niveau, String text, boolean win, JPanel parent) {
 
 		// Chargement de la police
-		police = new Font("Bookman Old Style", Font.BOLD, 40);
+		police = new Font("Bookman Old Style", Font.BOLD, 35);
 
 		tText = new JTextArea();
 		tText.setForeground(Color.white);
@@ -54,7 +54,7 @@ public class EcranAnnonce extends JPanel {
 				this.setBackground(Color.black);
 			}
 			tText.setText(text);
-			tText.setBounds(0, parent.getHeight()/2, 40*tText.getText().length(), parent.getHeight());
+			tText.setBounds(0, parent.getHeight()/18, 40*tText.getText().length(), parent.getHeight());
 		}
 		
 		

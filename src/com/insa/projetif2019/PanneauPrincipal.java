@@ -174,7 +174,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 		// Cas ou l'astre n'existe pas, cad que le jeu est termine
 		else {
-			annonce = new EcranAnnonce(null, "Felicitations! \nTu as finis ton exploration avec brio!", true, this);
+			annonce = new EcranAnnonce(null, "Felicitations! \nTu as finis ton exploration avec brio!\nUn jeu créé par Loic, Lucas, Janna et Joanna, 2019", true, this);
 			
 			this.removeAll();
 			this.add(annonce);
@@ -361,7 +361,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	    	if(!panneauZoneJeu.getJoueur().getEnVie()) { //Mort du joueur
 	    		stopGame();
 	    		this.removeAll();
-	    		annonce = new EcranAnnonce(null, "OUPS! Tu es mort. \nRetentes ta chance, \nil ne faut jamais s'arreter sur un echec", false, this);
+	    		annonce = new EcranAnnonce(null, "OUPS! Tu es mort. \nRetente ta chance, \nil ne faut jamais s'arreter sur un echec", false, this);
 	    		this.add(annonce);
 	    		tempsEcran.start();
 	    	}
