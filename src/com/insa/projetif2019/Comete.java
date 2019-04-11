@@ -25,7 +25,7 @@ public class Comete extends Astre  {
 	}*/
 	
 	public String info1 (){
-		String info1= "Bonjour jeune explorateur, bienvenue sur"+nom+", je suis une comete.\n C est a dire que je suis composee de trois parties : \n un noyau, une chevelure"
+		String info1= "Bonjour jeune explorateur, bienvenue sur "+nom+", je suis une comete.\n C est a dire que je suis composee de trois parties : \n un noyau, une chevelure"
 				+ " (je suis certaine qu'elle est plus belle que la tienne) et les queues.\n"
 				+ " Mon noyau et ma chevelure constituent ce que les scientifiques appellent ma tete \n";
 		info1=info1+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
@@ -38,7 +38,7 @@ public class Comete extends Astre  {
 		return info2;
 	}
 	public String info3() {
-		String info3="Ma periode orbitale est de"+periode+"ans,\n"
+		String info3="Ma periode orbitale est de "+periode+"ans,\n"
 				+ "cela correspond a la duree que je mets pour revenir au meme point. \n Bon j'avoue, je suis lente mais le principal"
 				+ "c'est d'arriver \n"; 
 		info3=info3+" Tu as fini de lire, ferme ma fenetre et appuie sur retour";
@@ -61,7 +61,7 @@ public class Comete extends Astre  {
 			anneepro=(int) (anneepro+periode);
 		}
 		if ((age+(anneepro-date))<100){
-			appa= "Tu auras le grand honneur de m'observer le " +jourAp+"/"+moisAp+"/"+anneepro+" Pour avoir cette chance ;"
+			appa= "Tu auras le grand honneur de m'observer le " +jourAp+"/"+moisAp+"/"+anneepro+" Pour avoir cette chance;"
 				+ "tu dois rester en bonne sante: mange 5 fruits et legumes par jour.";
 		}else {
 			appa= "Sauf si la science a fait de grand progres depuis ma creation, tu n'auras pas le grand honneur de m'observer le " +jourAp+"/"+moisAp+"/"+anneeAp+" Je suis vraiment desolee mais j'aime me faire attendre,"

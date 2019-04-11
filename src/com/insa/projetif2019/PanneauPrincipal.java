@@ -82,7 +82,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		enMvt = new Timer(33,this);
 		tempsDeJeu = new Timer(33,this);
 		tempsMechant=new Timer(20,this);
-		tempsEcran = new Timer(3000, this);
+		tempsEcran = new Timer(1000, this);
 		
 		niveau = null;
 		
@@ -169,7 +169,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			
 			this.removeAll();
 			this.add(annonce);
-			
+			repaint();
 			tempsEcran.start();
 			
 			System.out.println(niveau.getNom()); //TODO A virer, c'est juste pour tester le bon enchainement des niveaux
@@ -322,6 +322,32 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 				e.printStackTrace();
 			}
 		}
+		
+	}
+	public void resetSave() {
+		File savefile;
+		savefile = new File("file0.sav");
+		
+		Astre temp = getLevel();
+		
+		// On vide le fichier de sauvegarde
+		PrintWriter pw;
+		try {
+			pw = new PrintWriter(savefile);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter(savefile));
+			bw.write("Terre");
+			bw.close();
+		} catch (IOException e) {
+			System.out.println("Erreur lors de l'ecriture du fichier de sauvegarde");
+			e.printStackTrace();
+		}			
 		
 	}
 	
@@ -486,7 +512,7 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	public void stopGame() {
 		tempsDeJeu.stop();
 		enMvt.stop();
-		remove(panneauZoneJeu);
+		removeAll();
 	}
 	
 	
