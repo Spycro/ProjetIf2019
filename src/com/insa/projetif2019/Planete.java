@@ -16,7 +16,7 @@ public class Planete extends Astre {
 		temperatureMin=tm;
 		temperatureMax=tmx;
 		masse=m;
-		pesanteur=calculpesanteur();	
+		pesanteur=calculPesanteur();	
 	 	nom=n;
 	 	type=ty;
 	 	//grilleDeNiveau = generergrille();
@@ -30,7 +30,7 @@ public class Planete extends Astre {
 		return null;
 	}
 	
-	public double calculpesanteur(){
+	public double calculPesanteur(){
 		double p=(6.67*Math.pow(10,-11)*masse)/Math.pow(rayon*Math.pow(10,3), 2);
 		return p;
 	}
