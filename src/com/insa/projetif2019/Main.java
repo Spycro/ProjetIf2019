@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class test {
+public class Main {
 
 	public static void main(String[] args) {
 		FenetrePrincipale fen=null;
