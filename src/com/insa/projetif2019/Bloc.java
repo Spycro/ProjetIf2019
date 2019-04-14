@@ -69,7 +69,7 @@ public class Bloc  {
 		coordX = x;
 		hitBox = new Rectangle(x,y,COTES, COTES);
 		typeBloc=type; 
-		generationBloc(astre, parent);
+		genererBloc(astre, parent);
 		
 	}	
 
@@ -116,7 +116,7 @@ public class Bloc  {
 	 * @param parent
 	 */
 	
-	public void generationBloc (String nom, JPanel parent) {
+	public void genererBloc (String nom, JPanel parent) {
 		
 			switch (typeBloc) {
 			case '0':
