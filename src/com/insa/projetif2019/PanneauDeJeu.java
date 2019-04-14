@@ -29,7 +29,7 @@ public class PanneauDeJeu extends JPanel {
 	private File map;
 	private JPanel pCarte;
 	private Astre niveau;
-	private PanneauPrincipal paternel;
+	private PanneauPrincipal parent;
 	private ArrayList<Mechant> mechant;
 
 	/**
@@ -41,7 +41,7 @@ public class PanneauDeJeu extends JPanel {
 
 	public PanneauDeJeu(Astre nomNiveau, PanneauPrincipal p) {
 		this.setOpaque(false);
-		paternel = p;
+		parent = p;
 		grille = new Bloc[10][90];
 		niveau = nomNiveau;
 		map = new File("bin/" + niveau.getNom() + ".txt");
@@ -175,19 +175,19 @@ public class PanneauDeJeu extends JPanel {
 	public void endLevel(boolean win) {
 
 		if (win) {
-			paternel.stopGame();
-			paternel.majSave();
-			paternel.startGame();
+			parent.stopGame();
+			parent.majSave();
+			parent.startGame();
 		}
 
 		else {
-			paternel.stopGame();
-			paternel.startGame();
+			parent.stopGame();
+			parent.startGame();
 		}
 	}
 
 	public void pause() {
-		paternel.switchPause();
+		parent.switchPause();
 	}
 
 	public void PanneauMort() {
