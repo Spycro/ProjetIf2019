@@ -47,7 +47,7 @@ public class Bloc  {
 	private char typeBloc; 
 	private Image sprite;
 	private Rectangle hitBox;
-	private JPanel papa; 
+	private JPanel parent; 
 
 
 	
@@ -63,8 +63,8 @@ public class Bloc  {
 	 * @param astre permet colorisation des blocs.
 	 */
 	
-	public Bloc( JPanel parent, int x, int y, char type, String astre) {
-		papa=parent; 
+	public Bloc( JPanel p, int x, int y, char type, String astre) {
+		parent=p; 
 		coordY = y;
 		coordX = x;
 		hitBox = new Rectangle(x,y,COTES, COTES);
