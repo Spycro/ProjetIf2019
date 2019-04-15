@@ -1,18 +1,14 @@
 package com.insa.projetif2019;
 
 import java.awt.Image;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Mechant {
 	// ATTRIBUTS

@@ -7,7 +7,6 @@ public class Planete extends Astre {
 	private double temperatureMax;
 	double masse;
 	String type;
-	//private Bloc[][] grilleDeNiveau;
 
 	public Planete (double r, double p, double tm, double tmx,double m, String n, String ty) {
 		genre="Planete";
@@ -19,12 +18,7 @@ public class Planete extends Astre {
 		pesanteur=calculPesanteur();	
 	 	nom=n;
 	 	type=ty;
-	 	//grilleDeNiveau = generergrille();
 	}
-	/*public Bloc [][] generergrille(){
-		Bloc [][ grille=new Bloc[][];
-		return grille;
-	}*/
 		
 	public  String calculProchaineAp(int date, int age) {
 		return null;

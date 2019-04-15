@@ -230,7 +230,7 @@ public class PanneauDeJeu extends JPanel {
 
 		JLabel Fond = new JLabel();
 		Fond = new JLabel(new ImageIcon("bin/" + niveau.getNom() + ".planete.jpg"));
-		Fond.setBounds(0, 0, this.WIDTH, this.HEIGHT);
+		Fond.setBounds(0, 0, this.getWidth(), this.getHeight());
 		Fond.setLayout(null);
 
 		JTextArea Pplanete = new JTextArea();

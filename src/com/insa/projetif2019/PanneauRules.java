@@ -15,6 +15,10 @@ import java.awt.Font;
 
 public class PanneauRules extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextArea text1;
 	private JTextArea text2;
 	private JTextArea text3;
@@ -93,7 +97,6 @@ public class PanneauRules extends JPanel{
 		try {
 		    imgf1 = ImageIO.read(new File("bin/Galaxie.jpg"));
 		} catch (IOException e) {
-		   // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -101,7 +104,6 @@ public class PanneauRules extends JPanel{
 		try {
 		    imgf2 = ImageIO.read(new File("bin/fleche.png"));
 		} catch (IOException e) {
-		   // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

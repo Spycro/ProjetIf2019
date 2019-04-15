@@ -1,7 +1,6 @@
 package com.insa.projetif2019;
 
 import java.awt.Image;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -15,9 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Personnage joueur
- * 
- * @author Lucas, Janna, Loic
+ * Classe gérant le personnage joué par le joueur
  *
  */
 
@@ -656,7 +653,6 @@ public class Personnage implements ActionListener {
 			try {
 				sprite = ImageIO.read(new File("bin/astronaut.png"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			invincibleTimer.stop();

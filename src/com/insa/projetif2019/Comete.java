@@ -1,12 +1,10 @@
 package com.insa.projetif2019;
-import java.util.Scanner;
 
 
 public class Comete extends Astre  {
 	private int anneeAp;
 	private int moisAp;
 	private int jourAp;
-	//private int[][] grilleDeNiveau;
 
 	private String decouvreur;
 	public Comete (String n, int a, int m, int j, double p, String d){
@@ -17,12 +15,7 @@ public class Comete extends Astre  {
 		moisAp=m;
 		jourAp= j;
 		periode=p;
-		//grilleDeNiveau = generergrille();
 	}
-	/*public Bloc [][] generergrille(){
-		Bloc [][ grille=new Bloc[][];
-		return grille;
-	}*/
 	
 	public String info1 (){
 		String info1= "Bonjour jeune explorateur, bienvenue sur "+nom+", je suis une comete.\n C est a dire que je suis composee de trois parties : \n un noyau, une chevelure"

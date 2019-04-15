@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -171,8 +169,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			this.add(annonce);
 			repaint();
 			tempsEcran.start();
-			
-			System.out.println(niveau.getNom()); //TODO A virer, c'est juste pour tester le bon enchainement des niveaux
 		}
 		
 		// Cas ou l'astre n'existe pas, cad que le jeu est termine
@@ -181,7 +177,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 			
 			this.removeAll();
 			this.add(annonce);
-			//TODO creer une methode fin de jeu qui affiche un JPanel qui felicite le joueur d'etre arriver au bout.
 		}
 	}
 	
@@ -327,8 +322,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 	public void resetSave() {
 		File savefile;
 		savefile = new File("file0.sav");
-		
-		Astre temp = getLevel();
 		
 		// On vide le fichier de sauvegarde
 		PrintWriter pw;

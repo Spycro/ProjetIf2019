@@ -13,6 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanneauPause extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	JButton bQuit;
 	JButton bReturn;
 	Image fond;
@@ -40,7 +45,6 @@ public class PanneauPause extends JPanel {
 		try {
 			fond = ImageIO.read(new File("bin/fondPause.jpg"));
 		} catch (IOException e) {
-				// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

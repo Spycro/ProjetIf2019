@@ -6,7 +6,6 @@ import javax.swing.*;
 	/**
 	 * Fenetre principale de notre Jeu 
 	 * Cette fenetre gere tout nos JPanel et nos buton etc
-	 * @author Lucas
 	 *
 	 */
 
@@ -15,10 +14,6 @@ public class FenetrePrincipale extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private PanneauPrincipal panneauMenuPrincipal;
-	
-	
-	/*private JButton bStart;
-	private JButton bQuit;*/ //TODO A virer je crois ?
 	
 	private final int LARGEUR = 960;
 	private final int HAUTEUR = 640; 
@@ -32,9 +27,7 @@ public class FenetrePrincipale extends JFrame{
 	
 		
 		panneauMenuPrincipal = new PanneauPrincipal(LARGEUR, HAUTEUR, listeAstre);
-		panneauMenuPrincipal.setFenMere(this);
-		//panneauMenuPrincipal.afficherNiveau();
-		
+		panneauMenuPrincipal.setFenMere(this);		
 		
 		setContentPane(panneauMenuPrincipal);
 		

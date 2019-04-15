@@ -16,6 +16,10 @@ import javax.swing.JTextArea;
 
 public class EcranAnnonce extends JPanel implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	private JTextArea tText;
 	private Font police;
@@ -54,7 +58,6 @@ public class EcranAnnonce extends JPanel implements ActionListener {
 				try {
 					imgf = ImageIO.read(new File("bin/feu-artifice.jpg"));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				this.add(recommencer);
@@ -80,14 +83,12 @@ public class EcranAnnonce extends JPanel implements ActionListener {
 
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource()==recommencer) {
 			ancetre.stopGame();
 			ancetre.resetSave();
 			ancetre.startGame();
 		}
-		// TODO Auto-generated method stub
 		
 	}
 
