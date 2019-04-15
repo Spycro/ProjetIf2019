@@ -354,8 +354,6 @@ public class PanneauPrincipal extends JPanel implements ActionListener, KeyListe
 		
 	
 		if(e.getSource() == bStart){
-			
-			System.out.println("Button Pressed");
 			startGame();
 		
 		}
